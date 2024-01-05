@@ -1,0 +1,932 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Anomaly Detection &#8212; Laboratony&#39;s book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/Classical Machine Learning/Anomaly Detection';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Introduction" href="../Deep%20Learning/Introduction.html" />
+    <link rel="prev" title="Clustering" href="Clustering.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Laboratony's book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Laboratony's book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to LABORATONY!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Machine Learning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linear%20Regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Validation.html">Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Logistic%20Regression.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="K-Nearest%20Neighbours%20%28KNNs%29.html">K-Nearest Neighbours (KNNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Baseline.html">Baseline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Performance%20Metrics.html">Performance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Multiclass%20Classification.html">Multiclass Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Overfitting%20and%20Underfitting.html">Overfitting and Underfitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Loss%20Functions.html">Loss Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dealing%20with%20Spatial%20and%20Temporal%20Data.html">Dealing with Spatial and Temporal Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature%20Selection.html">Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Pipelines.html">Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Support%20Vector%20Machines%20%28SVMs%29.html">Support Vector Machines (SVMs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model%20Tuning.html">Model Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Decision%20Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ensemble%20Methods.html">Ensemble Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction%20to%20Natural%20Language%20Processing%20%28NLP%29.html">Introduction to Natural Language Processing (NLP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Naive%20Bayes%20Algorithm.html">Naive Bayes Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Principal%20Component%20Analysis%20%28PCA%29.html">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clustering.html">Clustering</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Anomaly Detection</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Training%20Neural%20Networks.html">Training Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Neural%20Networks%20with%20Custom%20Datasets.html">Neural Networks with Custom Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Convolutional%20Neural%20Networks%20%28CNNs%29.html">Convolutional Neural Networks (CNNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Implicit%20Regularisation.html">Implicit Regularisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Transfer%20Learning.html">Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Autoencoders.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Variational%20Autoencoders%20%28VAEs%29.html">Variational Autoencoders (VAEs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Convolutional%20VAEs.html">Convolutional VAEs</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Classical Machine Learning/Anomaly Detection.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/Classical Machine Learning/Anomaly Detection.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Anomaly Detection</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-class-svm-ocsvm">One-Class SVM (OCSVM)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isolation-forest-ifor">Isolation Forest (IFOR)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hdbscan">HDBSCAN</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="anomaly-detection">
+<h1>Anomaly Detection<a class="headerlink" href="#anomaly-detection" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">OneClassSVM</span>
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">IsolationForest</span>
+<span class="kn">from</span> <span class="nn">hdbscan</span> <span class="kn">import</span> <span class="n">HDBSCAN</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>เราสามารถระบุว่า data point หนึ่งเป็น anomaly (ซึ่งอาจเป็นข้อมูลที่มีประโยชน์หรือเป็น outlier ก็ได้) ได้หลายวิธี</p>
+<section id="one-class-svm-ocsvm">
+<h2>One-Class SVM (OCSVM)<a class="headerlink" href="#one-class-svm-ocsvm" title="Permalink to this heading">#</a></h2>
+<p>One-Class SVM (OCSVM) เป็น SVM ที่ใช้ในการระบุ anomaly มีหลักการคือ หา hyperplane ที่ตัดผ่าน centre of mass ของ data point เช่น ถ้าข้อมูลถูก standardised (ทำให้ข้อมูลมี mean เป็น 0 กับ variance เป็น 1) hyperplane จะตัดผ่าน origin</p>
+<p>Hyperparameter ที่สำคัญ เช่น</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nu</span></code> คือ สัดส่วนของ anomaly ที่มีใน dataset เราต้องกำหนดเองว่าอยากให้มี anomaly มากแค่ไหน (<code class="docutils literal notranslate"><span class="pre">nu=0.5</span></code> by default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kernel</span></code> กำหนดเหมือนตอนทำ SVM (<code class="docutils literal notranslate"><span class="pre">kernel=rbf</span></code> by default)</p></li>
+</ul>
+<p>เราสามารถสร้าง OCSVM model ได้โดยใช้ <code class="docutils literal notranslate"><span class="pre">sklearn.svm.OneClassSVM</span></code> และระบุแต่ละ data point ว่าเป็น outlier หรือไม่โดยใช้ <code class="docutils literal notranslate"><span class="pre">.predict</span></code> method (ถ้าเป็น outlier จะได้ -1 แต่ถ้าเป็น inlier จะได้ 1)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import data and drop duplicates</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/penguins.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="c1"># Features (X) and target (y)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;species&quot;</span><span class="p">]</span>
+<span class="c1"># train-test split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="c1"># Encode the target</span>
+<span class="n">label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_train</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">)</span>
+<span class="n">y_test</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y_test</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare new X_train to have outliers</span>
+<span class="n">neg_out</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">X_train</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">*</span><span class="mi">2</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">pos_out</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">X_train</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">*</span><span class="mi">2</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">X_train_new</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X_train</span><span class="p">,</span> <span class="n">neg_out</span><span class="p">,</span> <span class="n">pos_out</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X_train_new</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>culmen_length_mm</th>
+      <th>culmen_depth_mm</th>
+      <th>flipper_length_mm</th>
+      <th>body_mass_g</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.541701</td>
+      <td>0.567256</td>
+      <td>-0.647443</td>
+      <td>-0.191722</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.431834</td>
+      <td>0.365582</td>
+      <td>-0.719893</td>
+      <td>-0.636575</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.093102</td>
+      <td>-0.894882</td>
+      <td>1.381175</td>
+      <td>1.714789</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-1.129496</td>
+      <td>0.768930</td>
+      <td>-2.096455</td>
+      <td>-1.335629</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.468227</td>
+      <td>0.718511</td>
+      <td>0.004613</td>
+      <td>-0.255273</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>257</th>
+      <td>0.799205</td>
+      <td>-0.390696</td>
+      <td>1.381175</td>
+      <td>1.524138</td>
+    </tr>
+    <tr>
+      <th>258</th>
+      <td>1.184945</td>
+      <td>-0.592371</td>
+      <td>1.743428</td>
+      <td>1.524138</td>
+    </tr>
+    <tr>
+      <th>259</th>
+      <td>1.184945</td>
+      <td>1.273115</td>
+      <td>0.004613</td>
+      <td>-0.191722</td>
+    </tr>
+    <tr>
+      <th>260</th>
+      <td>-4.389746</td>
+      <td>-4.008180</td>
+      <td>-4.192911</td>
+      <td>-3.815165</td>
+    </tr>
+    <tr>
+      <th>261</th>
+      <td>5.125177</td>
+      <td>4.462135</td>
+      <td>4.356264</td>
+      <td>5.336090</td>
+    </tr>
+  </tbody>
+</table>
+<p>262 rows × 4 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an OCSVM model and fit on the new training set</span>
+<span class="n">ocsvm</span> <span class="o">=</span> <span class="n">OneClassSVM</span><span class="p">(</span><span class="n">nu</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_new</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predict labels for the new training set (outlier = -1, inlier = 1)</span>
+<span class="n">outlier_predictions</span> <span class="o">=</span> <span class="n">ocsvm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_new</span><span class="p">)</span>
+<span class="n">outlier_predictions</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1,  1,  1,  1,  1, -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, -1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+       -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1, -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+       -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1, -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1, -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+       -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1, -1, -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1, -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1, -1,  1,  1,  1, -1, -1], dtype=int64)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot outliers and inliers</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">X_train_new</span><span class="p">[</span><span class="s2">&quot;culmen_depth_mm&quot;</span><span class="p">],</span>
+    <span class="n">X_train_new</span><span class="p">[</span><span class="s2">&quot;flipper_length_mm&quot;</span><span class="p">],</span>
+    <span class="n">c</span><span class="o">=</span><span class="n">outlier_predictions</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;culmen_depth_mm&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;flipper_length_mm&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="o">*</span><span class="n">scatter</span><span class="o">.</span><span class="n">legend_elements</span><span class="p">());</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e7fbb7d10dac2546e33a7fa9407f356b2304ccc1fba1e50e461c6f540009ae06.png" src="../../_images/e7fbb7d10dac2546e33a7fa9407f356b2304ccc1fba1e50e461c6f540009ae06.png" />
+</div>
+</div>
+</section>
+<section id="isolation-forest-ifor">
+<h2>Isolation Forest (IFOR)<a class="headerlink" href="#isolation-forest-ifor" title="Permalink to this heading">#</a></h2>
+<p>ประยุกต์จาก Random Forest classifier โดยมีหลักการคือ ถ้า data point อยู่ใน leaf node ที่อยู่ใกล้ root node แสดงว่าข้อมูลเหล่านั้นต่างจากข้อมูลอื่น ๆ จึงมีโอกาสเป็น outlier มาก</p>
+<p><img src="../images/isolation_forest.png" width="600" /><br /></p>
+<p>Hyperparameter ที่สำคัญ เช่น</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">contamination</span></code> คือ สัดส่วนของ anomaly ที่มีใน dataset เราต้องกำหนดเองว่าอยากให้มี anomaly มากแค่ไหน (<code class="docutils literal notranslate"><span class="pre">contamination=&quot;auto&quot;</span></code> (0.1) by default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_estimators</span></code> จำนวน base estimator ใน ensemble (<code class="docutils literal notranslate"><span class="pre">n_estimators=100</span></code> by default)</p></li>
+</ul>
+<p>เราสามารถสร้าง IFOR model ได้โดยใช้ <code class="docutils literal notranslate"><span class="pre">sklearn.ensemble.IsolationForest</span></code> และระบุแต่ละ data point ว่าเป็น outlier หรือไม่โดยใช้ <code class="docutils literal notranslate"><span class="pre">.predict</span></code> method (ถ้าเป็น outlier จะได้ -1 แต่ถ้าเป็น inlier จะได้ 1)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an IFOR model and fit on the new training set</span>
+<span class="n">ifor</span> <span class="o">=</span> <span class="n">IsolationForest</span><span class="p">(</span><span class="n">contamination</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_new</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predict labels for the new training set (outlier = -1, inlier = 1)</span>
+<span class="n">outlier_predictions</span> <span class="o">=</span> <span class="n">ifor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train_new</span><span class="p">)</span>
+<span class="n">outlier_predictions</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1,  1,  1, -1,  1, -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1, -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1, -1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1, -1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1,  1, -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1, -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1, -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1, -1,  1,  1, -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+        1,  1,  1,  1,  1,  1,  1,  1,  1, -1,  1,  1,  1,  1,  1,  1,  1,
+        1, -1,  1,  1,  1, -1, -1])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot outliers and inliers</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">X_train_new</span><span class="p">[</span><span class="s2">&quot;culmen_depth_mm&quot;</span><span class="p">],</span>
+    <span class="n">X_train_new</span><span class="p">[</span><span class="s2">&quot;flipper_length_mm&quot;</span><span class="p">],</span>
+    <span class="n">c</span><span class="o">=</span><span class="n">outlier_predictions</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;culmen_depth_mm&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;flipper_length_mm&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="o">*</span><span class="n">scatter</span><span class="o">.</span><span class="n">legend_elements</span><span class="p">());</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0d1f08b16dbc0691895b0de761e0adc629d070724cefbf3a444cbf650723ae8d.png" src="../../_images/0d1f08b16dbc0691895b0de761e0adc629d070724cefbf3a444cbf650723ae8d.png" />
+</div>
+</div>
+</section>
+<section id="hdbscan">
+<h2>HDBSCAN<a class="headerlink" href="#hdbscan" title="Permalink to this heading">#</a></h2>
+<p>หลักการคือ แปลงระยะห่างของ data point หนึ่งจาก region ที่มี data point หนาแน่นเป็น outlier score</p>
+<p>data point ที่มี outlier score สูงจะเป็น outlier</p>
+<p>เราสามารถสร้าง HDBSCAN model ได้โดยใช้ <code class="docutils literal notranslate"><span class="pre">hdbscan.HDBSCAN</span></code> และดูค่า outlier score ของแต่ละ data point ได้โดยใช้ <code class="docutils literal notranslate"><span class="pre">.outlier_scores_</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an HDBSCAN model and fit on the new training set</span>
+<span class="n">hdbscan</span> <span class="o">=</span> <span class="n">HDBSCAN</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_new</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Predict labels for the new training set (outlier = -1, inlier = 1)</span>
+<span class="n">outlier_predictions</span> <span class="o">=</span> <span class="n">hdbscan</span><span class="o">.</span><span class="n">outlier_scores_</span>
+<span class="n">outlier_predictions</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([0.00000000e+00, 0.00000000e+00, 0.00000000e+00, 3.17528981e-01,
+       2.02134248e-01, 3.31070375e-02, 8.89695744e-02, 5.25413368e-02,
+       0.00000000e+00, 1.83951358e-01, 2.76037468e-02, 1.06928111e-01,
+       2.85289298e-02, 1.00640982e-02, 1.00267331e-01, 9.57614105e-02,
+       3.34814633e-02, 3.25418513e-03, 1.81681168e-01, 3.01732971e-01,
+       1.84894562e-01, 5.25413368e-02, 2.92216091e-01, 5.10829503e-02,
+       6.24714120e-02, 1.21481994e-02, 1.83110823e-01, 1.92506290e-01,
+       1.30760317e-01, 9.85428190e-02, 9.84947626e-02, 5.15652155e-01,
+       0.00000000e+00, 6.70578141e-02, 2.61764707e-01, 1.06975492e-01,
+       2.34609784e-01, 1.25192260e-01, 1.05076823e-01, 1.69992303e-01,
+       1.11601002e-02, 4.73255408e-02, 5.03589579e-03, 3.17939167e-01,
+       3.00210429e-01, 2.04815495e-01, 1.52876096e-01, 2.09967784e-01,
+       8.29642612e-02, 4.92036372e-04, 1.16419251e-01, 1.93662811e-01,
+       0.00000000e+00, 3.87094596e-02, 4.28315840e-02, 5.25413368e-02,
+       2.42482017e-01, 5.20111481e-01, 3.62841805e-01, 5.64374198e-02,
+       2.37105646e-02, 4.87463040e-02, 1.46540559e-01, 0.00000000e+00,
+       1.16005731e-01, 2.82958925e-02, 3.88020337e-02, 0.00000000e+00,
+       8.18077315e-02, 1.78984233e-01, 5.30178411e-01, 8.49839559e-02,
+       8.11013535e-02, 0.00000000e+00, 1.39332134e-01, 2.73249362e-02,
+       1.36185376e-01, 5.37307107e-02, 1.48621119e-01, 3.27616861e-02,
+       1.64293784e-01, 9.82367957e-02, 3.62919604e-02, 1.40596871e-01,
+       2.76037468e-02, 6.83386884e-02, 1.91196073e-01, 0.00000000e+00,
+       0.00000000e+00, 6.13723185e-02, 5.04715774e-02, 6.53598387e-02,
+       1.62457394e-03, 1.31704844e-01, 7.79865174e-03, 0.00000000e+00,
+       1.36898048e-01, 1.87730487e-01, 6.66748336e-02, 2.53616454e-02,
+       9.45463628e-02, 4.88871324e-02, 1.91279400e-01, 1.50665663e-01,
+       1.11601002e-02, 8.29320704e-02, 7.91317905e-02, 2.06866072e-01,
+       2.89843812e-02, 5.37307107e-02, 1.94999586e-01, 3.09136417e-01,
+       4.51177283e-02, 2.96411374e-01, 0.00000000e+00, 0.00000000e+00,
+       4.08275820e-02, 1.61326570e-01, 7.04259303e-02, 3.48108523e-01,
+       1.61160623e-01, 1.61202930e-01, 6.54676218e-02, 1.74630523e-01,
+       1.99288047e-01, 1.10161814e-01, 6.64926536e-02, 9.00943148e-02,
+       9.89621192e-02, 0.00000000e+00, 1.47834683e-01, 5.25413368e-02,
+       4.88903213e-02, 9.19571283e-02, 2.44864866e-02, 1.51600078e-01,
+       1.59926364e-01, 0.00000000e+00, 3.70159049e-01, 1.90224918e-01,
+       7.32680379e-02, 8.15758271e-02, 3.50397883e-01, 1.86328711e-02,
+       4.13799651e-02, 1.28682394e-02, 0.00000000e+00, 6.67678819e-02,
+       0.00000000e+00, 1.55826080e-02, 3.94450706e-02, 5.56277374e-02,
+       1.33189687e-01, 9.59282332e-02, 1.92290981e-01, 4.57878963e-01,
+       2.69361028e-01, 4.44107081e-02, 0.00000000e+00, 9.58307416e-02,
+       1.70301737e-01, 6.48182631e-02, 5.63814703e-02, 5.86386365e-01,
+       1.95110018e-01, 0.00000000e+00, 1.34826982e-01, 3.26120057e-02,
+       3.15850163e-01, 3.54047987e-01, 4.55373560e-01, 1.48621119e-01,
+       2.10616835e-01, 4.84493016e-02, 0.00000000e+00, 1.22806368e-01,
+       2.42094954e-01, 7.00721114e-02, 2.23739203e-01, 5.26642848e-02,
+       1.73074123e-01, 0.00000000e+00, 2.10093647e-01, 0.00000000e+00,
+       3.31234898e-01, 1.25599524e-01, 3.20748927e-02, 4.31107779e-02,
+       1.14856188e-01, 4.50619161e-02, 1.39332134e-01, 5.67489845e-02,
+       2.59003856e-01, 8.18764601e-02, 0.00000000e+00, 1.87412591e-02,
+       9.44789252e-02, 2.45028519e-01, 1.37452828e-01, 0.00000000e+00,
+       2.07895656e-01, 1.91304165e-01, 8.25287723e-02, 1.06099584e-01,
+       6.32753463e-03, 2.05433660e-01, 1.91383260e-01, 0.00000000e+00,
+       0.00000000e+00, 0.00000000e+00, 5.04130044e-03, 1.08545229e-01,
+       7.79865174e-03, 1.41602392e-01, 9.86516171e-02, 1.77093727e-01,
+       1.66453868e-01, 4.47693909e-02, 1.47834683e-01, 1.80660530e-02,
+       0.00000000e+00, 3.33275982e-01, 3.60500806e-01, 1.64543409e-01,
+       0.00000000e+00, 4.83115784e-01, 2.76951534e-01, 2.58643198e-02,
+       0.00000000e+00, 2.33345793e-01, 3.62919604e-02, 1.55512064e-01,
+       1.77012097e-02, 9.77046720e-03, 0.00000000e+00, 1.13441664e-01,
+       1.13441664e-01, 1.97038982e-01, 4.93770518e-02, 8.24510244e-02,
+       2.68180921e-01, 1.89968408e-02, 1.53298585e-01, 0.00000000e+00,
+       3.84947510e-01, 2.04815495e-01, 6.41847763e-02, 4.65058000e-01,
+       1.82801281e-01, 2.01505587e-01, 6.13399498e-02, 0.00000000e+00,
+       0.00000000e+00, 2.00639438e-01, 0.00000000e+00, 2.88280990e-01,
+       3.15261324e-01, 8.33761372e-02, 8.16109136e-02, 0.00000000e+00,
+       7.38390787e-01, 7.74882173e-01])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">X_train_new</span><span class="p">[</span><span class="s2">&quot;culmen_depth_mm&quot;</span><span class="p">],</span>
+    <span class="n">X_train_new</span><span class="p">[</span><span class="s2">&quot;flipper_length_mm&quot;</span><span class="p">],</span>
+    <span class="n">c</span><span class="o">=</span><span class="n">outlier_predictions</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;culmen_depth_mm&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;flipper_length_mm&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Outlier Score&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/94533e35bb868e122527d1ce4a986f60a4e4bf93879b6cbd7db51271d4d5c642.png" src="../../_images/94533e35bb868e122527d1ce4a986f60a4e4bf93879b6cbd7db51271d4d5c642.png" />
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks\Classical Machine Learning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Clustering.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Clustering</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Deep%20Learning/Introduction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#one-class-svm-ocsvm">One-Class SVM (OCSVM)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#isolation-forest-ifor">Isolation Forest (IFOR)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hdbscan">HDBSCAN</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Khunakorn Limpsapapkasiphol
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

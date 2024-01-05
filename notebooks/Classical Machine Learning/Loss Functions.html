@@ -1,0 +1,826 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Loss Functions &#8212; Laboratony&#39;s book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/Classical Machine Learning/Loss Functions';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Dealing with Spatial and Temporal Data" href="Dealing%20with%20Spatial%20and%20Temporal%20Data.html" />
+    <link rel="prev" title="Overfitting and Underfitting" href="Overfitting%20and%20Underfitting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Laboratony's book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Laboratony's book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to LABORATONY!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Machine Learning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linear%20Regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Validation.html">Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Logistic%20Regression.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="K-Nearest%20Neighbours%20%28KNNs%29.html">K-Nearest Neighbours (KNNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Baseline.html">Baseline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Performance%20Metrics.html">Performance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Multiclass%20Classification.html">Multiclass Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Overfitting%20and%20Underfitting.html">Overfitting and Underfitting</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Loss Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dealing%20with%20Spatial%20and%20Temporal%20Data.html">Dealing with Spatial and Temporal Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature%20Selection.html">Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Pipelines.html">Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Support%20Vector%20Machines%20%28SVMs%29.html">Support Vector Machines (SVMs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model%20Tuning.html">Model Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Decision%20Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ensemble%20Methods.html">Ensemble Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Introduction%20to%20Natural%20Language%20Processing%20%28NLP%29.html">Introduction to Natural Language Processing (NLP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Naive%20Bayes%20Algorithm.html">Naive Bayes Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Principal%20Component%20Analysis%20%28PCA%29.html">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clustering.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Anomaly%20Detection.html">Anomaly Detection</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Training%20Neural%20Networks.html">Training Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Neural%20Networks%20with%20Custom%20Datasets.html">Neural Networks with Custom Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Convolutional%20Neural%20Networks%20%28CNNs%29.html">Convolutional Neural Networks (CNNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Implicit%20Regularisation.html">Implicit Regularisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Transfer%20Learning.html">Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Autoencoders.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Variational%20Autoencoders%20%28VAEs%29.html">Variational Autoencoders (VAEs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Convolutional%20VAEs.html">Convolutional VAEs</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Classical Machine Learning/Loss Functions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/Classical Machine Learning/Loss Functions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Loss Functions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Loss functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimisation">Optimisation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient descent</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-hessian-optimisation">Second-order (Hessian) optimisation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-loss-functions">Regression loss functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-loss-functions">Classification loss functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularisation">Regularisation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="loss-functions">
+<h1>Loss Functions<a class="headerlink" href="#loss-functions" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">MinMaxScaler</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">SGDRegressor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h2>Loss functions<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>เราสามารถเขียนสมการของ OLS regression ได้ดังนี้</p>
+<div class="math notranslate nohighlight">
+\[y = h(X, \beta) + \text{error}\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(h(X, \beta) = \beta_0 + \beta_1\boldsymbol{x}_1 + \beta_2\boldsymbol{x}_2 + ...\)</span> เรียกว่า <b>hypothesis function</b> (ฟังก์ชันที่แปลงจาก input เป็น prediction)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{y} = h(X, \beta)\)</span> เป็น prediction</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">.fit</span></code> method ใน <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> มีหน้าที่ทำให้ error ต่ำสุด error นี้คือ <b>loss function</b> (<span class="math notranslate nohighlight">\(L(\text{error})\)</span>)</p>
+<ul class="simple">
+<li><p>Loss function มีหลายแบบ แต่สำหรับ OLS regression เราใช้ <span class="math notranslate nohighlight">\(L = ||\text{error}||^2 = ||y - \hat{y}||^2\)</span></p></li>
+<li><p>Loss function ใช้ในการ fit model ซึ่งต่างจาก performance metric ที่ใช้วัด performance ของ model หลังการ fit</p></li>
+<li><p>Loss function กับ performance metric อาจเหมือนกันในบางครั้ง เช่น MSE</p></li>
+<li><p>อย่างไรก็ตาม loss function ต้องเป็น smooth function เพื่อที่เราจะสามารถ diff เพื่อหาค่าต่ำสุดได้</p></li>
+</ul>
+</section>
+<section id="optimisation">
+<h2>Optimisation<a class="headerlink" href="#optimisation" title="Permalink to this heading">#</a></h2>
+<p><b>Optimisation</b> คือการหาชุด trainable parameter ที่ทำให้ loss function (<span class="math notranslate nohighlight">\(L\)</span>) มีค่าต่ำสุด (global minima) เราเรียกวิธีที่ใช้ทำ optimisation ว่า <b>solver</b></p>
+<section id="gradient-descent">
+<h3>Gradient descent<a class="headerlink" href="#gradient-descent" title="Permalink to this heading">#</a></h3>
+<p>Gradient descent (steepest descent) เป็น optimisation วิธีหนึ่ง หลักการคือ กำหนด parameter เริ่มต้น แล้วปรับมันไปในทิศทางตรงข้ามกับ gradient ของ loss function เพื่อเข้าใกล้ local minima ของ loss function</p>
+<p><img src="../images/gradient_descent.png" width="350" /><br /></p>
+<p>Gradient descent มีขั้นตอนดังนี้ (พิจารณา trainable parameter ตัวเดียวก่อน (<span class="math notranslate nohighlight">\(\beta_0\)</span>) เพื่อความง่าย)</p>
+<ul class="simple">
+<li><p>กำหนดค่าเริ่มต้นของ <span class="math notranslate nohighlight">\(\beta_0\)</span></p></li>
+<li><p>หา gradient (<span class="math notranslate nohighlight">\(\frac{\partial L}{\partial\beta_0}\)</span>) ที่จุด <span class="math notranslate nohighlight">\(\beta_0\)</span></p></li>
+<li><p>ปรับค่า <span class="math notranslate nohighlight">\(\beta_0\)</span> ค่าที่เปลี่ยนไปจะขึ้นกับ gradient และ step size (<b>learning rate</b> (<span class="math notranslate nohighlight">\(\eta\)</span>))</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\beta_0^{(k+1)} = \beta_0^{(k)} - \eta\frac{\partial L}{\partial\beta_0} (\beta_0^{(k)})\]</div>
+<ul class="simple">
+<li><p>รอบของการอัพเดต parameter โดยใช้ training set ครบทั้งชุด 1 ครั้ง เรียกว่า <b>epoch</b></p></li>
+<li><p>ทำไปเรื่อย ๆ จนเข้าสู่เกณฑ์ที่จะหยุด (stopping criterion) เช่น gradient เข้าใกล้ 0 มากพอ หรือ จำนวน epoch ครบตามกำหนด</p></li>
+</ul>
+<p>เราต้องกำหนด learning rate (<span class="math notranslate nohighlight">\(\eta\)</span>) ให้พอดี (เป็น hyperparameter)</p>
+<ul class="simple">
+<li><p>ถ้า <span class="math notranslate nohighlight">\(\eta\)</span> น้อยไป ต้องทำ epoch มากขึ้น และอาจติดอยู่ใน local minima เดียว</p></li>
+<li><p>ถ้า <span class="math notranslate nohighlight">\(\eta\)</span> มากไป อาจวนอยู่รอบ minima นาน หรืออาจลู่ออกจาก minima ก็ได้</p></li>
+</ul>
+<p><img src="../images/gradient_descent_different_steps.png" width="800" /><br /></p>
+<p>การทำ feature scaling จะช่วยให้ loss function converge เข้าสู่ local minima เร็วขึ้น</p>
+<p>ถ้าเรา optimise 2 parameter พร้อมกัน (<span class="math notranslate nohighlight">\(\beta_0\)</span>, <span class="math notranslate nohighlight">\(\beta_1\)</span>) loss function จะเป็น surface plot เราเรียกมันว่า <b>energy landscape</b></p>
+<p>Gradient descent สามารถถูก generalised ให้ optimise ทุก parameter พร้อมกันได้ สำหรับ OLS regression ที่มี trainable parameter ได้แก่ <span class="math notranslate nohighlight">\(\beta_0\)</span> ถึง <span class="math notranslate nohighlight">\(\beta_n\)</span> (เขียนรวมกันได้เป็นเวกเตอร์ <span class="math notranslate nohighlight">\(\boldsymbol{\beta}\)</span>) เราสามารถทำ gradient descent ได้ดังนี้</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{\beta}^{(k+1)} = \boldsymbol{\beta}^{(k)} - \eta\nabla L(\boldsymbol{\beta}^{(k)})\]</div>
+<p>หาก dataset มีขนาดใหญ่ แล้วเราอัพเดต trainable parameter ทุกตัวโดยใช้ข้อมูลทั้งชุด จะทำให้ computationally expensive (เรียกว่า <b>batch gradient descent</b>) เราสามารถปรับปรุง  gradient descent ได้ดังนี้</p>
+<ul class="simple">
+<li><p>Classical <b>Stochastic Gradient Descent (SGD)</b></p>
+<ul>
+<li><p>สุ่มเลือกข้อมูลมา 1 จุด คำนวณ gradient โดยใช้ข้อมูลจุดนั้น และใช้ gradient ที่ได้ไปอัพเดต trainable parameter ทุกตัว ทำแบบนี้จนใช้ข้อมูลครบทุกจุด จึงจะครบ 1 epoch</p></li>
+<li><p>ใช้ <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.SGDRegressor</span></code> หรือ <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.SGDClassifier</span></code></p></li>
+</ul>
+</li>
+<li><p><b>Mini-batch Gradient Descent</b></p>
+<ul>
+<li><p>แบ่ง dataset ออกเป็นหลาย ๆ ชุด (mini-batch) เลือกมา 1 ชุด คำนวณ gradient โดยใช้ข้อมูลชุดนั้น และใช้ gradient ที่ได้ไปอัพเดต trainable parameter ทุกตัว ทำแบบนี้จนใช้ข้อมูลครบทุกชุด จึงจะครบ 1 epoch</p></li>
+</ul>
+</li>
+</ul>
+<p>ทั้งสองวิธีข้างต้นคำนวณ gradient โดยใช้ข้อมูลบางส่วน ดังนั้นค่าของ loss function จะ fluctuate จาก epoch หนึ่งไปอีก epoch หนึ่ง โดยที่ SGD จะ fluctuate มากกว่า</p>
+<p>ข้อดีของ SGD เทียบกับ mini-batch gradient descent เช่น</p>
+<ul class="simple">
+<li><p>เร็วกว่าเมื่อใช้ dataset ขนาดใหญ่</p></li>
+<li><p>ไม่ติดอยู่ใน local minima เดิม</p></li>
+<li><p>ใช้ RAM น้อยกว่า</p></li>
+</ul>
+<p>ข้อเสียของ SGD เทียบกับ mini-batch gradient descent เช่น</p>
+<ul class="simple">
+<li><p>ต้องเพิ่ม epoch</p></li>
+<li><p>อาจจะไม่ converge</p></li>
+<li><p>อาจช้ากว่าเมื่อใช้ dataset ขนาดเล็ก</p></li>
+</ul>
+<p><img src="../images/batch_and_stochastic_gd.png" width="600" /><br /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data pre-processing</span>
+
+<span class="c1"># Import data and drop duplicates</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/fish.csv&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="c1"># Use only &quot;Width&quot; feature and normalise it</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">MinMaxScaler</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">[[</span><span class="s1">&#39;Width&#39;</span><span class="p">]])</span>
+<span class="c1"># Use &quot;Height&quot; as the label</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;Height&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create models</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># linear regressor</span>
+<span class="n">sgd</span> <span class="o">=</span> <span class="n">SGDRegressor</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;squared_error&#39;</span><span class="p">,</span> <span class="n">eta0</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># SGD regressor</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Weight (beta_1)</span>
+<span class="n">sgd</span><span class="o">.</span><span class="n">coef_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([14.33402271])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Bias (beta_0)</span>
+<span class="n">sgd</span><span class="o">.</span><span class="n">intercept_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.13813887])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the equation of each of the models (y_pred = beta0 + beta1.x)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Linear regressor:&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;y = </span><span class="si">{</span><span class="n">lr</span><span class="o">.</span><span class="n">intercept_</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">lr</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">x&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;SGD regressor:&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;y = </span><span class="si">{</span><span class="n">sgd</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">sgd</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">x&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Linear regressor: y = 2.177560230008516 + 14.30177197137537x
+SGD regressor: y = 2.138138872739229 + 14.334022705079292x
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot data and prediction</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># Plot data</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;LinearRegression()&#39;</span><span class="p">)</span>  <span class="c1"># Plot prediction from the linear regressor</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">sgd</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;SGDRegressor(loss=&quot;squared_error&quot;)&#39;</span><span class="p">)</span>  <span class="c1"># Plot prediction from the SGD regressor</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Normalized Fish Width&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Fish Height&quot;</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/0cb4d5fc5f73e1bef405080150f91b409a90a039aeccb43d25369e7932ca926d.png" src="../../_images/0cb4d5fc5f73e1bef405080150f91b409a90a039aeccb43d25369e7932ca926d.png" />
+</div>
+</div>
+</section>
+<section id="second-order-hessian-optimisation">
+<h3>Second-order (Hessian) optimisation<a class="headerlink" href="#second-order-hessian-optimisation" title="Permalink to this heading">#</a></h3>
+<p>Gradient descent เป็น first-order optimisation มีวิธี optimisation ที่ converge เร็วกว่า คือ second-order (Hessian) optimisation (เช่น Newton’s method, Quasi-Newton’s method (e.g., Limited-memory Broyden–Fletcher–Goldfarb–Shanno algorithm (L-BFGS)))</p>
+</section>
+</section>
+<section id="regression-loss-functions">
+<h2>Regression loss functions<a class="headerlink" href="#regression-loss-functions" title="Permalink to this heading">#</a></h2>
+<p>Loss function ที่ใช้ใน regression task เช่น</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(L_1\)</span> (MAE) loss</p>
+<ul>
+<li><p>ข้อเสียคือ ต้องปรับ learning rate ให้น้อยลงเรื่อย ๆ ขณะลู่เข้า</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[L_1 = \text{MAE} = \frac{1}{n}\sum_{i=1}^n |y_i - \hat{y}_i|\]</div>
+<p><span class="math notranslate nohighlight">\(\quad\quad\quad y_i\)</span> = true label <br />
+<span class="math notranslate nohighlight">\(\quad\quad\quad \hat{y}_i\)</span> = predicted label <br />
+<span class="math notranslate nohighlight">\(\quad\quad\quad n\)</span> = จำนวนข้อมูล</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(L_2\)</span> (MSE) loss</p>
+<ul>
+<li><p>ข้อเสียคือ Very sensitive to outliers</p></li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[L_2 = \text{MSE} = \frac{1}{n}\sum_{i=1}^n (y_i - \hat{y}_i)^2\]</div>
+<p><span class="math notranslate nohighlight">\(\quad\quad\quad y_i\)</span> = true label <br />
+<span class="math notranslate nohighlight">\(\quad\quad\quad \hat{y}_i\)</span> = predicted label <br />
+<span class="math notranslate nohighlight">\(\quad\quad\quad n\)</span> = จำนวนข้อมูล</p>
+<ul class="simple">
+<li><p>Huber loss (mixed <span class="math notranslate nohighlight">\(L_1\)</span> and <span class="math notranslate nohighlight">\(L_2\)</span>, smooth absolute, smooth <span class="math notranslate nohighlight">\(L_1\)</span>)</p>
+<ul>
+<li><p>ข้อดีคือ</p>
+<ul>
+<li><p>Adjustable for outliers</p></li>
+<li><p>Slope บ่งบอกว่าเราเข้าใกล้ minima แล้วหรือไม่</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\begin{split}L_{\delta} = \left\{
+    \begin{array}{lr}
+        \frac{1}{n}\sum_{i=1}^n \frac{1}{2}(y - \hat{y})^{2} &amp; : |y - \hat{y}| \leq \delta\\
+        \frac{1}{n}\sum_{i=1}^n \delta\cdot\left(|y-\hat{y}|-\frac{\delta}{2}\right) &amp; :  |y - \hat{y}| &gt; \delta
+    \end{array}
+\right.\end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(\quad\quad\quad y_i\)</span> = true label <br />
+<span class="math notranslate nohighlight">\(\quad\quad\quad \hat{y}_i\)</span> = predicted label <br />
+<span class="math notranslate nohighlight">\(\quad\quad\quad n\)</span> = จำนวนข้อมูล <br />
+<span class="math notranslate nohighlight">\(\quad\quad\quad \delta\)</span> = จุดที่ loss function เปลี่ยนจาก quadratic เป็น linear (ดูกราฟด้านล่างประกอบ)</p>
+<p>Loss function เหล่านี้มีลักษณะดังกราฟ</p>
+<p><img src="../images/regression_loss.png" width="400" /><br /></p>
+</section>
+<section id="classification-loss-functions">
+<h2>Classification loss functions<a class="headerlink" href="#classification-loss-functions" title="Permalink to this heading">#</a></h2>
+<p>พิจารณา binary classification ซึ่งมีผลจากการทำนาย (outcome) เป็นได้แค่ 0 กับ 1 หากใช้ MAE หรือ MSE จะได้ error เท่ากับ 1 เราควรใช้ loss function ที่มี penalty เมื่อทำนายผิดมากกว่านี้ ดังนั้น MAE หรือ MSE จึงเป็น loss function ที่ไม่เหมาะกับ classification task</p>
+<p>Loss function ที่ใช้ใน classification task คือ <b>log loss (cross-entropy loss)</b></p>
+<div class="math notranslate nohighlight">
+\[L_{CE} = \sum_{i=0}^{N-1} y_i \log{(\hat{y}_i)}\]</div>
+<p><span class="math notranslate nohighlight">\(\quad y_i\)</span> = true probability ของ sample หนึ่งที่จะอยู่ใน class <span class="math notranslate nohighlight">\(i\)</span> (เท่ากับ 0 หรือ 1 สำหรับ binary classification) <br />
+<span class="math notranslate nohighlight">\(\quad \hat{y}_i\)</span> = predicted probability ของ sample นั้นที่อยู่ใน class <span class="math notranslate nohighlight">\(i\)</span> (คำนวณโดยใช้ sigmoid สำหรับ binary classification) <br />
+<span class="math notranslate nohighlight">\(\quad N\)</span> = จำนวน class</p>
+<p><img src="../images/log_loss.png" width="800" /><br /></p>
+</section>
+<section id="regularisation">
+<h2>Regularisation<a class="headerlink" href="#regularisation" title="Permalink to this heading">#</a></h2>
+<p>หาก validation accuracy ต่ำกว่า training accuracy (หรือ validation loss สูงกว่า training loss) แสดงว่าเราได้ overfitting model</p>
+<p><img src="../images/learning_curve_overfitting.png" width="700" /><br /></p>
+<p>วิธีการหนึ่งที่แก้ overfitting ได้ คือ regularisation</p>
+<p>Regularisation คือการปรับค่า (penalise) parameter ใน model เพราะบาง parameter มีขนาดใหญ่ และ loss ของ model นั้นแปรผันตามขนาดของ parameter</p>
+<div class="math notranslate nohighlight">
+\[\text{Regularized Loss} = \text{Loss}(X,y, \beta) + \text{Penalty}(\beta)\]</div>
+<p>Regularisation ทำให้ parameter บางตัวมีขนาดเล็กลงหรือเป็น 0 (ถูกเอาออก) เพื่อ<b style="color: #32a852">ป้องกัน overfitting</b></p>
+<p>Regularisation มี 2 วิธีที่นิยม ได้แก่</p>
+<ul class="simple">
+<li><p>Lasso (L1) ใช้ <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.Lasso</span></code></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{L1} = \text{Loss}  + \alpha \sum_{i=1}^n |\beta_i|\]</div>
+<ul class="simple">
+<li><p>Ridge (L2) ใช้ <code class="docutils literal notranslate"><span class="pre">sklearn.linear_model.Ridge</span></code></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\text{L2} = \text{Loss}  + \alpha \sum_{i=1}^n (\beta_i)^2\]</div>
+<p>ข้อสังเกต</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> คือ <b>regularisation strength</b></p>
+<ul>
+<li><p>เป็น hyperparameter ตัวหนึ่งที่กำหนดว่า model จะถูก penalized มากแค่ไหน (ถ้า <span class="math notranslate nohighlight">\(\alpha\)</span> มีขนาดใหญ่ จะลด complexity และ variance ของ model แต่จะมีความ bias มากขึ้น)</p></li>
+<li><p>เราควรเลือกค่าที่ทำให้ validation accuracy กับ training accuracy ใกล้เคียงกัน แต่ accuracy ก็ต้องมากที่สุดเท่าที่จะทำได้ด้วย</p></li>
+</ul>
+</li>
+</ul>
+<p><img src="../images/regularisation.png" width="350" /><br /></p>
+<ul class="simple">
+<li><p>สังเกตว่าพจน์ sum เริ่มจาก <span class="math notranslate nohighlight">\(i=1\)</span> นั่นหมายความว่า intercept (<span class="math notranslate nohighlight">\(\beta_0\)</span>) ไม่ถูก penalised</p></li>
+</ul>
+<p><span style="color: red">อย่าลืมทำ feature scaling ก่อนทำ regularisation</span></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks\Classical Machine Learning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Overfitting%20and%20Underfitting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Overfitting and Underfitting</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Dealing%20with%20Spatial%20and%20Temporal%20Data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Dealing with Spatial and Temporal Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Loss functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimisation">Optimisation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gradient-descent">Gradient descent</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-hessian-optimisation">Second-order (Hessian) optimisation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-loss-functions">Regression loss functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-loss-functions">Classification loss functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#regularisation">Regularisation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Khunakorn Limpsapapkasiphol
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
