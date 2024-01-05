@@ -40,3 +40,4 @@ parts:
     - file: notebooks/Deep Learning/Autoencoders
     - file: notebooks/Deep Learning/Variational Autoencoders (VAEs)
     - file: notebooks/Deep Learning/Convolutional VAEs
+    - file: notebooks/Deep Learning/Generative Adversarial Networks (GANs)
