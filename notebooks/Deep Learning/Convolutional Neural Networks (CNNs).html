@@ -208,6 +208,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Autoencoders.html">Autoencoders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Variational%20Autoencoders%20%28VAEs%29.html">Variational Autoencoders (VAEs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Convolutional%20VAEs.html">Convolutional VAEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generative%20Adversarial%20Networks%20%28GANs%29.html">Generative Adversarial Networks (GANs)</a></li>
 </ul>
 
     </div>
@@ -570,8 +571,9 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[ 0.0398,  0.0780,  0.0191, -0.1241, -0.1469,  0.0866, -0.0932,  0.1109,
-         -0.0753, -0.0514]], grad_fn=&lt;AddmmBackward0&gt;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[-1.6799e-01,  1.5859e-04,  9.2587e-02, -3.0614e-02, -7.7052e-02,
+         -4.0104e-02,  3.7342e-02, -2.8641e-03, -4.1719e-02, -1.5934e-02]],
+       grad_fn=&lt;AddmmBackward0&gt;)
 LeNet5(
   (c1): Conv2d(1, 6, kernel_size=(5, 5), stride=(1, 1), padding=(2, 2))
   (s2): MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
@@ -760,87 +762,39 @@ std = 0.30810782313346863
 <span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">train_losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">train_loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">train_accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">train_accuracy</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
 
-<span class="nn">Cell In[11], line 12,</span> in <span class="ni">train</span><span class="nt">(model, optimizer, criterion, data_loader)</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">train_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">*</span><span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
-<span class="ne">---&gt; </span><span class="mi">12</span>     <span class="n">train_accuracy</span> <span class="o">+=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span><span class="o">*</span><span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">avg_train_loss</span> <span class="o">=</span> <span class="n">train_loss</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">data_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+<span class="nn">Cell In[11], line 9,</span> in <span class="ni">train</span><span class="nt">(model, optimizer, criterion, data_loader)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">))</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">train_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">*</span><span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\utils\_param_validation.py:214,</span> in <span class="ni">validate_params.&lt;locals&gt;.decorator.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">209</span>     <span class="k">with</span> <span class="n">config_context</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="n">skip_parameter_validation</span><span class="o">=</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">211</span>             <span class="n">prefer_skip_nested_validation</span> <span class="ow">or</span> <span class="n">global_skip_validation</span>
-<span class="g g-Whitespace">    </span><span class="mi">212</span>         <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">213</span>     <span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">214</span>         <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">215</span> <span class="k">except</span> <span class="n">InvalidParameterError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span>     <span class="c1"># When the function is just a wrapper around an estimator, we allow</span>
-<span class="g g-Whitespace">    </span><span class="mi">217</span>     <span class="c1"># the function to delegate validation to the estimator, but we replace</span>
-<span class="g g-Whitespace">    </span><span class="mi">218</span>     <span class="c1"># the name of the estimator by the name of the function in the error</span>
-<span class="g g-Whitespace">    </span><span class="mi">219</span>     <span class="c1"># message to avoid confusion.</span>
-<span class="g g-Whitespace">    </span><span class="mi">220</span>     <span class="n">msg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span>         <span class="sa">r</span><span class="s2">&quot;parameter of \w+ must be&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">222</span>         <span class="sa">f</span><span class="s2">&quot;parameter of </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__qualname__</span><span class="si">}</span><span class="s2"> must be&quot;</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">223</span>         <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">),</span>
-<span class="g g-Whitespace">    </span><span class="mi">224</span>     <span class="p">)</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\_tensor.py:492,</span> in <span class="ni">Tensor.backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">482</span> <span class="k">if</span> <span class="n">has_torch_function_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">483</span>     <span class="k">return</span> <span class="n">handle_torch_function</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">484</span>         <span class="n">Tensor</span><span class="o">.</span><span class="n">backward</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">485</span>         <span class="p">(</span><span class="bp">self</span><span class="p">,),</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">490</span>         <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">491</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">492</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">493</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span>
+<span class="g g-Whitespace">    </span><span class="mi">494</span> <span class="p">)</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\metrics\_classification.py:220,</span> in <span class="ni">accuracy_score</span><span class="nt">(y_true, y_pred, normalize, sample_weight)</span>
-<span class="g g-Whitespace">    </span><span class="mi">154</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Accuracy classification score.</span>
-<span class="g g-Whitespace">    </span><span class="mi">155</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">156</span><span class="sd"> In multilabel classification, this function computes subset accuracy:</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">216</span><span class="sd"> 0.5</span>
-<span class="g g-Whitespace">    </span><span class="mi">217</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">219</span> <span class="c1"># Compute accuracy for each possible representation</span>
-<span class="ne">--&gt; </span><span class="mi">220</span> <span class="n">y_type</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">_check_targets</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">221</span> <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">222</span> <span class="k">if</span> <span class="n">y_type</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;multilabel&quot;</span><span class="p">):</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\metrics\_classification.py:84,</span> in <span class="ni">_check_targets</span><span class="nt">(y_true, y_pred)</span>
-<span class="g g-Whitespace">     </span><span class="mi">57</span> <span class="k">def</span> <span class="nf">_check_targets</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;Check that y_true and y_pred belong to the same classification task.</span>
-<span class="g g-Whitespace">     </span><span class="mi">59</span><span class="sd"> </span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span><span class="sd">     This converts multiclass or binary types to a common shape, and raises a</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">     </span><span class="mi">82</span><span class="sd">     y_pred : array or indicator matrix</span>
-<span class="g g-Whitespace">     </span><span class="mi">83</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">---&gt; </span><span class="mi">84</span>     <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">85</span>     <span class="n">type_true</span> <span class="o">=</span> <span class="n">type_of_target</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;y_true&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">86</span>     <span class="n">type_pred</span> <span class="o">=</span> <span class="n">type_of_target</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;y_pred&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\sklearn\utils\validation.py:405,</span> in <span class="ni">check_consistent_length</span><span class="nt">(*arrays)</span>
-<span class="g g-Whitespace">    </span><span class="mi">394</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Check that all arrays have consistent first dimensions.</span>
-<span class="g g-Whitespace">    </span><span class="mi">395</span><span class="sd"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">396</span><span class="sd"> Checks whether all objects in arrays have the same shape or length.</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">401</span><span class="sd">     Objects that will be checked for consistent length.</span>
-<span class="g g-Whitespace">    </span><span class="mi">402</span><span class="sd"> &quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">404</span> <span class="n">lengths</span> <span class="o">=</span> <span class="p">[</span><span class="n">_num_samples</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">X</span> <span class="ow">in</span> <span class="n">arrays</span> <span class="k">if</span> <span class="n">X</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">]</span>
-<span class="ne">--&gt; </span><span class="mi">405</span> <span class="n">uniques</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">lengths</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">406</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">uniques</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">407</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">408</span>         <span class="s2">&quot;Found input variables with inconsistent numbers of samples: </span><span class="si">%r</span><span class="s2">&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">409</span>         <span class="o">%</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lengths</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">410</span>     <span class="p">)</span>
-
-<span class="nn">File &lt;__array_function__ internals&gt;:200,</span> in <span class="ni">unique</span><span class="nt">(*args, **kwargs)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\arraysetops.py:274,</span> in <span class="ni">unique</span><span class="nt">(ar, return_index, return_inverse, return_counts, axis, equal_nan)</span>
-<span class="g g-Whitespace">    </span><span class="mi">272</span> <span class="n">ar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">ar</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">273</span> <span class="k">if</span> <span class="n">axis</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">274</span>     <span class="n">ret</span> <span class="o">=</span> <span class="n">_unique1d</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span> <span class="n">return_index</span><span class="p">,</span> <span class="n">return_inverse</span><span class="p">,</span> <span class="n">return_counts</span><span class="p">,</span> 
-<span class="g g-Whitespace">    </span><span class="mi">275</span>                     <span class="n">equal_nan</span><span class="o">=</span><span class="n">equal_nan</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">276</span>     <span class="k">return</span> <span class="n">_unpack_tuple</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">278</span> <span class="c1"># axis was specified and not None</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\numpy\lib\arraysetops.py:336,</span> in <span class="ni">_unique1d</span><span class="nt">(ar, return_index, return_inverse, return_counts, equal_nan)</span>
-<span class="g g-Whitespace">    </span><span class="mi">334</span>     <span class="n">aux</span> <span class="o">=</span> <span class="n">ar</span><span class="p">[</span><span class="n">perm</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">335</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">336</span>     <span class="n">ar</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">337</span>     <span class="n">aux</span> <span class="o">=</span> <span class="n">ar</span>
-<span class="g g-Whitespace">    </span><span class="mi">338</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">aux</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">bool_</span><span class="p">)</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\autograd\__init__.py:251,</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span>     <span class="n">retain_graph</span> <span class="o">=</span> <span class="n">create_graph</span>
+<span class="g g-Whitespace">    </span><span class="mi">248</span> <span class="c1"># The reason we repeat the same comment below is that</span>
+<span class="g g-Whitespace">    </span><span class="mi">249</span> <span class="c1"># some Python versions print out the first line of a multi-line function</span>
+<span class="g g-Whitespace">    </span><span class="mi">250</span> <span class="c1"># calls in the traceback and some print out the last line</span>
+<span class="ne">--&gt; </span><span class="mi">251</span> <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>  <span class="c1"># Calls into the C++ engine to run the backward pass</span>
+<span class="g g-Whitespace">    </span><span class="mi">252</span>     <span class="n">tensors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span>     <span class="n">grad_tensors_</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span>     <span class="n">retain_graph</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>     <span class="n">create_graph</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span>     <span class="n">inputs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span>     <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span> <span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

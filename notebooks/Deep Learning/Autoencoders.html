@@ -208,6 +208,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Autoencoders</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Variational%20Autoencoders%20%28VAEs%29.html">Variational Autoencoders (VAEs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Convolutional%20VAEs.html">Convolutional VAEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Generative%20Adversarial%20Networks%20%28GANs%29.html">Generative Adversarial Networks (GANs)</a></li>
 </ul>
 
     </div>
@@ -680,7 +681,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/d350d6d3d8c2ca8c0318f977f5e85b733595fd65f1d9fdb9d3b1f99797f00114.png" src="../../_images/d350d6d3d8c2ca8c0318f977f5e85b733595fd65f1d9fdb9d3b1f99797f00114.png" />
+<img alt="../../_images/3e41571039dee4b3a7470f076f61a158bf22e41fef2127abd3c012cd46b2b769.png" src="../../_images/3e41571039dee4b3a7470f076f61a158bf22e41fef2127abd3c012cd46b2b769.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -694,7 +695,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/969e15bb1290dabdfc665dc81c1acb97c0529a74ebe1c532c50d5ed1dde3c1f1.png" src="../../_images/969e15bb1290dabdfc665dc81c1acb97c0529a74ebe1c532c50d5ed1dde3c1f1.png" />
+<img alt="../../_images/a425eb3e72468b447e93eb23eff03a4ab1b93665fc12e9f7af22eee8c5ad6337.png" src="../../_images/a425eb3e72468b447e93eb23eff03a4ab1b93665fc12e9f7af22eee8c5ad6337.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -711,42 +712,39 @@ document.write(`
 <span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Train the autoencoder</span>
 <span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">autoencoder</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">autoencoder</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 
-<span class="nn">Cell In[7], line 7,</span> in <span class="ni">train</span><span class="nt">(autoencoder, data, epochs)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">for</span> <span class="n">batch</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">batch</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">7</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">x_hat</span> <span class="o">=</span> <span class="n">autoencoder</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">loss</span> <span class="o">=</span> <span class="p">((</span><span class="n">batch</span> <span class="o">-</span> <span class="n">x_hat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># L2 loss</span>
+<span class="nn">Cell In[7], line 10,</span> in <span class="ni">train</span><span class="nt">(autoencoder, data, epochs)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="n">x_hat</span> <span class="o">=</span> <span class="n">autoencoder</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>         <span class="n">loss</span> <span class="o">=</span> <span class="p">((</span><span class="n">batch</span> <span class="o">-</span> <span class="n">x_hat</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>  <span class="c1"># L2 loss</span>
+<span class="ne">---&gt; </span><span class="mi">10</span>         <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>         <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="k">return</span> <span class="n">autoencoder</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\_compile.py:24,</span> in <span class="ni">_disable_dynamo.&lt;locals&gt;.inner</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">22</span>     <span class="kn">import</span> <span class="nn">torch._dynamo</span>
-<span class="ne">---&gt; </span><span class="mi">24</span>     <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">_dynamo</span><span class="o">.</span><span class="n">disable</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">recursive</span><span class="p">)(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\_tensor.py:492,</span> in <span class="ni">Tensor.backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">482</span> <span class="k">if</span> <span class="n">has_torch_function_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">483</span>     <span class="k">return</span> <span class="n">handle_torch_function</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">484</span>         <span class="n">Tensor</span><span class="o">.</span><span class="n">backward</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">485</span>         <span class="p">(</span><span class="bp">self</span><span class="p">,),</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">490</span>         <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">491</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">492</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">493</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span>
+<span class="g g-Whitespace">    </span><span class="mi">494</span> <span class="p">)</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\_dynamo\decorators.py:47,</span> in <span class="ni">disable</span><span class="nt">(fn, recursive)</span>
-<span class="g g-Whitespace">     </span><span class="mi">45</span>         <span class="n">fn</span> <span class="o">=</span> <span class="n">innermost_fn</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">46</span>         <span class="k">assert</span> <span class="nb">callable</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">47</span>         <span class="k">return</span> <span class="n">DisableContext</span><span class="p">()(</span><span class="n">fn</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span>     <span class="k">return</span> <span class="n">DisableContext</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">49</span> <span class="k">else</span><span class="p">:</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\_dynamo\eval_frame.py:290,</span> in <span class="ni">_TorchDynamoContext.__call__</span><span class="nt">(self, fn)</span>
-<span class="g g-Whitespace">    </span><span class="mi">287</span> <span class="k">assert</span> <span class="nb">callable</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">289</span> <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">290</span>     <span class="n">filename</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getsourcefile</span><span class="p">(</span><span class="n">fn</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">291</span> <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">292</span>     <span class="n">filename</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\inspect.py:949,</span> in <span class="ni">getsourcefile</span><span class="nt">(object)</span>
-<span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="k">elif</span> <span class="nb">any</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span>
-<span class="g g-Whitespace">    </span><span class="mi">947</span>              <span class="n">importlib</span><span class="o">.</span><span class="n">machinery</span><span class="o">.</span><span class="n">EXTENSION_SUFFIXES</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">948</span>     <span class="k">return</span> <span class="kc">None</span>
-<span class="ne">--&gt; </span><span class="mi">949</span> <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">950</span>     <span class="k">return</span> <span class="n">filename</span>
-<span class="g g-Whitespace">    </span><span class="mi">951</span> <span class="c1"># only return a non-existent filename if the module has a PEP 302 loader</span>
-
-<span class="nn">File &lt;frozen genericpath&gt;:19,</span> in <span class="ni">exists</span><span class="nt">(path)</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\autograd\__init__.py:251,</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span>     <span class="n">retain_graph</span> <span class="o">=</span> <span class="n">create_graph</span>
+<span class="g g-Whitespace">    </span><span class="mi">248</span> <span class="c1"># The reason we repeat the same comment below is that</span>
+<span class="g g-Whitespace">    </span><span class="mi">249</span> <span class="c1"># some Python versions print out the first line of a multi-line function</span>
+<span class="g g-Whitespace">    </span><span class="mi">250</span> <span class="c1"># calls in the traceback and some print out the last line</span>
+<span class="ne">--&gt; </span><span class="mi">251</span> <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>  <span class="c1"># Calls into the C++ engine to run the backward pass</span>
+<span class="g g-Whitespace">    </span><span class="mi">252</span>     <span class="n">tensors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span>     <span class="n">grad_tensors_</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span>     <span class="n">retain_graph</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>     <span class="n">create_graph</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span>     <span class="n">inputs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span>     <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span> <span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
