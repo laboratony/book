@@ -1,0 +1,16 @@
+jupyter-book
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+scipy
+graphviz
+mlxtend
+nltk
+hdbscan
+torch
+Pillow
+torchsummary
+wget
+monai

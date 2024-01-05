@@ -1,0 +1,42 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+  - caption: Classical Machine Learning
+    chapters:
+    - file: notebooks/Classical Machine Learning/Introduction
+    - file: notebooks/Classical Machine Learning/Data Preparation
+    - file: notebooks/Classical Machine Learning/Linear Regression
+    - file: notebooks/Classical Machine Learning/Validation
+    - file: notebooks/Classical Machine Learning/Logistic Regression
+    - file: notebooks/Classical Machine Learning/K-Nearest Neighbours (KNNs)
+    - file: notebooks/Classical Machine Learning/Baseline
+    - file: notebooks/Classical Machine Learning/Performance Metrics
+    - file: notebooks/Classical Machine Learning/Multiclass Classification
+    - file: notebooks/Classical Machine Learning/Overfitting and Underfitting
+    - file: notebooks/Classical Machine Learning/Loss Functions
+    - file: notebooks/Classical Machine Learning/Dealing with Spatial and Temporal Data
+    - file: notebooks/Classical Machine Learning/Feature Selection
+    - file: notebooks/Classical Machine Learning/Data Pipelines
+    - file: notebooks/Classical Machine Learning/Support Vector Machines (SVMs)
+    - file: notebooks/Classical Machine Learning/Model Tuning
+    - file: notebooks/Classical Machine Learning/Decision Trees
+    - file: notebooks/Classical Machine Learning/Ensemble Methods
+    - file: notebooks/Classical Machine Learning/Introduction to Natural Language Processing (NLP)
+    - file: notebooks/Classical Machine Learning/Naive Bayes Algorithm
+    - file: notebooks/Classical Machine Learning/Principal Component Analysis (PCA)
+    - file: notebooks/Classical Machine Learning/Clustering
+    - file: notebooks/Classical Machine Learning/Anomaly Detection
+  - caption: Deep Learning
+    chapters:
+    - file: notebooks/Deep Learning/Introduction
+    - file: notebooks/Deep Learning/Training Neural Networks
+    - file: notebooks/Deep Learning/Neural Networks with Custom Datasets
+    - file: notebooks/Deep Learning/Convolutional Neural Networks (CNNs)
+    - file: notebooks/Deep Learning/Implicit Regularisation
+    - file: notebooks/Deep Learning/Transfer Learning
+    - file: notebooks/Deep Learning/Autoencoders
+    - file: notebooks/Deep Learning/Variational Autoencoders (VAEs)
+    - file: notebooks/Deep Learning/Convolutional VAEs

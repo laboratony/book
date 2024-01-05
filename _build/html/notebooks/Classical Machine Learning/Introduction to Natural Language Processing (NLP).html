@@ -1,0 +1,1764 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Introduction to Natural Language Processing (NLP) &#8212; Laboratony&#39;s book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/Classical Machine Learning/Introduction to Natural Language Processing (NLP)';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Naive Bayes Algorithm" href="Naive%20Bayes%20Algorithm.html" />
+    <link rel="prev" title="Ensemble Methods" href="Ensemble%20Methods.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Laboratony's book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Laboratony's book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to LABORATONY!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Machine Learning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linear%20Regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Validation.html">Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Logistic%20Regression.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="K-Nearest%20Neighbours%20%28KNNs%29.html">K-Nearest Neighbours (KNNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Baseline.html">Baseline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Performance%20Metrics.html">Performance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Multiclass%20Classification.html">Multiclass Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Overfitting%20and%20Underfitting.html">Overfitting and Underfitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Loss%20Functions.html">Loss Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dealing%20with%20Spatial%20and%20Temporal%20Data.html">Dealing with Spatial and Temporal Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Feature%20Selection.html">Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Data%20Pipelines.html">Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Support%20Vector%20Machines%20%28SVMs%29.html">Support Vector Machines (SVMs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model%20Tuning.html">Model Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Decision%20Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ensemble%20Methods.html">Ensemble Methods</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introduction to Natural Language Processing (NLP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Naive%20Bayes%20Algorithm.html">Naive Bayes Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Principal%20Component%20Analysis%20%28PCA%29.html">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Clustering.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Anomaly%20Detection.html">Anomaly Detection</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Training%20Neural%20Networks.html">Training Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Neural%20Networks%20with%20Custom%20Datasets.html">Neural Networks with Custom Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Convolutional%20Neural%20Networks%20%28CNNs%29.html">Convolutional Neural Networks (CNNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Implicit%20Regularisation.html">Implicit Regularisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Transfer%20Learning.html">Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Autoencoders.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Variational%20Autoencoders%20%28VAEs%29.html">Variational Autoencoders (VAEs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Convolutional%20VAEs.html">Convolutional VAEs</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Classical Machine Learning/Introduction to Natural Language Processing (NLP).html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/Classical Machine Learning/Introduction to Natural Language Processing (NLP).ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introduction to Natural Language Processing (NLP)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology">Terminology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-preprocessing">Text preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-vectorizing-embedding">Text vectorizing (embedding)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words-representation">Bag-of-words representation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-representation">Tf-Idf representation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-gram-representation">N-Gram representation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-parameters">Important parameters</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction-to-natural-language-processing-nlp">
+<h1>Introduction to Natural Language Processing (NLP)<a class="headerlink" href="#introduction-to-natural-language-processing-nlp" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span>
+<span class="kn">from</span> <span class="nn">nltk.stem.porter</span> <span class="kn">import</span> <span class="n">PorterStemmer</span>
+<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">WordNetLemmatizer</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_extraction.text</span> <span class="kn">import</span> <span class="n">CountVectorizer</span><span class="p">,</span> <span class="n">TfidfVectorizer</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="terminology">
+<h2>Terminology<a class="headerlink" href="#terminology" title="Permalink to this heading">#</a></h2>
+<p><b>Language model</b> คือ model ที่พยายามทำนายตัวอักษรหรือคำถัดไปจาก input text</p>
+<p><img src="../images/language_model.png" width="300" /><br /></p>
+<p><b>Sentiment analysis</b> คือ การวิเคราะห์อารมณ์ความรู้สึกจาก text</p>
+<p><b>Authorship attribution</b> คือ การวิเคราะห์ writing style เพื่อระบุ author</p>
+</section>
+<section id="text-preprocessing">
+<h2>Text preprocessing<a class="headerlink" href="#text-preprocessing" title="Permalink to this heading">#</a></h2>
+<p>Natural Language Processing (NLP) ใช้ <code class="docutils literal notranslate"><span class="pre">nltk</span></code> module</p>
+<p>Text preprocessing มีขั้นตอนดังนี้</p>
+<ul class="simple">
+<li><p>ทำ text ให้เป็นตัวพิมพ์เล็กให้หมด</p></li>
+<li><p>เอาเลขออก</p></li>
+<li><p>เอา punctuation ออก</p></li>
+<li><p>ทำ <b>tokenizing</b> (แยก text ออกเป็น list ของ word (token)) หากต้องการวิเคราะห์แต่ละคำ</p>
+<ul>
+<li><p>ทำได้โดยใช้ <code class="docutils literal notranslate"><span class="pre">nltk.tokenize.word_tokenize</span></code></p></li>
+</ul>
+</li>
+<li><p>เอา <b>stopword</b> (คำที่ใช้บ่อย แต่ไม่มี information มาก เช่น verb to be, pronouns) ออก</p>
+<ul>
+<li><p>ดูคำที่เป็น stopwords (ที่เป็นภาษาอังกฤษ) ทั้งหมดโดยใช้ <code class="docutils literal notranslate"><span class="pre">nltk.corpus.stopwords.words('english')</span></code></p></li>
+</ul>
+</li>
+<li><p>ทำ <b>stemming</b> &amp; <b>lemmatizing</b> (แปลงแต่ละคำให้เป็นรากของมัน เพื่อรวมคำที่มีความหมายเดียวกันเข้าด้วยกัน)</p>
+<ul>
+<li><p>Stemming เป็นการแปลงเป็นรากศัพท์ เช่น changing <span class="math notranslate nohighlight">\(\rightarrow\)</span> chang ทำได้โดยใช้ <code class="docutils literal notranslate"><span class="pre">nltk.stem.porter.PorterStemmer</span></code></p></li>
+<li><p>Lemmatizing เป็นการแปลงเป็นศัพท์พื้นฐานที่มีความหมาย เช่น changing <span class="math notranslate nohighlight">\(\rightarrow\)</span> change ทำได้โดยใช้ <code class="docutils literal notranslate"><span class="pre">nltk.stem.WordNetLemmatizer</span></code></p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>แต่ละ task (เช่น topic modelling, sentiment analysis, authorship attribution, text generation) ต้องใช้ step เหล่านี้ต่างกัน บาง step อาจไม่ต้องทำ</p></li>
+<li><p>เลขสามารถใช้หา date ได้</p></li>
+<li><p>punctuation ใช้วิเคราะห์ writing style ได้ อย่างไรก็ตาม text ใน social media การใช้ punctuation ไม่เป็นไปตามหลักการ เอาออกดีกว่าถ้าไม่ consistent</p></li>
+</ul>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../data/twitter_sentiment_data.csv&#39;</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sentiment</th>
+      <th>message</th>
+      <th>tweetid</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>RT @7im: Aaaand @ScottWalker just eliminated a...</td>
+      <td>814547316258512896</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>RT @annelongfield: Know any budding young clim...</td>
+      <td>955607502699290625</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-1</td>
+      <td>@SenSanders Mainly because climate change has ...</td>
+      <td>959276999603716101</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>RT @StephenSchlegel: she's thinking about how ...</td>
+      <td>798860441870970883</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>willingly sacrificing common courtesy in order...</td>
+      <td>953371679799070721</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>8784</th>
+      <td>0</td>
+      <td>@BarackObama @capitalweather Gary Johnson: For...</td>
+      <td>779353621427138560</td>
+    </tr>
+    <tr>
+      <th>8785</th>
+      <td>1</td>
+      <td>So fucking mad, climate change isn't something...</td>
+      <td>796529677829623808</td>
+    </tr>
+    <tr>
+      <th>8786</th>
+      <td>0</td>
+      <td>RT @moklick: NASA created a page about climate...</td>
+      <td>842032360124227584</td>
+    </tr>
+    <tr>
+      <th>8787</th>
+      <td>1</td>
+      <td>RT @SenSanders: We have a president-elect who ...</td>
+      <td>797897893243822080</td>
+    </tr>
+    <tr>
+      <th>8788</th>
+      <td>0</td>
+      <td>@KMOV Man, this global warming is really getti...</td>
+      <td>955793233879162881</td>
+    </tr>
+  </tbody>
+</table>
+<p>8789 rows × 3 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Drop duplicates and NAs</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="c1"># Feature (X) and target (y)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;sentiment&quot;</span><span class="p">]</span>
+<span class="c1"># Train-test split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="mf">.7</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">text_preprocessor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span>
+        
+    <span class="k">def</span> <span class="nf">lower</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">remove_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">word</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">word</span><span class="o">.</span><span class="n">isdigit</span><span class="p">())</span>
+        
+    <span class="k">def</span> <span class="nf">remove_punctuation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">punctuation</span> <span class="ow">in</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">punctuation</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">word_tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">word_tokens</span>
+        
+    <span class="k">def</span> <span class="nf">remove_stopwords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word_tokens</span><span class="p">):</span>
+        <span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">))</span> 
+        <span class="n">word_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word_tokens</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">word_tokens</span>
+        
+    <span class="k">def</span> <span class="nf">stem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word_tokens</span><span class="p">):</span>
+        <span class="n">word_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">PorterStemmer</span><span class="p">()</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_tokens</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">word_tokens</span>
+        
+    <span class="k">def</span> <span class="nf">lemmatize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word_tokens</span><span class="p">):</span>
+        <span class="n">word_tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">WordNetLemmatizer</span><span class="p">()</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">word_tokens</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">word_tokens</span>
+    
+    <span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to_string</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">remove_numbers</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">remove_punctuation</span><span class="p">()</span>
+        <span class="n">word_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tokenize</span><span class="p">()</span>
+        <span class="n">word_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_stopwords</span><span class="p">(</span><span class="n">word_tokens</span><span class="p">)</span>
+        <span class="n">word_tokens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word_tokens</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">to_string</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">word_tokens</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">word_tokens</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Show the result of each preprocessing step</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">X_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2500</span><span class="p">]</span>
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="n">text_preprocessor</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;0. Original:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">preprocessor</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. Lower:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">preprocessor</span><span class="o">.</span><span class="n">remove_numbers</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. Remove numbers:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">preprocessor</span><span class="o">.</span><span class="n">remove_punctuation</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. Remove punctuation:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">word_tokens</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">tokenize</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4. Tokenize:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">word_tokens</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">word_tokens</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">remove_stopwords</span><span class="p">(</span><span class="n">word_tokens</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;5. Tokenize:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">word_tokens</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">stemmed_word_tokens</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">stem</span><span class="p">(</span><span class="n">word_tokens</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;6. Stem:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">stemmed_word_tokens</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">lemmatized_word_tokens</span> <span class="o">=</span> <span class="n">preprocessor</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word_tokens</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;6. Lemmatize:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">lemmatized_word_tokens</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0. Original:
+ RT @Mathius38: Anyone who thinks today&#39;s rate of climate change is unprecedented REALLY needs to read this: @tan123 @EcoSenseNow… 
+
+1. Lower:
+ rt @mathius38: anyone who thinks today&#39;s rate of climate change is unprecedented really needs to read this: @tan123 @ecosensenow… 
+
+2. Remove numbers:
+ rt @mathius: anyone who thinks today&#39;s rate of climate change is unprecedented really needs to read this: @tan @ecosensenow… 
+
+3. Remove punctuation:
+ rt mathius anyone who thinks todays rate of climate change is unprecedented really needs to read this tan ecosensenow… 
+
+4. Tokenize:
+ [&#39;rt&#39;, &#39;mathius&#39;, &#39;anyone&#39;, &#39;who&#39;, &#39;thinks&#39;, &#39;todays&#39;, &#39;rate&#39;, &#39;of&#39;, &#39;climate&#39;, &#39;change&#39;, &#39;is&#39;, &#39;unprecedented&#39;, &#39;really&#39;, &#39;needs&#39;, &#39;to&#39;, &#39;read&#39;, &#39;this&#39;, &#39;tan&#39;, &#39;ecosensenow…&#39;] 
+
+5. Tokenize:
+ [&#39;rt&#39;, &#39;mathius&#39;, &#39;anyone&#39;, &#39;thinks&#39;, &#39;todays&#39;, &#39;rate&#39;, &#39;climate&#39;, &#39;change&#39;, &#39;unprecedented&#39;, &#39;really&#39;, &#39;needs&#39;, &#39;read&#39;, &#39;tan&#39;, &#39;ecosensenow…&#39;] 
+
+6. Stem:
+ [&#39;rt&#39;, &#39;mathiu&#39;, &#39;anyon&#39;, &#39;think&#39;, &#39;today&#39;, &#39;rate&#39;, &#39;climat&#39;, &#39;chang&#39;, &#39;unpreced&#39;, &#39;realli&#39;, &#39;need&#39;, &#39;read&#39;, &#39;tan&#39;, &#39;ecosensenow…&#39;] 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6. Lemmatize:
+ [&#39;rt&#39;, &#39;mathius&#39;, &#39;anyone&#39;, &#39;think&#39;, &#39;today&#39;, &#39;rate&#39;, &#39;climate&#39;, &#39;change&#39;, &#39;unprecedented&#39;, &#39;really&#39;, &#39;need&#39;, &#39;read&#39;, &#39;tan&#39;, &#39;ecosensenow…&#39;] 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_text_data</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">to_string</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">X_preprocessed</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">txt</span> <span class="ow">in</span> <span class="n">X_preprocessed</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">X_preprocessed</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">text_preprocessor</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">to_string</span><span class="o">=</span><span class="n">to_string</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X_preprocessed</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Preprocess training texts (get preprocessed tokens)</span>
+<span class="n">preprocess_text_data</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">to_string</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4028    [rt, kamalaharris, stand, jerrybrowngov, sayin...
+6775    [wait, sec, claim, climate, change, real, caus...
+7017    [rt, thomastro, much, snow, look, like, cream,...
+5527    [rt, ryanmaue, clear, last, year, global, trop...
+4936    [finally, paris, climate, change, agreement, d...
+                              ...                        
+5741    [obama, ocean, key, protecting, planet, climat...
+5198    [rt, aquanaut, robot, shellfish, tell, u, clim...
+5397    [rt, kateauty, ocean, heatwave, destroys, tasm...
+861     [jonosuchinsky, essay, challenge, everything, ...
+7280    [question, u, like, smoking, weed, hate, payin...
+Name: message, Length: 6145, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Preprocess training texts (get preprocessed texts)</span>
+<span class="n">preprocess_text_data</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">to_string</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4028    rt kamalaharris stand jerrybrowngov saying cal...
+6775    wait sec claim climate change real caused anyt...
+7017    rt thomastro much snow look like cream let ’ t...
+5527    rt ryanmaue clear last year global tropical st...
+4936    finally paris climate change agreement designe...
+                              ...                        
+5741     obama ocean key protecting planet climate change
+5198    rt aquanaut robot shellfish tell u climate cha...
+5397    rt kateauty ocean heatwave destroys tasmania u...
+861     jonosuchinsky essay challenge everything think...
+7280    question u like smoking weed hate paying tax t...
+Name: message, Length: 6145, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Proprocess training and test texts (get preprocessed texts)</span>
+<span class="n">X_train_preprocessed</span> <span class="o">=</span> <span class="n">preprocess_text_data</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">to_string</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X_test_preprocessed</span> <span class="o">=</span> <span class="n">preprocess_text_data</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">to_string</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="text-vectorizing-embedding">
+<h2>Text vectorizing (embedding)<a class="headerlink" href="#text-vectorizing-embedding" title="Permalink to this heading">#</a></h2>
+<p>Three standard vectorizing techniques used with classical (non neural-network) machine learning approaches are:</p>
+<section id="bag-of-words-representation">
+<h3>Bag-of-words representation<a class="headerlink" href="#bag-of-words-representation" title="Permalink to this heading">#</a></h3>
+<p>แต่ละประโยคถูกแปลงเป็น vector ที่บันทึกจำนวนคำของแต่ละคำ ใช้ <code class="docutils literal notranslate"><span class="pre">sklearn.feature_extraction.text.CountVectorizer</span></code></p>
+<p><img src="../images/bag_of_words.png" width="400" /><br /></p>
+<p>ข้อจำกัด เช่น</p>
+<ul class="simple">
+<li><p>ไม่ได้คำนึงถึงความยาว</p></li>
+<li><p>ไม่เก็บ context</p></li>
+<li><p>มี dimensionality เยอะมาก</p></li>
+<li><p>ต้องใช้ทุกคำที่มีใน dataset</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vectorize</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">vectorizer</span><span class="p">):</span>
+    <span class="n">text_vectors</span> <span class="o">=</span> <span class="n">vectorizer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">text_vectors</span><span class="o">.</span><span class="n">toarray</span><span class="p">(),</span> <span class="n">columns</span><span class="o">=</span><span class="n">vectorizer</span><span class="o">.</span><span class="n">get_feature_names_out</span><span class="p">()</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform bag-of-word vectorising on the first 5 texts</span>
+<span class="n">vectorize</span><span class="p">(</span><span class="n">X_train_preprocessed</span><span class="p">[:</span><span class="mi">5</span><span class="p">],</span> <span class="n">CountVectorizer</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>agreement</th>
+      <th>amp</th>
+      <th>anything</th>
+      <th>back</th>
+      <th>bad</th>
+      <th>balance</th>
+      <th>buying</th>
+      <th>california</th>
+      <th>caused</th>
+      <th>change</th>
+      <th>...</th>
+      <th>snow</th>
+      <th>stand</th>
+      <th>storm</th>
+      <th>tackle</th>
+      <th>thomastro</th>
+      <th>tropical</th>
+      <th>trump</th>
+      <th>unfccc</th>
+      <th>wait</th>
+      <th>year</th>
+    </tr>
+    <tr>
+      <th>message</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>rt kamalaharris stand jerrybrowngov saying california back climate change</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>wait sec claim climate change real caused anything make look bad</th>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>rt thomastro much snow look like cream let ’ tackle climate change safeguard nature ’ balance sdgs unfccc…</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>rt ryanmaue clear last year global tropical storm amp hurricane count possible climate change signal h…</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>finally paris climate change agreement designed crook trump buying crap</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 50 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="tf-idf-representation">
+<h3>Tf-Idf representation<a class="headerlink" href="#tf-idf-representation" title="Permalink to this heading">#</a></h3>
+<p>แต่ละประโยคถูกแปลงเป็น vector ที่บันทึกคะแนนตามความสำคัญของคำนั้น ใช้ <code class="docutils literal notranslate"><span class="pre">sklearn.feature_extraction.text.TfidfVectorizer</span></code></p>
+<p><img src="../images/tf_idf.png" width="400" /><br /></p>
+<p>ข้อดี คือ</p>
+<ul class="simple">
+<li><p>ใช้ความถี่แทนจำนวนคำ (จึง robust to document length)</p></li>
+<li><p>วัดความสำคัญของแต่ละคำ</p></li>
+</ul>
+<p>ข้อเสีย คือ</p>
+<ul class="simple">
+<li><p>ไม่เก็บ context</p></li>
+<li><p>มี dimensionality เยอะมาก</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform tf-idf vectorising on the first 5 texts</span>
+<span class="n">vectorize</span><span class="p">(</span><span class="n">X_train_preprocessed</span><span class="p">[:</span><span class="mi">5</span><span class="p">],</span> <span class="n">TfidfVectorizer</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>agreement</th>
+      <th>amp</th>
+      <th>anything</th>
+      <th>back</th>
+      <th>bad</th>
+      <th>balance</th>
+      <th>buying</th>
+      <th>california</th>
+      <th>caused</th>
+      <th>change</th>
+      <th>...</th>
+      <th>snow</th>
+      <th>stand</th>
+      <th>storm</th>
+      <th>tackle</th>
+      <th>thomastro</th>
+      <th>tropical</th>
+      <th>trump</th>
+      <th>unfccc</th>
+      <th>wait</th>
+      <th>year</th>
+    </tr>
+    <tr>
+      <th>message</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>rt kamalaharris stand jerrybrowngov saying california back climate change</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.380621</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.380621</td>
+      <td>0.000000</td>
+      <td>0.181368</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.380621</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>wait sec claim climate change real caused anything make look bad</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.331405</td>
+      <td>0.000000</td>
+      <td>0.331405</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.331405</td>
+      <td>0.157916</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.331405</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>rt thomastro much snow look like cream let ’ tackle climate change safeguard nature ’ balance sdgs unfccc…</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.271627</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.129432</td>
+      <td>...</td>
+      <td>0.271627</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.271627</td>
+      <td>0.271627</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.271627</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>rt ryanmaue clear last year global tropical storm amp hurricane count possible climate change signal h…</th>
+      <td>0.000000</td>
+      <td>0.278395</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.132657</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.278395</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.278395</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.278395</td>
+    </tr>
+    <tr>
+      <th>finally paris climate change agreement designed crook trump buying crap</th>
+      <td>0.343927</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.343927</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.163883</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.343927</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 50 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="n-gram-representation">
+<h3>N-Gram representation<a class="headerlink" href="#n-gram-representation" title="Permalink to this heading">#</a></h3>
+<p>แต่ละประโยคถูกแปลงเป็น vector ที่บันทึกจำนวนชุดของ N คำที่อยู่ติดกัน ใช้ <code class="docutils literal notranslate"><span class="pre">sklearn.feature_extraction.text.TfidfVectorizer</span></code> และต้องกำหนดค่าของ <code class="docutils literal notranslate"><span class="pre">ngram_range</span></code> parameter ซึ่งเป็น tuple ที่มีสมาชิก 2 ตัว เป็นค่า N ที่น้อยที่สุด กับค่า N ที่มากที่สุด</p>
+<ul class="simple">
+<li><p>N = 1 <span class="math notranslate nohighlight">\(\rightarrow\)</span> uni-gram representation</p></li>
+<li><p>N = 2 <span class="math notranslate nohighlight">\(\rightarrow\)</span> bi-gram representation</p></li>
+<li><p>N = 3 <span class="math notranslate nohighlight">\(\rightarrow\)</span> tri-gram representation</p></li>
+</ul>
+<p><img src="../images/1_2_3_grams.png" width="600" /><br /></p>
+<p>ข้อดี คือ</p>
+<ul class="simple">
+<li><p>เก็บ context</p></li>
+<li><p>ใช้ความถี่แทนจำนวนคำ จึง robust to document length</p></li>
+</ul>
+<p>ข้อเสีย คือ</p>
+<ul class="simple">
+<li><p>ต้องใช้ training data เยอะมาก</p></li>
+<li><p>ใช้ model ที่สามารถรับมือกับความซับซ้อนที่จะเกิดขึ้นได้</p></li>
+</ul>
+<p><img src="../images/n_gram.png" width="300" /><br /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform N-gram vectorising on the first 5 texts</span>
+<span class="n">vectorize</span><span class="p">(</span><span class="n">X_train_preprocessed</span><span class="p">[:</span><span class="mi">5</span><span class="p">],</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">ngram_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span>  <span class="c1"># N มีค่าระหว่าง 1 กับ 2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>agreement</th>
+      <th>agreement designed</th>
+      <th>amp</th>
+      <th>amp hurricane</th>
+      <th>anything</th>
+      <th>anything make</th>
+      <th>back</th>
+      <th>back climate</th>
+      <th>bad</th>
+      <th>balance</th>
+      <th>...</th>
+      <th>thomastro much</th>
+      <th>tropical</th>
+      <th>tropical storm</th>
+      <th>trump</th>
+      <th>trump buying</th>
+      <th>unfccc</th>
+      <th>wait</th>
+      <th>wait sec</th>
+      <th>year</th>
+      <th>year global</th>
+    </tr>
+    <tr>
+      <th>message</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>rt kamalaharris stand jerrybrowngov saying california back climate change</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.266032</td>
+      <td>0.266032</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>wait sec claim climate change real caused anything make look bad</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.233558</td>
+      <td>0.233558</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.233558</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.233558</td>
+      <td>0.233558</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>rt thomastro much snow look like cream let ’ tackle climate change safeguard nature ’ balance sdgs unfccc…</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.189727</td>
+      <td>...</td>
+      <td>0.189727</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.189727</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>rt ryanmaue clear last year global tropical storm amp hurricane count possible climate change signal h…</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.195629</td>
+      <td>0.195629</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.195629</td>
+      <td>0.195629</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.195629</td>
+      <td>0.195629</td>
+    </tr>
+    <tr>
+      <th>finally paris climate change agreement designed crook trump buying crap</th>
+      <td>0.244842</td>
+      <td>0.244842</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>...</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.244842</td>
+      <td>0.244842</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 102 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="important-parameters">
+<h3>Important parameters<a class="headerlink" href="#important-parameters" title="Permalink to this heading">#</a></h3>
+<p>Parameter ที่สำคัญของ <code class="docutils literal notranslate"><span class="pre">CountVectorizer()</span></code> และ <code class="docutils literal notranslate"><span class="pre">TfidfVectorizer()</span></code> เช่น</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">max_df</span></code> กำหนด threshold frequency (ไม่สนใจคำที่มีความถี่สูงกว่าค่านี้)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_df</span></code> กำหนด threshold frequency (ไม่สนใจคำที่มีความถี่ต่ำกว่าค่านี้)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_features</span></code> กำหนดจำนวน top feature ที่มากที่สุดที่จะเก็บเอาไว้</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform tf-idf vectorising on the first 5 texts with min_df=0.4</span>
+<span class="n">vectorize</span><span class="p">(</span><span class="n">X_train_preprocessed</span><span class="p">[:</span><span class="mi">5</span><span class="p">],</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">min_df</span><span class="o">=</span><span class="mf">0.4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>change</th>
+      <th>climate</th>
+      <th>look</th>
+      <th>rt</th>
+    </tr>
+    <tr>
+      <th>message</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>rt kamalaharris stand jerrybrowngov saying california back climate change</th>
+      <td>0.501549</td>
+      <td>0.501549</td>
+      <td>0.000000</td>
+      <td>0.704909</td>
+    </tr>
+    <tr>
+      <th>wait sec claim climate change real caused anything make look bad</th>
+      <td>0.453295</td>
+      <td>0.453295</td>
+      <td>0.767495</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>rt thomastro much snow look like cream let ’ tackle climate change safeguard nature ’ balance sdgs unfccc…</th>
+      <td>0.382301</td>
+      <td>0.382301</td>
+      <td>0.647293</td>
+      <td>0.537311</td>
+    </tr>
+    <tr>
+      <th>rt ryanmaue clear last year global tropical storm amp hurricane count possible climate change signal h…</th>
+      <td>0.501549</td>
+      <td>0.501549</td>
+      <td>0.000000</td>
+      <td>0.704909</td>
+    </tr>
+    <tr>
+      <th>finally paris climate change agreement designed crook trump buying crap</th>
+      <td>0.707107</td>
+      <td>0.707107</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Perform tf-idf vectorising on the first 5 texts (retain top 10 features)</span>
+<span class="n">vectorize</span><span class="p">(</span><span class="n">X_train_preprocessed</span><span class="p">[:</span><span class="mi">5</span><span class="p">],</span> <span class="n">TfidfVectorizer</span><span class="p">(</span><span class="n">max_features</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>change</th>
+      <th>climate</th>
+      <th>look</th>
+      <th>much</th>
+      <th>nature</th>
+      <th>paris</th>
+      <th>possible</th>
+      <th>real</th>
+      <th>rt</th>
+      <th>thomastro</th>
+    </tr>
+    <tr>
+      <th>message</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>rt kamalaharris stand jerrybrowngov saying california back climate change</th>
+      <td>0.501549</td>
+      <td>0.501549</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.704909</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>wait sec claim climate change real caused anything make look bad</th>
+      <td>0.328427</td>
+      <td>0.328427</td>
+      <td>0.556075</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.68924</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>rt thomastro much snow look like cream let ’ tackle climate change safeguard nature ’ balance sdgs unfccc…</th>
+      <td>0.223302</td>
+      <td>0.223302</td>
+      <td>0.378083</td>
+      <td>0.468625</td>
+      <td>0.468625</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.313843</td>
+      <td>0.468625</td>
+    </tr>
+    <tr>
+      <th>rt ryanmaue clear last year global tropical storm amp hurricane count possible climate change signal h…</th>
+      <td>0.345454</td>
+      <td>0.345454</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.724975</td>
+      <td>0.00000</td>
+      <td>0.485524</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>finally paris climate change agreement designed crook trump buying crap</th>
+      <td>0.395156</td>
+      <td>0.395156</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.829279</td>
+      <td>0.000000</td>
+      <td>0.00000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks\Classical Machine Learning"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Ensemble%20Methods.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Ensemble Methods</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Naive%20Bayes%20Algorithm.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Naive Bayes Algorithm</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#terminology">Terminology</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-preprocessing">Text preprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-vectorizing-embedding">Text vectorizing (embedding)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bag-of-words-representation">Bag-of-words representation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tf-idf-representation">Tf-Idf representation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-gram-representation">N-Gram representation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#important-parameters">Important parameters</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Khunakorn Limpsapapkasiphol
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
