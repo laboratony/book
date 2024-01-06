@@ -261,7 +261,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/laboratony/book" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -278,7 +278,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Deep Learning/Neural Networks with Custom Datasets.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/laboratony/book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Deep Learning/Neural Networks with Custom Datasets.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -807,7 +807,7 @@ tensor(0, dtype=torch.uint8) tensor(253, dtype=torch.uint8)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/508de681bada4273ade274072042d772dc4cd6adaf29ee5d2ba42654fd1d596c.png" src="../../_images/508de681bada4273ade274072042d772dc4cd6adaf29ee5d2ba42654fd1d596c.png" />
+<img alt="../../_images/8153628234ed81f620e7b718dc58b4263cd9c477bdd38945be8ad62363a7cae0.png" src="../../_images/8153628234ed81f620e7b718dc58b4263cd9c477bdd38945be8ad62363a7cae0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -990,57 +990,87 @@ Estimated Total Size (MB): 1.41
 <span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">train_losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">train_loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">val_loss</span> <span class="o">=</span> <span class="n">validate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">mseloss</span><span class="p">,</span> <span class="n">val_loader</span><span class="p">)</span>
 
-<span class="nn">Cell In[23], line 4,</span> in <span class="ni">train</span><span class="nt">(model, optimizer, criterion, data_loader)</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">train_loss</span> <span class="o">=</span> <span class="mf">0.</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="k">for</span> <span class="n">inp</span><span class="p">,</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">data_loader</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">inp</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="n">inp</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">target</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+<span class="nn">Cell In[23], line 11,</span> in <span class="ni">train</span><span class="nt">(model, optimizer, criterion, data_loader)</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span>     <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="n">train_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">*</span><span class="n">inp</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">11</span>     <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">avg_train_loss</span> <span class="o">=</span> <span class="n">train_loss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="k">return</span> <span class="n">avg_train_loss</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\utils\data\dataloader.py:630,</span> in <span class="ni">_BaseDataLoaderIter.__next__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">627</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sampler_iter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">628</span>     <span class="c1"># TODO(https://github.com/pytorch/pytorch/issues/76750)</span>
-<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>  <span class="c1"># type: ignore[call-arg]</span>
-<span class="ne">--&gt; </span><span class="mi">630</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_data</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">631</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_yielded</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">    </span><span class="mi">632</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_kind</span> <span class="o">==</span> <span class="n">_DatasetKind</span><span class="o">.</span><span class="n">Iterable</span> <span class="ow">and</span> \
-<span class="g g-Whitespace">    </span><span class="mi">633</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_IterableDataset_len_called</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> \
-<span class="g g-Whitespace">    </span><span class="mi">634</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_num_yielded</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_IterableDataset_len_called</span><span class="p">:</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\optim\optimizer.py:373,</span> in <span class="ni">Optimizer.profile_hook_step.&lt;locals&gt;.wrapper</span><span class="nt">(*args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">368</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">369</span>             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">370</span>                 <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">func</span><span class="si">}</span><span class="s2"> must return None or a tuple of (new_args, new_kwargs), but got </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">.&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">371</span>             <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">373</span> <span class="n">out</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">374</span> <span class="bp">self</span><span class="o">.</span><span class="n">_optimizer_step_code</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">376</span> <span class="c1"># call optimizer step post hooks</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\utils\data\dataloader.py:674,</span> in <span class="ni">_SingleProcessDataLoaderIter._next_data</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">672</span> <span class="k">def</span> <span class="nf">_next_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">673</span>     <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_index</span><span class="p">()</span>  <span class="c1"># may raise StopIteration</span>
-<span class="ne">--&gt; </span><span class="mi">674</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_fetcher</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>  <span class="c1"># may raise StopIteration</span>
-<span class="g g-Whitespace">    </span><span class="mi">675</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pin_memory</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">676</span>         <span class="n">data</span> <span class="o">=</span> <span class="n">_utils</span><span class="o">.</span><span class="n">pin_memory</span><span class="o">.</span><span class="n">pin_memory</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pin_memory_device</span><span class="p">)</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\optim\optimizer.py:76,</span> in <span class="ni">_use_grad_for_differentiable.&lt;locals&gt;._use_grad</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">74</span>     <span class="n">torch</span><span class="o">.</span><span class="n">set_grad_enabled</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">defaults</span><span class="p">[</span><span class="s1">&#39;differentiable&#39;</span><span class="p">])</span>
+<span class="g g-Whitespace">     </span><span class="mi">75</span>     <span class="n">torch</span><span class="o">.</span><span class="n">_dynamo</span><span class="o">.</span><span class="n">graph_break</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">76</span>     <span class="n">ret</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">77</span> <span class="k">finally</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">78</span>     <span class="n">torch</span><span class="o">.</span><span class="n">_dynamo</span><span class="o">.</span><span class="n">graph_break</span><span class="p">()</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\utils\data\_utils\fetch.py:51,</span> in <span class="ni">_MapDatasetFetcher.fetch</span><span class="nt">(self, possibly_batched_index)</span>
-<span class="g g-Whitespace">     </span><span class="mi">49</span>         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">__getitems__</span><span class="p">(</span><span class="n">possibly_batched_index</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">50</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">51</span>         <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">possibly_batched_index</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">possibly_batched_index</span><span class="p">]</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\optim\adam.py:163,</span> in <span class="ni">Adam.step</span><span class="nt">(self, closure)</span>
+<span class="g g-Whitespace">    </span><span class="mi">152</span>     <span class="n">beta1</span><span class="p">,</span> <span class="n">beta2</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="s1">&#39;betas&#39;</span><span class="p">]</span>
+<span class="g g-Whitespace">    </span><span class="mi">154</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_init_group</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">155</span>         <span class="n">group</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">156</span>         <span class="n">params_with_grad</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">160</span>         <span class="n">max_exp_avg_sqs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">161</span>         <span class="n">state_steps</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">163</span>     <span class="n">adam</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">164</span>         <span class="n">params_with_grad</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">165</span>         <span class="n">grads</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">166</span>         <span class="n">exp_avgs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">167</span>         <span class="n">exp_avg_sqs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">168</span>         <span class="n">max_exp_avg_sqs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">169</span>         <span class="n">state_steps</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">170</span>         <span class="n">amsgrad</span><span class="o">=</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;amsgrad&#39;</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">171</span>         <span class="n">beta1</span><span class="o">=</span><span class="n">beta1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">172</span>         <span class="n">beta2</span><span class="o">=</span><span class="n">beta2</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">173</span>         <span class="n">lr</span><span class="o">=</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;lr&#39;</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">174</span>         <span class="n">weight_decay</span><span class="o">=</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;weight_decay&#39;</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">175</span>         <span class="n">eps</span><span class="o">=</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;eps&#39;</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">176</span>         <span class="n">maximize</span><span class="o">=</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;maximize&#39;</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">177</span>         <span class="n">foreach</span><span class="o">=</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;foreach&#39;</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">178</span>         <span class="n">capturable</span><span class="o">=</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;capturable&#39;</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">179</span>         <span class="n">differentiable</span><span class="o">=</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;differentiable&#39;</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">180</span>         <span class="n">fused</span><span class="o">=</span><span class="n">group</span><span class="p">[</span><span class="s1">&#39;fused&#39;</span><span class="p">],</span>
+<span class="g g-Whitespace">    </span><span class="mi">181</span>         <span class="n">grad_scale</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;grad_scale&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">182</span>         <span class="n">found_inf</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;found_inf&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">    </span><span class="mi">183</span>     <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">185</span> <span class="k">return</span> <span class="n">loss</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\utils\data\_utils\fetch.py:51,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">49</span>         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">__getitems__</span><span class="p">(</span><span class="n">possibly_batched_index</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">50</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">51</span>         <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">possibly_batched_index</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">possibly_batched_index</span><span class="p">]</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\optim\adam.py:311,</span> in <span class="ni">adam</span><span class="nt">(params, grads, exp_avgs, exp_avg_sqs, max_exp_avg_sqs, state_steps, foreach, capturable, differentiable, fused, grad_scale, found_inf, amsgrad, beta1, beta2, lr, weight_decay, eps, maximize)</span>
+<span class="g g-Whitespace">    </span><span class="mi">308</span> <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">309</span>     <span class="n">func</span> <span class="o">=</span> <span class="n">_single_tensor_adam</span>
+<span class="ne">--&gt; </span><span class="mi">311</span> <span class="n">func</span><span class="p">(</span><span class="n">params</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span>      <span class="n">grads</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">313</span>      <span class="n">exp_avgs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span>      <span class="n">exp_avg_sqs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">315</span>      <span class="n">max_exp_avg_sqs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">316</span>      <span class="n">state_steps</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">317</span>      <span class="n">amsgrad</span><span class="o">=</span><span class="n">amsgrad</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span>      <span class="n">beta1</span><span class="o">=</span><span class="n">beta1</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>      <span class="n">beta2</span><span class="o">=</span><span class="n">beta2</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span>      <span class="n">lr</span><span class="o">=</span><span class="n">lr</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>      <span class="n">weight_decay</span><span class="o">=</span><span class="n">weight_decay</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>      <span class="n">eps</span><span class="o">=</span><span class="n">eps</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span>      <span class="n">maximize</span><span class="o">=</span><span class="n">maximize</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">324</span>      <span class="n">capturable</span><span class="o">=</span><span class="n">capturable</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span>      <span class="n">differentiable</span><span class="o">=</span><span class="n">differentiable</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span>      <span class="n">grad_scale</span><span class="o">=</span><span class="n">grad_scale</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">327</span>      <span class="n">found_inf</span><span class="o">=</span><span class="n">found_inf</span><span class="p">)</span>
 
-<span class="nn">Cell In[12], line 61,</span> in <span class="ni">ChestMNIST.__getitem__</span><span class="nt">(self, idx)</span>
-<span class="g g-Whitespace">     </span><span class="mi">58</span>     <span class="n">sample</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">60</span> <span class="c1"># Mask data</span>
-<span class="ne">---&gt; </span><span class="mi">61</span> <span class="n">mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_mask</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="n">masked_sample</span> <span class="o">=</span> <span class="n">sample</span> <span class="o">*</span> <span class="n">mask</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span> <span class="k">return</span> <span class="n">masked_sample</span><span class="p">,</span> <span class="n">sample</span>
-
-<span class="nn">Cell In[12], line 49,</span> in <span class="ni">ChestMNIST._get_mask</span><span class="nt">(self, img_shape)</span>
-<span class="g g-Whitespace">     </span><span class="mi">47</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">w</span> <span class="o">*</span> <span class="n">h</span><span class="p">))</span>
-<span class="g g-Whitespace">     </span><span class="mi">48</span> <span class="n">mask</span><span class="p">[</span><span class="n">masked_idx</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="ne">---&gt; </span><span class="mi">49</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">50</span> <span class="n">mask</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">51</span> <span class="k">return</span> <span class="n">mask</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\optim\adam.py:385,</span> in <span class="ni">_single_tensor_adam</span><span class="nt">(params, grads, exp_avgs, exp_avg_sqs, max_exp_avg_sqs, state_steps, grad_scale, found_inf, amsgrad, beta1, beta2, lr, weight_decay, eps, maximize, capturable, differentiable)</span>
+<span class="g g-Whitespace">    </span><span class="mi">383</span> <span class="c1"># Decay the first and second moment running average coefficient</span>
+<span class="g g-Whitespace">    </span><span class="mi">384</span> <span class="n">exp_avg</span><span class="o">.</span><span class="n">lerp_</span><span class="p">(</span><span class="n">grad</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">beta1</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">385</span> <span class="n">exp_avg_sq</span><span class="o">.</span><span class="n">mul_</span><span class="p">(</span><span class="n">beta2</span><span class="p">)</span><span class="o">.</span><span class="n">addcmul_</span><span class="p">(</span><span class="n">grad</span><span class="p">,</span> <span class="n">grad</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span> <span class="n">beta2</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span> <span class="k">if</span> <span class="n">capturable</span> <span class="ow">or</span> <span class="n">differentiable</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">388</span>     <span class="n">step</span> <span class="o">=</span> <span class="n">step_t</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
