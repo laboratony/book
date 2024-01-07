@@ -261,7 +261,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/laboratony/book" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -278,7 +278,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Deep Learning/Transfer Learning.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/laboratony/book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Deep Learning/Transfer Learning.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -475,66 +475,18 @@ document.write(`
 </ul>
 <p>We will apply transfer learning to a small dataset containing images of bees and ants by transfering learning done by training with the ImageNet dataset.</p>
 <p>ImageNet is arguably the most popular dataset for benchmarking classification models. It contains around 14 million annotated natural images spread over 22 thousand categories. Images are of size 3 x 224 x 224, with normalised means and stds of [0.485, 0.456, 0.406] and [0.229, 0.224, 0.225]. In transfer learning is common practice to use the means and standard deviations of the data used for pretraining to normalise the new dataset. Note that the most popular networks (VGG, ResNet, AlexNet, etc..) have been design to take as input 3 x 224 x 224 images to accomodate for ImageNet.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the dataset, unzip it, and move the zipped and unzipped ones</span>
-<span class="c1"># from the current folder to the &quot;../data&quot; directory</span>
-<span class="c1"># (ต้องติดตั้ง 7-Zip ก่อน แล้ว copy directory มาเพิ่มใน System Path)</span>
-<span class="o">!</span>curl<span class="w"> </span>-k<span class="w"> </span>-O<span class="w"> </span>https://download.pytorch.org/tutorial/hymenoptera_data.zip
-<span class="o">!</span>7z<span class="w"> </span>x<span class="w"> </span>-aoa<span class="w"> </span>hymenoptera_data.zip
-<span class="o">!</span>move<span class="w"> </span>hymenoptera_data.zip<span class="w"> </span>../data
-<span class="o">!</span>move<span class="w"> </span>hymenoptera_data<span class="w"> </span>../data
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span># Download the dataset, unzip it, and move the zipped and unzipped ones
+# from the current folder to the &quot;../data&quot; directory
+# (ต้องติดตั้ง 7-Zip ก่อน แล้ว copy directory มาเพิ่มใน System Path)
+!curl -k -O https://download.pytorch.org/tutorial/hymenoptera_data.zip
+!7z x -aoa hymenoptera_data.zip
+!move hymenoptera_data.zip ../data
+!move hymenoptera_data ../data
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
-  3 45.0M    3 1643k    0     0  4936k      0  0:00:09 --:--:--  0:00:09 4949k
- 21 45.0M   21 9803k    0     0  7356k      0  0:00:06  0:00:01  0:00:05 7365k
- 38 45.0M   38 17.3M    0     0  7567k      0  0:00:06  0:00:02  0:00:04 7572k
- 55 45.0M   55 24.9M    0     0  7633k      0  0:00:06  0:00:03  0:00:03 7635k
- 71 45.0M   71 32.3M    0     0  7636k      0  0:00:06  0:00:04  0:00:02 7638k
- 88 45.0M   88 40.0M    0     0  7572k      0  0:00:06  0:00:05  0:00:01 7746k
-100 45.0M  100 45.0M    0     0  7591k      0  0:00:06  0:00:06 --:--:-- 7657k
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7-Zip 23.01 (x64) : Copyright (c) 1999-2023 Igor Pavlov : 2023-06-20
-
-Scanning the drive for archives:
-1 file, 47286322 bytes (46 MiB)
-
-Extracting archive: hymenoptera_data.zip
---
-Path = hymenoptera_data.zip
-Type = zip
-Physical Size = 47286322
-
-Everything is Ok
-
-Folders: 7
-Files: 398
-Size:       47385924
-Compressed: 47286322
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        1 file(s) moved.
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>        1 dir(s) moved.
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the dataset and unzip it in Google Colab</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download the dataset and unzip it in Google Colab</span>
 <span class="c1"># !wget -nc https://download.pytorch.org/tutorial/hymenoptera_data.zip &amp;&amp; unzip -oq hymenoptera_data.zip</span>
 </pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -655,7 +607,7 @@ Transform: Compose(
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/54faf52b691e4ff67a2a704c129d3ad6ed6721d976be3655ce7fb5c34c898577.png" src="../../_images/54faf52b691e4ff67a2a704c129d3ad6ed6721d976be3655ce7fb5c34c898577.png" />
+<img alt="../../_images/d9ada74cfc850e3070a5af1973f96fa3f6d47f05e0523eaec96baef4055b54d2.png" src="../../_images/d9ada74cfc850e3070a5af1973f96fa3f6d47f05e0523eaec96baef4055b54d2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -776,76 +728,46 @@ Transform: Compose(
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">14</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">train_losses</span><span class="p">,</span> <span class="n">train_accuracies</span><span class="p">,</span> <span class="n">val_losses</span><span class="p">,</span> <span class="n">val_accuracies</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>
 <span class="ne">----&gt; </span><span class="mi">6</span>     <span class="n">train_loss</span><span class="p">,</span> <span class="n">train_accuracy</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="n">criterion</span><span class="p">,</span> <span class="n">train_loader</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">train_losses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">train_loss</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">train_accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">train_accuracy</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
 
-<span class="nn">Cell In[12], line 7,</span> in <span class="ni">train</span><span class="nt">(model, optimizer, criterion, data_loader)</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">),</span> <span class="n">y</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
-<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">))</span>
+<span class="nn">Cell In[10], line 9,</span> in <span class="ni">train</span><span class="nt">(model, optimizer, criterion, data_loader)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">a2</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">))</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="n">train_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">*</span><span class="n">X</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="n">y_pred</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">log_softmax</span><span class="p">(</span><span class="n">a2</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py:1518,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1516</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1517</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1518</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\_tensor.py:492,</span> in <span class="ni">Tensor.backward</span><span class="nt">(self, gradient, retain_graph, create_graph, inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">482</span> <span class="k">if</span> <span class="n">has_torch_function_unary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">483</span>     <span class="k">return</span> <span class="n">handle_torch_function</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">484</span>         <span class="n">Tensor</span><span class="o">.</span><span class="n">backward</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">485</span>         <span class="p">(</span><span class="bp">self</span><span class="p">,),</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">490</span>         <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">491</span>     <span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">492</span> <span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">backward</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">493</span>     <span class="bp">self</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">retain_graph</span><span class="p">,</span> <span class="n">create_graph</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span>
+<span class="g g-Whitespace">    </span><span class="mi">494</span> <span class="p">)</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py:1527,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1522</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
-<span class="g g-Whitespace">   </span><span class="mi">1523</span> <span class="c1"># this function, and just call forward.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1524</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1525</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1526</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1527</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1529</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1530</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torchvision\models\resnet.py:285,</span> in <span class="ni">ResNet.forward</span><span class="nt">(self, x)</span>
-<span class="g g-Whitespace">    </span><span class="mi">284</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">285</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_impl</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torchvision\models\resnet.py:271,</span> in <span class="ni">ResNet._forward_impl</span><span class="nt">(self, x)</span>
-<span class="g g-Whitespace">    </span><span class="mi">269</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bn1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">270</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">relu</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">271</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">maxpool</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">273</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">274</span> <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py:1518,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1516</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
-<span class="g g-Whitespace">   </span><span class="mi">1517</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">1518</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py:1527,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1522</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
-<span class="g g-Whitespace">   </span><span class="mi">1523</span> <span class="c1"># this function, and just call forward.</span>
-<span class="g g-Whitespace">   </span><span class="mi">1524</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1525</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
-<span class="g g-Whitespace">   </span><span class="mi">1526</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
-<span class="ne">-&gt; </span><span class="mi">1527</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1529</span> <span class="k">try</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1530</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\pooling.py:166,</span> in <span class="ni">MaxPool2d.forward</span><span class="nt">(self, input)</span>
-<span class="g g-Whitespace">    </span><span class="mi">165</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">166</span>     <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stride</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span>                         <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dilation</span><span class="p">,</span> <span class="n">ceil_mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ceil_mode</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span>                         <span class="n">return_indices</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">return_indices</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\_jit_internal.py:488,</span> in <span class="ni">boolean_dispatch.&lt;locals&gt;.fn</span><span class="nt">(*args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">486</span>     <span class="k">return</span> <span class="n">if_true</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">487</span> <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">488</span>     <span class="k">return</span> <span class="n">if_false</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\functional.py:791,</span> in <span class="ni">_max_pool2d</span><span class="nt">(input, kernel_size, stride, padding, dilation, ceil_mode, return_indices)</span>
-<span class="g g-Whitespace">    </span><span class="mi">789</span> <span class="k">if</span> <span class="n">stride</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">790</span>     <span class="n">stride</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="p">[])</span>
-<span class="ne">--&gt; </span><span class="mi">791</span> <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">max_pool2d</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">,</span> <span class="n">stride</span><span class="p">,</span> <span class="n">padding</span><span class="p">,</span> <span class="n">dilation</span><span class="p">,</span> <span class="n">ceil_mode</span><span class="p">)</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\autograd\__init__.py:251,</span> in <span class="ni">backward</span><span class="nt">(tensors, grad_tensors, retain_graph, create_graph, grad_variables, inputs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">246</span>     <span class="n">retain_graph</span> <span class="o">=</span> <span class="n">create_graph</span>
+<span class="g g-Whitespace">    </span><span class="mi">248</span> <span class="c1"># The reason we repeat the same comment below is that</span>
+<span class="g g-Whitespace">    </span><span class="mi">249</span> <span class="c1"># some Python versions print out the first line of a multi-line function</span>
+<span class="g g-Whitespace">    </span><span class="mi">250</span> <span class="c1"># calls in the traceback and some print out the last line</span>
+<span class="ne">--&gt; </span><span class="mi">251</span> <span class="n">Variable</span><span class="o">.</span><span class="n">_execution_engine</span><span class="o">.</span><span class="n">run_backward</span><span class="p">(</span>  <span class="c1"># Calls into the C++ engine to run the backward pass</span>
+<span class="g g-Whitespace">    </span><span class="mi">252</span>     <span class="n">tensors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">253</span>     <span class="n">grad_tensors_</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">254</span>     <span class="n">retain_graph</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">255</span>     <span class="n">create_graph</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">256</span>     <span class="n">inputs</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">257</span>     <span class="n">allow_unreachable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">258</span>     <span class="n">accumulate_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">259</span> <span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
