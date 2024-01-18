@@ -52,7 +52,6 @@ parts:
   - caption: Seismology
     chapters:
     - file: notebooks/Seismology/Synthetic Seismic Models
-    - file: notebooks/Seismology/NMO Correction
     - file: notebooks/Seismology/SEGY
     - file: notebooks/Seismology/Seismic Attribute Analysis
     - file: notebooks/Seismology/Identifying Salt in Seismic Sections Using a Deep Learning Model
