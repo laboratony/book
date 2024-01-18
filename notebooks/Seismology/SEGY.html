@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Seismic Attribute Analysis" href="Seismic%20Attribute%20Analysis.html" />
-    <link rel="prev" title="NMO Correction" href="NMO%20Correction.html" />
+    <link rel="prev" title="Synthetic Seismic Models" href="Synthetic%20Seismic%20Models.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -221,7 +221,6 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Seismology</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Synthetic%20Seismic%20Models.html">Synthetic Seismic Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="NMO%20Correction.html">NMO Correction</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">SEGY</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Seismic%20Attribute%20Analysis.html">Seismic Attribute Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Identifying%20Salt%20in%20Seismic%20Sections%20Using%20a%20Deep%20Learning%20Model.html">Identifying Salt in Seismic Sections Using a Deep Learning Model</a></li>
@@ -441,8 +440,6 @@ document.write(`
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">mayavi</span> <span class="kn">import</span> <span class="n">mlab</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">scipy.ndimage</span>
 <span class="kn">import</span> <span class="nn">segyio</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -457,7 +454,7 @@ document.write(`
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">mayavi</span> <span class="kn">import</span> <span class="n">mlab</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">segyio</span>
 
 <span class="ne">ModuleNotFoundError</span>: No module named &#39;mayavi&#39;
 </pre></div>
@@ -471,7 +468,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import data</span>
-<span class="n">base_segy</span> <span class="o">=</span> <span class="n">segyio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/TNW_small2&#39;</span><span class="p">,</span> <span class="n">ignore_geometry</span><span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">base_segy</span> <span class="o">=</span> <span class="n">segyio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/TNW_small2&#39;</span><span class="p">,</span> <span class="n">ignore_geometry</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -531,7 +528,21 @@ C40 END EBCDIC
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">segyio</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">cube</span><span class="p">(</span><span class="n">base_segy</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># See the type of the data</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">base_segy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>segyio.segy.SegyFile
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the data to a numpy array</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">segyio</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">cube</span><span class="p">(</span><span class="n">base_segy</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -562,9 +573,9 @@ C40 END EBCDIC
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">depth</span> <span class="o">=</span> <span class="n">base_segy</span><span class="o">.</span><span class="n">samples</span> 
-<span class="n">inlines</span> <span class="o">=</span> <span class="n">base_segy</span><span class="o">.</span><span class="n">ilines</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">inlines</span> <span class="o">=</span> <span class="n">base_segy</span><span class="o">.</span><span class="n">ilines</span> 
 <span class="n">xlines</span> <span class="o">=</span> <span class="n">base_segy</span><span class="o">.</span><span class="n">xlines</span>
+<span class="n">times</span> <span class="o">=</span> <span class="n">base_segy</span><span class="o">.</span><span class="n">samples</span> 
 </pre></div>
 </div>
 </div>
@@ -573,14 +584,14 @@ C40 END EBCDIC
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of inlines:&quot;</span><span class="p">,</span> <span class="n">inlines</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of crosslines:&quot;</span><span class="p">,</span> <span class="n">xlines</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Time or depth:&quot;</span><span class="p">,</span> <span class="n">depth</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of vertical units (times):&quot;</span><span class="p">,</span> <span class="n">times</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The number of inlines: 572
 The number of crosslines: 524
-Time or depth: 450
+The number of vertical units (times): 450
 </pre></div>
 </div>
 </div>
@@ -627,29 +638,30 @@ Time or depth: 450
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Geological features of interest at these locations</span>
 <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">inlines</span> <span class="o">==</span> <span class="mi">2285</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">xlines</span> <span class="o">==</span> <span class="mi">1578</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">depth</span> <span class="o">==</span> <span class="mi">60</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">times</span> <span class="o">==</span> <span class="mi">60</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">explore3d</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">preset</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="n">I</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">Z</span><span class="o">=</span><span class="n">Z</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <p>เมื่อรันเซลล์ด้านบน จะได้หน้าต่างที่แสดง 3D visualisation ดังนี้</p>
-<img src="../images/mayavi_demo.png" /><div class="cell docutils container">
+<p><img src="../images/mayavi_demo.png" /><br /></p>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the section for inline (y) 2200</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the section for inline (x) 2200</span>
 
-<span class="n">boundary</span> <span class="o">=</span> <span class="p">[</span><span class="n">xlines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xlines</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">depth</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">depth</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>  <span class="c1"># x_min, x_max, z_min, z_max</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mi">2200</span>
-<span class="n">inline</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">inlines</span> <span class="o">==</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="p">:,</span> <span class="p">:]</span>  <span class="c1"># Pull data for our inline of interest</span>
+<span class="n">boundary</span> <span class="o">=</span> <span class="p">[</span><span class="n">xlines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xlines</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>  <span class="c1"># y_min, y_max, z_min, z_max</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">2200</span>
+<span class="n">inline</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">inlines</span> <span class="o">==</span> <span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="p">:,</span> <span class="p">:]</span>  <span class="c1"># Pull data for our inline of interest</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">inline</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Central inline: </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Crossline&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Depth (m)&quot;</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Central inline: </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Crossline number&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Time&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/a470c826b5b0095b114926dec4f8fd49ed54c8243b6993a96cade4e1d982ef6c.png" src="../../_images/a470c826b5b0095b114926dec4f8fd49ed54c8243b6993a96cade4e1d982ef6c.png" />
+<img alt="../../_images/45e7a3d38512ec9e92e6a56d0014219b3020d18e956dec0d9f1f4516e8de16d7.png" src="../../_images/45e7a3d38512ec9e92e6a56d0014219b3020d18e956dec0d9f1f4516e8de16d7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -657,24 +669,42 @@ Time or depth: 450
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enhance the contrast of the section by removing outliers</span>
 
 <span class="n">vm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>  <span class="c1"># Remove 5% of high values (should remove all outliers as well)</span>
-<span class="n">boundary</span> <span class="o">=</span> <span class="p">[</span><span class="n">xlines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xlines</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">depth</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">depth</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>  <span class="c1"># x_min, x_max, z_min, z_max</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mi">2200</span>
-<span class="n">inline</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">inlines</span> <span class="o">==</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="p">:,</span> <span class="p">:]</span>  <span class="c1"># Pull data for our inline of interest</span>
+<span class="n">boundary</span> <span class="o">=</span> <span class="p">[</span><span class="n">xlines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xlines</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>  <span class="c1"># y_min, y_max, z_min, z_max</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">2200</span>
+<span class="n">inline</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">inlines</span> <span class="o">==</span> <span class="n">x</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="p">:,</span> <span class="p">:]</span>  <span class="c1"># Pull data for our inline of interest</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">inline</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Central inline: </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Crossline&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Depth (m)&quot;</span><span class="p">);</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Central inline: </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Crossline number&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Time&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/f823e0df85ae5a1ccee36a329dad17d75f8c4e9949a7ca56b46c4280c55f8c00.png" src="../../_images/f823e0df85ae5a1ccee36a329dad17d75f8c4e9949a7ca56b46c4280c55f8c00.png" />
+<img alt="../../_images/f5237dbbc661d3c83eff76808c173d41333b7facb67dd24a94239c697fe2601e.png" src="../../_images/f5237dbbc661d3c83eff76808c173d41333b7facb67dd24a94239c697fe2601e.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize the section for xline (y) 1600</span>
+
+<span class="n">boundary</span> <span class="o">=</span> <span class="p">[</span><span class="n">inlines</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inlines</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">times</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">times</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>  <span class="c1"># y_min, y_max, z_min, z_max</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1600</span>
+<span class="n">xline</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">xlines</span> <span class="o">==</span> <span class="n">y</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="p">:]</span>  <span class="c1"># Pull data for our inline of interest</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">xline</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">boundary</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;seismic&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Central crossline: </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Inline number&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Time&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/9a47bbaa586cdfd294d9bafa06b6c2dba0ae66318513a8b7af827cc84fdfcfb3.png" src="../../_images/9a47bbaa586cdfd294d9bafa06b6c2dba0ae66318513a8b7af827cc84fdfcfb3.png" />
 </div>
 </div>
 <p>Further questions you can try:</p>
 <ul class="simple">
-<li><p>Visualise your data for xline = 1600 and depth = 70 (try <code class="docutils literal notranslate"><span class="pre">cmap=seismic</span></code> as well)</p></li>
-<li><p>Explore the volume to find the positions and get the images of important geological features (e.g., Glacial Channel, possible river channel, mass transport deposit, faults?)</p></li>
+<li><p>Visualise your data for time = 70.</p></li>
+<li><p>Explore the volume to find the positions and get the images of important geological features (e.g., Glacial Channel, possible river channel, mass transport deposit, faults?).</p></li>
 </ul>
 </section>
 <section id="non-ideal-seismic-volumes">
@@ -683,7 +713,7 @@ Time or depth: 450
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import data</span>
-<span class="n">base_segy2</span> <span class="o">=</span> <span class="n">segyio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/ST0202.segy&#39;</span><span class="p">,</span> <span class="n">ignore_geometry</span><span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">base_segy2</span> <span class="o">=</span> <span class="n">segyio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/ST0202.segy&#39;</span><span class="p">,</span> <span class="n">ignore_geometry</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -771,7 +801,8 @@ Time or depth: 450
 </div>
 </div>
 </div>
-<img src="../images/mayavi_demo2.png" /></section>
+<p><img src="../images/mayavi_demo2.png" /><br /></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -805,12 +836,12 @@ Time or depth: 450
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="NMO%20Correction.html"
+       href="Synthetic%20Seismic%20Models.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">NMO Correction</p>
+        <p class="prev-next-title">Synthetic Seismic Models</p>
       </div>
     </a>
     <a class="right-next"

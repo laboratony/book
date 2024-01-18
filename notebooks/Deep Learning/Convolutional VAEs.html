@@ -223,7 +223,6 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Seismology</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../Seismology/Synthetic%20Seismic%20Models.html">Synthetic Seismic Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Seismology/NMO%20Correction.html">NMO Correction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Seismology/SEGY.html">SEGY</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Seismology/Seismic%20Attribute%20Analysis.html">Seismic Attribute Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Seismology/Identifying%20Salt%20in%20Seismic%20Sections%20Using%20a%20Deep%20Learning%20Model.html">Identifying Salt in Seismic Sections Using a Deep Learning Model</a></li>
@@ -554,7 +553,7 @@ Using downloaded and verified file: C:\Users\Khuna\.medmnist\chestmnist.npz
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Batch shape: torch.Size([32, 1, 28, 28])
 </pre></div>
 </div>
-<img alt="../../_images/7541a4fcdbdd6e0ac6832fb699481496c106a976131578f408a4db357a6a31b8.png" src="../../_images/7541a4fcdbdd6e0ac6832fb699481496c106a976131578f408a4db357a6a31b8.png" />
+<img alt="../../_images/6d5f64598777e0b7c20837b58737cb88ddaa91b82dc06d3a1ae3553fb59767e2.png" src="../../_images/6d5f64598777e0b7c20837b58737cb88ddaa91b82dc06d3a1ae3553fb59767e2.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -765,12 +764,12 @@ Using downloaded and verified file: C:\Users\Khuna\.medmnist\chestmnist.npz
 <span class="g g-Whitespace">    </span><span class="mi">326</span>      <span class="n">grad_scale</span><span class="o">=</span><span class="n">grad_scale</span><span class="p">,</span>
 <span class="g g-Whitespace">    </span><span class="mi">327</span>      <span class="n">found_inf</span><span class="o">=</span><span class="n">found_inf</span><span class="p">)</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\optim\adam.py:432,</span> in <span class="ni">_single_tensor_adam</span><span class="nt">(params, grads, exp_avgs, exp_avg_sqs, max_exp_avg_sqs, state_steps, grad_scale, found_inf, amsgrad, beta1, beta2, lr, weight_decay, eps, maximize, capturable, differentiable)</span>
-<span class="g g-Whitespace">    </span><span class="mi">430</span>         <span class="n">denom</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_exp_avg_sqs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span> <span class="o">/</span> <span class="n">bias_correction2_sqrt</span><span class="p">)</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">431</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">432</span>         <span class="n">denom</span> <span class="o">=</span> <span class="p">(</span><span class="n">exp_avg_sq</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span> <span class="o">/</span> <span class="n">bias_correction2_sqrt</span><span class="p">)</span><span class="o">.</span><span class="n">add_</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">434</span>     <span class="n">param</span><span class="o">.</span><span class="n">addcdiv_</span><span class="p">(</span><span class="n">exp_avg</span><span class="p">,</span> <span class="n">denom</span><span class="p">,</span> <span class="n">value</span><span class="o">=-</span><span class="n">step_size</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">436</span> <span class="c1"># Lastly, switch back to complex view</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\optim\adam.py:384,</span> in <span class="ni">_single_tensor_adam</span><span class="nt">(params, grads, exp_avgs, exp_avg_sqs, max_exp_avg_sqs, state_steps, grad_scale, found_inf, amsgrad, beta1, beta2, lr, weight_decay, eps, maximize, capturable, differentiable)</span>
+<span class="g g-Whitespace">    </span><span class="mi">381</span>     <span class="n">param</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">view_as_real</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">383</span> <span class="c1"># Decay the first and second moment running average coefficient</span>
+<span class="ne">--&gt; </span><span class="mi">384</span> <span class="n">exp_avg</span><span class="o">.</span><span class="n">lerp_</span><span class="p">(</span><span class="n">grad</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">beta1</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">385</span> <span class="n">exp_avg_sq</span><span class="o">.</span><span class="n">mul_</span><span class="p">(</span><span class="n">beta2</span><span class="p">)</span><span class="o">.</span><span class="n">addcmul_</span><span class="p">(</span><span class="n">grad</span><span class="p">,</span> <span class="n">grad</span><span class="o">.</span><span class="n">conj</span><span class="p">(),</span> <span class="n">value</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span> <span class="n">beta2</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">387</span> <span class="k">if</span> <span class="n">capturable</span> <span class="ow">or</span> <span class="n">differentiable</span><span class="p">:</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

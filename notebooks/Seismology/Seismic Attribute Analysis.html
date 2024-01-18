@@ -221,7 +221,6 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Seismology</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="Synthetic%20Seismic%20Models.html">Synthetic Seismic Models</a></li>
-<li class="toctree-l1"><a class="reference internal" href="NMO%20Correction.html">NMO Correction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SEGY.html">SEGY</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Seismic Attribute Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Identifying%20Salt%20in%20Seismic%20Sections%20Using%20a%20Deep%20Learning%20Model.html">Identifying Salt in Seismic Sections Using a Deep Learning Model</a></li>
@@ -424,6 +423,390 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="seismic-attribute-analysis">
 <h1>Seismic Attribute Analysis<a class="headerlink" href="#seismic-attribute-analysis" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mayavi</span> <span class="kn">import</span> <span class="n">mlab</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.ndimage</span>
+<span class="kn">import</span> <span class="nn">segyio</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">mayavi</span> <span class="kn">import</span> <span class="n">mlab</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">scipy.ndimage</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;mayavi&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import data - this is a perfect seismic cube</span>
+<span class="n">base_segy</span> <span class="o">=</span> <span class="n">segyio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/Thebe_rift_faults&#39;</span><span class="p">,</span> <span class="n">ignore_geometry</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Print the text header</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">segyio</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">wrap</span><span class="p">(</span><span class="n">base_segy</span><span class="o">.</span><span class="n">text</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C 1 SEGY OUTPUT FROM Petrel 2017.1 Thursday, November 18 2021 12:34:36
+C 2 Name: FullStack_06-34degree Realized 1 Crop 2 Type: 3D seismic          C 3
+C 4 First inline: 1753   Last inline: 2245
+C 5 First xline:  2190   Last xline:  3063
+C 6 CRS: Undefined
+C 7 X min: 715563.75 max: 731309.44 delta: 15745.69
+C 8 Y min: 7855437.24 max: 7871648.81 delta: 16211.58
+C 9 Time min: -3193.50 max: -2383.50 delta: 810.00
+C10 Lat min: - max: - delta: -
+C11 Long min: - max: - delta: -
+C12 Trace min: -3192.00 max: -2385.00 delta: 807.00
+C13 Seismic (template) min: -9375.49 max: 12558.00 delta: 21933.49
+C14 Amplitude (data) min: -9375.49 max: 12558.00 delta: 21933.49
+C15 Trace sample format: IEEE floating point
+C16 Coordinate scale factor: 100.00000
+C17
+C18 Binary header locations:
+C19 Sample interval             : bytes 17-18
+C20 Number of samples per trace : bytes 21-22
+C21 Trace date format           : bytes 25-26
+C22
+C23 Trace header locations:
+C24 Inline number               : bytes 5-8
+C25 Xline number                : bytes 21-24
+C26 Coordinate scale factor     : bytes 71-72
+C27 X coordinate                : bytes 73-76
+C28 Y coordinate                : bytes 77-80
+C29 Trace start time/depth      : bytes 109-110
+C30 Number of samples per trace : bytes 115-116
+C31 Sample interval             : bytes 117-118
+C32
+C33
+C34
+C35
+C36
+C37
+C38
+C39
+C40 END EBCDIC
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Convert the data to a numpy array</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">segyio</span><span class="o">.</span><span class="n">tools</span><span class="o">.</span><span class="n">cube</span><span class="p">(</span><span class="n">base_segy</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(493, 874, 270)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">explore3d</span><span class="p">(</span><span class="n">data_cube</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Visualise a seismic volume in 3D&quot;&quot;&quot;</span>
+    <span class="n">source</span> <span class="o">=</span> <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">scalar_field</span><span class="p">(</span><span class="n">data_cube</span><span class="p">)</span>
+    <span class="n">source</span><span class="o">.</span><span class="n">spacing</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">vm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data_cube</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>  <span class="c1"># Remove 5% of high values (should remove all outliers as well)</span>
+    <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">nz</span> <span class="o">=</span> <span class="n">data_cube</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;x_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;y_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">ny</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;z_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">nz</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualise the volume</span>
+<span class="n">explore3d</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img src="../images/mayavi_demo3.png" /><br /></p>
+<p>If you explore the volume on the mayavi window, you will see faults. Next, seismic attributes will be computed to highlight them.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># Zero array to store RMS amplitude later</span>
+<span class="n">diff1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># Zero array to store 1st vertical derivative in time later</span>
+<span class="n">diff2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># Zero array to store 2nd vertical derivative in time later</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">base_segy</span><span class="o">.</span><span class="n">samples</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">base_segy</span><span class="o">.</span><span class="n">samples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># dt</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="n">trace</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="p">:]</span>
+        
+        <span class="c1"># Create kernel for calculation of each attribute</span>
+        <span class="n">kernel_rms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="o">/</span> <span class="mi">11</span>  <span class="c1"># Range over which we take the RMS value</span>
+        <span class="n">kernel_diff1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dt</span>  <span class="c1"># Forward difference</span>
+        <span class="n">kernel_diff2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Second order central difference</span>
+
+        <span class="c1"># Compute attributes</span>
+        <span class="c1"># RMS amplitude</span>
+        <span class="n">trace_sq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">trace</span><span class="p">)</span>  <span class="c1"># Square traces</span>
+        <span class="n">rms_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">trace_sq</span><span class="p">,</span> <span class="n">kernel_rms</span><span class="p">,</span> <span class="s1">&#39;same&#39;</span><span class="p">))</span>
+        <span class="n">rms</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">rms_value</span>
+        
+        <span class="c1"># 1st vertical derivative in time</span>
+        <span class="n">diff1_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">kernel_diff1</span><span class="p">,</span> <span class="s1">&#39;same&#39;</span><span class="p">)</span>
+        <span class="n">diff1</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">diff1_value</span>
+        
+        <span class="c1"># 2nd vertical derivative in time</span>
+        <span class="n">diff2_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">trace</span><span class="p">,</span> <span class="n">kernel_diff2</span><span class="p">,</span> <span class="s1">&#39;same&#39;</span><span class="p">)</span>
+        <span class="n">diff2</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">diff2_value</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">explore3d</span><span class="p">(</span><span class="n">rms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img src="../images/mayavi_rms.png" /><br /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">explore3d</span><span class="p">(</span><span class="n">diff1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img src="../images/mayavi_diff1.png" /><br /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">explore3d</span><span class="p">(</span><span class="n">diff2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img src="../images/mayavi_diff2.png" /><br /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">vm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;XS of the original volume along the first inline&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Xline number&quot;</span>
+<span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">vm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">diff2</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">diff2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;coolwarm&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;XS of the volume of the first vertical derivative in time along the first inline&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Xline number&quot;</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/e703e1b4493175e669f079833776d8ae11f59e49fd91056e5f9489879a618fb6.png" src="../../_images/e703e1b4493175e669f079833776d8ae11f59e49fd91056e5f9489879a618fb6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># There are many ways to compute semblance (coherence) or discontinuity</span>
+<span class="c1"># https://github.com/seg/tutorials-2015/blob/master/1512_Semblance_coherence_and_discontinuity/writeup.md</span>
+
+<span class="k">def</span> <span class="nf">moving_window</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+    <span class="c1"># `generic_filter` will give the function 1D input. We&#39;ll reshape it for convinence</span>
+    <span class="n">wrapped</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">region</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">region</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">window</span><span class="p">))</span>
+    
+    <span class="c1"># Instead of an explicit for loop, we&#39;ll use a scipy function to do the same thing</span>
+    <span class="c1"># The boundaries will be handled by &quot;reflecting&quot; the data, by default</span>
+    <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">ndimage</span><span class="o">.</span><span class="n">generic_filter</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">wrapped</span><span class="p">,</span> <span class="n">window</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">marfurt_semblance</span><span class="p">(</span><span class="n">region</span><span class="p">):</span>
+    <span class="c1"># We&#39;ll need an ntraces by nsamples array</span>
+    <span class="c1"># This stacks all traces within the x-y &quot;footprint&quot; into one 2D array</span>
+    <span class="n">region</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">region</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">ntraces</span><span class="p">,</span> <span class="n">nsamples</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">square_of_sums</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">sum_of_squares</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">region</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">sembl</span> <span class="o">=</span> <span class="n">square_of_sums</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">sum_of_squares</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">sembl</span> <span class="o">/</span> <span class="n">ntraces</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Due to processing cost, we only run this on 15 layers</span>
+<span class="n">marfurt</span> <span class="o">=</span> <span class="n">moving_window</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">100</span><span class="p">:</span> <span class="mi">115</span><span class="p">],</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">),</span> <span class="n">marfurt_semblance</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">vm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">marfurt</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">marfurt</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Horizontal slice of the Marfurt semblance volume at depth of 104&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Inline number&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Xline number&quot;</span>
+<span class="p">)</span>
+
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">vm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">104</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Horizontal slice of the original volume at depth of 104&quot;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Inline number&quot;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Xline number&quot;</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1d2364d083e7dc702f625ad021799ef09234c871d860e20ca23768cabff891ec.png" src="../../_images/1d2364d083e7dc702f625ad021799ef09234c871d860e20ca23768cabff891ec.png" />
+</div>
+</div>
+<p>It appears that semblance best highlights faults.</p>
+<p>It can be useful to overlay several attributes using transparency to highlight features even further - this is called multi-attribute analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">explore3d_2</span><span class="p">(</span><span class="n">data_cube1</span><span class="p">,</span> <span class="n">data_cube2</span><span class="p">,</span> <span class="n">cmap1</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">cmap2</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Visualise two data volumes together&quot;&quot;&quot;</span>
+    <span class="n">source1</span> <span class="o">=</span> <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">scalar_field</span><span class="p">(</span><span class="n">data_cube1</span><span class="p">)</span>
+    <span class="n">source1</span><span class="o">.</span><span class="n">spacing</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    
+    <span class="n">source2</span> <span class="o">=</span> <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">scalar_field</span><span class="p">(</span><span class="n">data_cube2</span><span class="p">)</span>
+    <span class="n">source2</span><span class="o">.</span><span class="n">spacing</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">nz</span> <span class="o">=</span> <span class="n">data_cube1</span><span class="o">.</span><span class="n">shape</span>
+    
+    <span class="n">vm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data_cube1</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source1</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;x_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="n">cmap1</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">plane_opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source1</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;y_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">ny</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="n">cmap1</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">plane_opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source1</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;z_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">nz</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="n">cmap1</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">plane_opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    
+    <span class="n">vm2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data_cube2</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source2</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;x_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="n">cmap2</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm2</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source2</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;y_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">ny</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="n">cmap2</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm2</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="n">vm2</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source2</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;z_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">nz</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="n">cmap2</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm2</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="n">vm2</span><span class="p">)</span>
+    
+    <span class="n">mlab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">explore3d_2</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">rms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img src="../images/mayavi_data_rms.png" /><br /></p>
+<p>An alternative way to use attributes together would be by simply plotting them over each other with the top layer with a higher transparency.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create our own colorbar for clearer results</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">ListedColormap</span><span class="p">([</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;white&#39;</span><span class="p">])</span>
+<span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">BoundaryNorm</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">cmap</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the original data and the Marfurt semblance at a depth of 104 together</span>
+<span class="n">vm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">104</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">)</span>
+<span class="n">vm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">marfurt</span><span class="p">,</span> <span class="mi">99</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">marfurt</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ecd9dc08d8fc7cb27f2360b5834cbc5c2b4d4f2694888d59c209537807d954fc.png" src="../../_images/ecd9dc08d8fc7cb27f2360b5834cbc5c2b4d4f2694888d59c209537807d954fc.png" />
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
