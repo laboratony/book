@@ -171,7 +171,11 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Machine Learning</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming in C++</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Programming%20in%20C%2B%2B/Basic%20C%2B%2B.html">Basic C++</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Machine Learning</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Data%20Preparation.html">Data Preparation</a></li>
@@ -209,6 +213,20 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Variational%20Autoencoders%20%28VAEs%29.html">Variational Autoencoders (VAEs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Convolutional%20VAEs.html">Convolutional VAEs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Generative%20Adversarial%20Networks%20%28GANs%29.html">Generative Adversarial Networks (GANs)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Geospatial%20Science/Remote%20Sensing%20Questions.html">Remote Sensing Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Geospatial%20Science/Geospatial%20Data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Geospatial%20Science/Classification%20of%20Land%20Cover.html">Classification of Land Cover</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Seismology</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Synthetic%20Seismic%20Models.html">Synthetic Seismic Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/NMO%20Correction.html">NMO Correction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/SEGY.html">SEGY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Seismic%20Attribute%20Analysis.html">Seismic Attribute Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Identifying%20Salt%20in%20Seismic%20Sections%20Using%20a%20Deep%20Learning%20Model.html">Identifying Salt in Seismic Sections Using a Deep Learning Model</a></li>
 </ul>
 
     </div>
@@ -539,7 +557,12 @@ document.write(`
 <p>เมื่อเราได้ train set และ data loader ที่สร้างจาก train set มาแล้ว เราก็สามารถเริ่มเทรน network ได้เลย</p>
 <ul class="simple">
 <li><p>แบ่ง train set ออกเป็น train set กับ validation set</p></li>
-<li><p>เมื่อมี train set กับ validation set แล้ว เราต้องมี data loader สำหรับข้อมูลทั้งสองชุดนี้</p></li>
+<li><p>เมื่อมี train set กับ validation set แล้ว เราต้องมี data loader สำหรับข้อมูลทั้งสองชุดนี้</p>
+<ul>
+<li><p>ถ้าเป็นข้อมูลที่นำเข้ามาจาก <code class="docutils literal notranslate"><span class="pre">torchvision.datasets</span></code> เราเอาไปสร้าง data loader ได้เลย</p></li>
+<li><p>ถ้าเป็นข้อมูลอื่น ๆ ให้แปลง input (X) และ label (y) เป็น tensor แล้วเอา X กับ y มาแพ็ครวมกันโดยใช้ <code class="docutils literal notranslate"><span class="pre">torch.utils.data.TensorDataset</span></code> จึงสามารถนำไปสร้าง data loader ได้</p></li>
+</ul>
+</li>
 <li><p>สร้าง network</p>
 <ul>
 <li><p>Class ของ neural network ต้องสืบทอดจาก <code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code> และมี <code class="docutils literal notranslate"><span class="pre">forward</span></code> method</p></li>
@@ -689,8 +712,8 @@ std = 0.30810782313346863
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.6003, 0.4514, 0.5373, 0.5035, 0.5261, 0.5614, 0.5763, 0.3399, 0.5015,
-         0.6127]], grad_fn=&lt;SigmoidBackward0&gt;)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>tensor([[0.5633, 0.5163, 0.5533, 0.4297, 0.4571, 0.5331, 0.4988, 0.4370, 0.3934,
+         0.4603]], grad_fn=&lt;SigmoidBackward0&gt;)
 simpleFFN(
   (hidden_1): Linear(in_features=784, out_features=200, bias=False)
   (hidden_2): Linear(in_features=200, out_features=50, bias=False)
@@ -899,12 +922,11 @@ torch.Size([64, 10])
 <span class="g g-Whitespace">   </span><span class="mi">1529</span> <span class="k">try</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1530</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
 
-<span class="nn">Cell In[12], line 12,</span> in <span class="ni">simpleFFN.forward</span><span class="nt">(self, X)</span>
+<span class="nn">Cell In[12], line 11,</span> in <span class="ni">simpleFFN.forward</span><span class="nt">(self, X)</span>
 <span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="n">z1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_1</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">start_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-<span class="ne">---&gt; </span><span class="mi">12</span>     <span class="n">a1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">(</span><span class="n">z1</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">11</span>     <span class="n">z1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_1</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">start_dim</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span>     <span class="n">a1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">(</span><span class="n">z1</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="n">z2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_2</span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span>     <span class="n">a2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span>
 
 <span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py:1518,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
 <span class="g g-Whitespace">   </span><span class="mi">1516</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
@@ -921,9 +943,9 @@ torch.Size([64, 10])
 <span class="g g-Whitespace">   </span><span class="mi">1529</span> <span class="k">try</span><span class="p">:</span>
 <span class="g g-Whitespace">   </span><span class="mi">1530</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\activation.py:292,</span> in <span class="ni">Sigmoid.forward</span><span class="nt">(self, input)</span>
-<span class="g g-Whitespace">    </span><span class="mi">291</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">292</span>     <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\linear.py:114,</span> in <span class="ni">Linear.forward</span><span class="nt">(self, input)</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">114</span>     <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>

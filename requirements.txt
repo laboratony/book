@@ -15,3 +15,11 @@ torchsummary
 wget
 monai
 medmnist
+rasterio
+shapely
+fiona
+geopandas
+pyproj
+folium
+segyio
+mayavi
