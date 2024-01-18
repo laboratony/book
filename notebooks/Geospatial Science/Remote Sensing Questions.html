@@ -1,0 +1,1757 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Remote Sensing Questions &#8212; Laboratony&#39;s book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/Geospatial Science/Remote Sensing Questions';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Geospatial Data" href="Geospatial%20Data.html" />
+    <link rel="prev" title="Generative Adversarial Networks (GANs)" href="../Deep%20Learning/Generative%20Adversarial%20Networks%20%28GANs%29.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Laboratony's book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Laboratony's book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to LABORATONY!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming in C++</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Programming%20in%20C%2B%2B/Basic%20C%2B%2B.html">Basic C++</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Machine Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Data%20Preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Linear%20Regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Validation.html">Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Logistic%20Regression.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/K-Nearest%20Neighbours%20%28KNNs%29.html">K-Nearest Neighbours (KNNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Baseline.html">Baseline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Performance%20Metrics.html">Performance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Multiclass%20Classification.html">Multiclass Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Overfitting%20and%20Underfitting.html">Overfitting and Underfitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Loss%20Functions.html">Loss Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Dealing%20with%20Spatial%20and%20Temporal%20Data.html">Dealing with Spatial and Temporal Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Feature%20Selection.html">Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Data%20Pipelines.html">Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Support%20Vector%20Machines%20%28SVMs%29.html">Support Vector Machines (SVMs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Model%20Tuning.html">Model Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Decision%20Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Ensemble%20Methods.html">Ensemble Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Introduction%20to%20Natural%20Language%20Processing%20%28NLP%29.html">Introduction to Natural Language Processing (NLP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Naive%20Bayes%20Algorithm.html">Naive Bayes Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Principal%20Component%20Analysis%20%28PCA%29.html">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Clustering.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Anomaly%20Detection.html">Anomaly Detection</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Training%20Neural%20Networks.html">Training Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Neural%20Networks%20with%20Custom%20Datasets.html">Neural Networks with Custom Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Convolutional%20Neural%20Networks%20%28CNNs%29.html">Convolutional Neural Networks (CNNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Implicit%20Regularisation.html">Implicit Regularisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Transfer%20Learning.html">Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Autoencoders.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Variational%20Autoencoders%20%28VAEs%29.html">Variational Autoencoders (VAEs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Convolutional%20VAEs.html">Convolutional VAEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Generative%20Adversarial%20Networks%20%28GANs%29.html">Generative Adversarial Networks (GANs)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Data Science</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Remote Sensing Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Geospatial%20Data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classification%20of%20Land%20Cover.html">Classification of Land Cover</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Seismology</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Synthetic%20Seismic%20Models.html">Synthetic Seismic Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/NMO%20Correction.html">NMO Correction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/SEGY.html">SEGY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Seismic%20Attribute%20Analysis.html">Seismic Attribute Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Identifying%20Salt%20in%20Seismic%20Sections%20Using%20a%20Deep%20Learning%20Model.html">Identifying Salt in Seismic Sections Using a Deep Learning Model</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/laboratony/book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/laboratony/book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Geospatial Science/Remote Sensing Questions.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/Geospatial Science/Remote Sensing Questions.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Remote Sensing Questions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-choice-questions">Multiple choice questions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2016-2017</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2017-2018</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2018-2019</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2019-2020</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2020-2021</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2021-2022</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="remote-sensing-questions">
+<h1>Remote Sensing Questions<a class="headerlink" href="#remote-sensing-questions" title="Permalink to this heading">#</a></h1>
+<section id="multiple-choice-questions">
+<h2>Multiple choice questions<a class="headerlink" href="#multiple-choice-questions" title="Permalink to this heading">#</a></h2>
+<section id="id1">
+<h3>2016-2017<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Which of the following observation is <b>not</b> based on EMR?</p>
+<ol class="arabic simple">
+<li><p>Chest X-rays</p></li>
+<li><p>Radar imaging</p></li>
+<li><p><span style="color: #35B957">Seismic survey</span></p></li>
+<li><p>Photography</p></li>
+</ol>
+</li>
+<li><p>According to the Stefan-Boltzmann law, total energy flux density radiated from the surface of a material ___</p>
+<ol class="arabic simple">
+<li><p>increases linearly with the increase of temperature.</p></li>
+<li><p>becomes 0 at 0°C.</p></li>
+<li><p><span style="color: #35B957">increases to the 4th power with increase of temperature.</span></p></li>
+<li><p>increases proportionally to the surface area of a material.</p></li>
+</ol>
+</li>
+<li><p>According to the relationship between photon energy and EMR frequency, ___</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">blue light transmits more energy than red light.</span></p></li>
+<li><p>the EMR with higher frequency has lower energy.</p></li>
+<li><p>the EMR with longer wavelength has higher energy.</p></li>
+<li><p>thermal radiation transmits more energy than visible light.</p></li>
+</ol>
+</li>
+<li><p>A forest is on fire and the temperature of the fire is in the range of 1300-1800 K. According to Wien’s displacement law, <span class="math notranslate nohighlight">\(\lambda_m = \frac{A}{T}\)</span> where <span class="math notranslate nohighlight">\(A=2898\)</span> µm.K, images of which spectral range are the most effective to locate the fire points?</p>
+<ol class="arabic simple">
+<li><p>Visible light: 0.38-0.75 µm</p></li>
+<li><p>Near infrared: 0.75-1.3 µm</p></li>
+<li><p><span style="color: #35B957">Short wave infrared: 1.3-3.0 µm</span></p></li>
+<li><p>Thermal infrared: 8-14 µm</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements is <b>incorrect</b>?</p>
+<ol class="arabic simple">
+<li><p>Mie scattering in the atmosphere happens when the particle size is equivalent to the wavelength of EMR.</p></li>
+<li><p><span style="color: #35B957">Rayleigh scattering in the atmosphere happens when the diameter of scattering particles is greater than the wavelength of EMR.</span></p></li>
+<li><p>Vapour particles in clouds are non-selective scatters to visible light.</p></li>
+<li><p>Rayleigh scattering in the atmosphere is less significant to red light than to blue light.</p></li>
+</ol>
+</li>
+<li><p>An atmospheric window is ___</p>
+<ol class="arabic simple">
+<li><p>a spectral range where there are no atmospheric scattering effects.</p></li>
+<li><p>a clear sky area allows imaging the ground from space without blockage of clouds.</p></li>
+<li><p>a spectral range in which the energy of EMR is absorbed by the atmosphere.</p></li>
+<li><p><span style="color: #35B957">a spectral range in which the atmosphere is transparent to EMR.</span></p></li>
+</ol>
+</li>
+<li><p>The near infrared spectral band is preferred by nearly all EO satellite sensors because of 3 of the 4 following factors; single out the <b>incorrect</b> one.</p>
+<ol class="arabic simple">
+<li><p>It is sensitive to Earth’s thermal radiation.</p></li>
+<li><p>It is within an atmospheric window.</p></li>
+<li><p><span style="color: #35B957">It is near the solar radiation peak.</span></p></li>
+<li><p>It is nearly not affected by Rayleigh scattering.</p></li>
+</ol>
+</li>
+<li><p>The spectral reflectance of a material is ___</p>
+<ol class="arabic simple">
+<li><p>the reflectivity of the material to visible light.</p></li>
+<li><p><span style="color: #35B957">the reflectivity of the material to EMR at a particular wavelength.</span></p></li>
+<li><p>the reflectivity of the material to thermal radiation.</p></li>
+<li><p>equivalent to the albedo of the material.</p></li>
+</ol>
+</li>
+<li><p>According to the Rayleigh criterion, which one of the statements below is <b>incorrect</b>?</p>
+<ol class="arabic simple">
+<li><p>An airport runway is a rough surface to the NIR spectral range.</p></li>
+<li><p><span style="color: #35B957">An airport runway is a rough surface to a radar beam.</span></p></li>
+<li><p>A mirror is a smooth surface to visible light.</p></li>
+<li><p>A mirror is a smooth surface to the SWIR spectral range.</p></li>
+</ol>
+</li>
+<li><p>Which of the following statement about a geostationary orbit is <b>not</b> true?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">A geostationary orbit enables a satellite to image the whole Earth in a short period.</span></p></li>
+<li><p>A geostationary orbit enables a satellite revolving at a speed and direction which matches the rotation of the Earth.</p></li>
+<li><p>A geostationary orbit is 36,000 km above the Earth equator.</p></li>
+<li><p>A geostationary orbit enables Earth observation day and night.</p></li>
+</ol>
+</li>
+<li><p>For an Earth observation satellite on a circular, near-polar, sun-synchronous orbit, which of the statements below is correct?</p>
+<ol class="arabic simple">
+<li><p>It can image the entire Earth’s surface including the regions of the North and South poles.</p></li>
+<li><p>It can take images of near infrared spectral bands on both descending and ascending passes.</p></li>
+<li><p>It cannot take radar images on both descending and ascending passes.</p></li>
+<li><p><span style="color: #35B957">It images different areas of the Earth’s surface at about the same local time.</span></p></li>
+</ol>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Small areas of North and South poles are not covered due to the inclination angle.</p></li>
+<li><p>NIR is not TIR.</p></li>
+<li><p>“sun-synchronous” means covering most of the earth (except the near polar areas), at nearly the same local time imaging.</p></li>
+</ul>
+</div>
+<ol class="arabic simple" start="12">
+<li><p>Which statement about image geometric distortion below is <b>wrong</b>?</p>
+<ol class="arabic simple">
+<li><p>Geometric distortion caused by Earth curvature is unavoidable to all satellite images.</p></li>
+<li><p>Push-broom scanning introduces less geometric distortion than across-track scanning.</p></li>
+<li><p><span style="color: #35B957">For across-track scanners, one-way scanning introduces more geometric distortion than two-way scanning.</span></p></li>
+<li><p>Air-borne remote sensing is not subject to the geometric distortion resulted from Earth rotation.</p></li>
+</ol>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This effect is typical for a push-broom scanner. For an across-track two way scanner (e.g. Thematic Mapper), the
+distortion pattern is even more complex as every pixel along a swath is imaged at a slightly different time and the
+actual scanning speed on the earth surface changes not only from nadir to the edge of a swath but also between
+swathes for and against earth rotation.</p>
+</div>
+<ol class="arabic simple" start="13">
+<li><p>A push-broom scanner allows much longer dwell time than an across-track scanner and therefore the following resolutions can be improved <b>except</b></p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">temporal resolution.</span></p></li>
+<li><p>spatial resolution.</p></li>
+<li><p>spectral resolution.</p></li>
+<li><p>radiometric resolution.</p></li>
+</ol>
+</li>
+<li><p>A space-borne imaging radar system may <b>not</b></p>
+<ol class="arabic simple">
+<li><p>be side looking.</p></li>
+<li><p>be a synthetic aperture radar (SAR).</p></li>
+<li><p><span style="color: #35B957">use like-polarized microwave return signals only.</span></p></li>
+<li><p>use a polarized microwave beam.</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements about SAR is <b>wrong</b>?</p>
+<ol class="arabic simple">
+<li><p>The synthetic aperture is achieved by steady motion of the platform.</p></li>
+<li><p>The synthetic aperture is achieved by using Doppler frequency shift effects.</p></li>
+<li><p><span style="color: #35B957">The synthetic aperture improves both range resolution and azimuth resolution.</span></p></li>
+<li><p>A shorter antenna achieves higher azimuth resolution.</p></li>
+</ol>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The synthetic aperture does not improve range resolution.</p>
+</div>
+<ol class="arabic simple" start="16">
+<li><p>In SAR images, which of the following effects is <b>not</b> caused by the side-looking configuration of SAR imaging systems?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">Speckles.</span></p></li>
+<li><p>Radar shadow.</p></li>
+<li><p>Layover.</p></li>
+<li><p>Corner reflection.</p></li>
+</ol>
+</li>
+<li><p>Which statement about radar sensing below is correct?</p>
+<ol class="arabic simple">
+<li><p>Foreshortening happens when the local incident angle of radar beam is negative.</p></li>
+<li><p><span style="color: #35B957">Layover effects are more severe in the near range than in the far range.</span></p></li>
+<li><p>A greater radar look angle can alleviate layover effects and meanwhile shorten radar shadows.</p></li>
+<li><p>Corner reflection is more significant in the far range than in the near range</p></li>
+</ol>
+</li>
+<li><p>SAR imagery is effective for detecting oil slicks in the sea because</p>
+<ol class="arabic simple">
+<li><p>Oil slicks look darker than the sea surface.</p></li>
+<li><p>Oil slicks look brighter than the sea surface.</p></li>
+<li><p><span style="color: #35B957">Oil slicks are smoother than the sea surface.</span></p></li>
+<li><p>Oil slicks are heavier than sea water.</p></li>
+</ol>
+</li>
+<li><p>An L band SAR <b>cannot</b> penetrate ___</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">fresh water.</span></p></li>
+<li><p>tree canopies.</p></li>
+<li><p>dry sand.</p></li>
+<li><p>ice in well below 0°C temperature.</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements is <b>incorrect</b>?</p>
+<ol class="arabic simple">
+<li><p>A black and white display is a special case of pseudo colour display.</p></li>
+<li><p><span style="color: #35B957">False colour composition is a special case of true colour composition.</span></p></li>
+<li><p>A true colour composite cannot be generated without using Red, Green, Blue band images.</p></li>
+<li><p>A false colour composite can be generated using any three multi-spectral image bands.</p></li>
+</ol>
+</li>
+<li><p>A point operation ___</p>
+<ol class="arabic simple">
+<li><p>involves neighbouring pixels.</p></li>
+<li><p><span style="color: #35B957">is irrelevant to pixel position.</span></p></li>
+<li><p>does not change the image histogram.</p></li>
+<li><p>changes the size of an image.</p></li>
+</ol>
+</li>
+<li><p>Which of the following colour vectors is on the grey line in a RGB colour cube?</p>
+<ol class="arabic simple">
+<li><p>r=127, g=0, b=0</p></li>
+<li><p>r=135, g=135, b=130</p></li>
+<li><p>r=100, g=0, b=255</p></li>
+<li><p><span style="color: #35B957">r=230, g=230, b=230</span></p></li>
+</ol>
+</li>
+<li><p>Which of the following is <b>not</b> normally referred to as ‘Earth observation’ remote sensing?</p>
+<ol class="arabic simple">
+<li><p>Acquisition of thermal images of cities during the night from an airborne sensor.</p></li>
+<li><p>Taking colour photographs of the land surface from an airborne camera.</p></li>
+<li><p>Acquisition of multi-spectral images of the Earth’s surface from a satellite sensor.</p></li>
+<li><p><span style="color: #35B957">Measurement of the Earth’s magnetic or gravity field from a ground or airborne sensor.</span></p></li>
+</ol>
+</li>
+<li><p>Which of the following band combinations defines a standard False Colour Composite image?</p>
+<ol class="arabic simple">
+<li><p>SWIR, NIR and Red bands displayed as RGB.</p></li>
+<li><p>Green, Red and Blue bands displayed as RGB.</p></li>
+<li><p>Red, Green and Blue bands displayed as RGB.</p></li>
+<li><p><span style="color: #35B957">NIR, Red and Green bands displayed as RGB.</span></p></li>
+</ol>
+</li>
+<li><p>With respect to the spectral reflectance of healthy, chlorophyll-bearing vegetation, which of the following statements is <b>not</b> true?</p>
+<ol class="arabic simple">
+<li><p>Reflectance is relatively high in Green and low in Blue and Red.</p></li>
+<li><p><span style="color: #35B957">Reflectance is very high in Green, and relatively low in the NIR.</span></p></li>
+<li><p>Reflectance is very high in NIR and high SWIR.</p></li>
+<li><p>Reflectance is very high in NIR, and low in both Blue and Red.</p></li>
+</ol>
+</li>
+<li><p>When choosing remotely sensed datasets for interpretation of lithological types at regional scales (~1:50,000), which of the following would be most appropriate?</p>
+<ol class="arabic simple">
+<li><p>Sentinel-1</p></li>
+<li><p><span style="color: #35B957">Landsat ETM+, ASTER</span></p></li>
+<li><p>Worldview-3</p></li>
+<li><p>Ikonos</p></li>
+</ol>
+</li>
+<li><p>Broad-band multi-spectral images (e.g. Landsat) can be used very effectively for</p>
+<ol class="arabic simple">
+<li><p>Lithological identification.</p></li>
+<li><p>Species level mineral discrimination.</p></li>
+<li><p>Species level mineral identification.</p></li>
+<li><p><span style="color: #35B957">Lithological discrimination.</span></p></li>
+</ol>
+</li>
+<li><p>If an image target object appears bright in the visible bands and dark in the daytime thermal band, which of the following statements is true?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">The object has high albedo and low emissivity.</span></p></li>
+<li><p>The object has high albedo and high emissivity.</p></li>
+<li><p>The object has low albedo and low emissivity.</p></li>
+<li><p>The object has low albedo and high emissivity.</p></li>
+</ol>
+</li>
+<li><p>In what colour should vegetation appear in a Landsat7 TM (or ETM+) colour composite image of bands 321 in RGB?</p>
+<ol class="arabic simple">
+<li><p>Red</p></li>
+<li><p>Blue</p></li>
+<li><p>Cyan</p></li>
+<li><p><span style="color: #35B957">Green</span></p></li>
+</ol>
+</li>
+<li><p>Iron-oxides generally have which of the following spectral characteristics?</p>
+<ol class="arabic simple">
+<li><p>High reflectance in all VIS wavelengths.</p></li>
+<li><p><span style="color: #35B957">High reflectance in Red and NIR, and low reflectance in Blue and Green.</span></p></li>
+<li><p>Low reflectance in Red and NIR, and high reflectance in Blue.</p></li>
+<li><p>High reflectance in Green, and low reflectance in Blue, Red &amp; NIR.</p></li>
+</ol>
+</li>
+<li><p>Which of the following phenomena do <b>not</b> directly contribute to the spectral reflectance of a target material (and therefore the spectral information in an image)?</p>
+<ol class="arabic simple">
+<li><p>Absorption coefficient.</p></li>
+<li><p><span style="color: #35B957">Surface roughness.</span></p></li>
+<li><p>Moisture content.</p></li>
+<li><p>Chemical composition &amp; crystal structure.</p></li>
+</ol>
+</li>
+<li><p>Which of the following element groups and compounds have the least or no effect on spectral signatures of materials?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">Si, Al, O</span></p></li>
+<li><p>Fe, Cr, Mg</p></li>
+<li><p>OH-</p></li>
+<li><p>C-O, Si-O</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements is <b>untrue</b> of raster data?</p>
+<ol class="arabic simple">
+<li><p>Raster data provides regularly sampled information</p></li>
+<li><p>Raster data have fixed accuracy &amp; precision determined by spatial resolution</p></li>
+<li><p>The digital numbers in a raster image represent variance of a single attribute</p></li>
+<li><p><span style="color: #35B957">Raster file size is unaffected by spatial resolution</span></p></li>
+</ol>
+</li>
+<li><p>Which statement is <b>untrue</b>?</p>
+<ol class="arabic simple">
+<li><p>Topological relationships can be temporarily imposed on features within a map</p></li>
+<li><p><span style="color: #35B957">Topological relationships are affected by the geometry, shape and size of objects</span></p></li>
+<li><p>Topology is property of spatial data that allows us to determine spatial relationships between connected objects</p></li>
+<li><p>Topological relationships between pixels are implicit in a raster image</p></li>
+</ol>
+</li>
+<li><p>What is the most effective spatial data storage method for variables like rainfall intensity or elevation?</p>
+<ol class="arabic simple">
+<li><p>Tabular data</p></li>
+<li><p>Metadata</p></li>
+<li><p><span style="color: #35B957">Raster data</span></p></li>
+<li><p>Vector data</p></li>
+</ol>
+</li>
+<li><p>Identify the core benefit of spatial information which allows us to use GIS to identify inliers and outliers on a geological outcrop layer?</p>
+<ol class="arabic simple">
+<li><p>Adjacency</p></li>
+<li><p>Overlay</p></li>
+<li><p>Proximity</p></li>
+<li><p><span style="color: #35B957">Containment</span></p></li>
+</ol>
+</li>
+<li><p>Mathematical operations carried out between GIS layers are known as</p>
+<ol class="arabic simple">
+<li><p>Map topology</p></li>
+<li><p><span style="color: #35B957">Map algebra</span></p></li>
+<li><p>Map geometry</p></li>
+<li><p>Map cartography</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements is <b>not</b> true of a Universal Transverse Mercator (UTM) projection?</p>
+<ol class="arabic simple">
+<li><p>This projection system consists of 60 zones, each 6 degrees wide</p></li>
+<li><p>UTM projection is made by rotating a Mercator projection through 90 degrees</p></li>
+<li><p>UTM zones are numbered from 1, at 180 degrees longitude, and increase eastwards</p></li>
+<li><p><span style="color: #35B957">Northern and southern hemispheres have false eastings and northings of +500,000 m</span></p></li>
+</ol>
+</li>
+<li><p>On a map which has been projected to the global Universal Transverse Mercator (UTM) system, which of the following is true?</p>
+<ol class="arabic simple">
+<li><p>Meridians and Parallels are both straight and parallel</p></li>
+<li><p>Meridians are radial and Parallels are circular</p></li>
+<li><p>Meridians and Parallels are straight, and Parallel spacing increases toward the poles</p></li>
+<li><p><span style="color: #35B957">Meridians and Parallels are curved, and the Meridians converge on the poles</span></p></li>
+</ol>
+</li>
+<li><p>Which of the following is not a valid and commonly used map projection type?</p>
+<ol class="arabic simple">
+<li><p>Tangential</p></li>
+<li><p><span style="color: #35B957">Planetal</span></p></li>
+<li><p>Cylindrical</p></li>
+<li><p>Azimuthal</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="id2">
+<h3>2017-2018<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Which of the following observation techniques is <b>not</b> based on EMR?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">Seismic survey</span></p></li>
+<li><p>Chest X-rays</p></li>
+<li><p>Radar imaging</p></li>
+<li><p>Photography</p></li>
+</ol>
+</li>
+<li><p>According to the Stefan-Boltzmann law, total energy flux density radiated from the surface of a material ___</p>
+<ol class="arabic simple">
+<li><p>increases linearly with the increase of temperature.</p></li>
+<li><p><span style="color: #35B957">increases to the 4th power with increase in temperature.</span></p></li>
+<li><p>becomes 0 at 0°C.</p></li>
+<li><p>increases proportionally to the surface area of a material.</p></li>
+</ol>
+</li>
+<li><p>According to the relationship between photon energy and EMR frequency,</p>
+<ol class="arabic simple">
+<li><p>thermal radiation transmits more energy than visible light.</p></li>
+<li><p>the EMR with higher frequency has lower energy.</p></li>
+<li><p>the EMR with longer wavelength has higher energy.</p></li>
+<li><p><span style="color: #35B957">blue light transmits more energy than red light.</span></p></li>
+</ol>
+</li>
+<li><p>The temperature of a basaltic lava flow from a volcano eruption is 1300 K. According to Wien’s displacement law, <span class="math notranslate nohighlight">\(\lambda_m = \frac{A}{T}\)</span> where <span class="math notranslate nohighlight">\(A=2898\)</span> µm.K, which spectral band of Landsat TM/ETM+ images can map the lava flow most effectively?</p>
+<ol class="arabic simple">
+<li><p>Band 4 NIR</p></li>
+<li><p>Band 5 SWIR 1</p></li>
+<li><p><span style="color: #35B957">Band 7 SWIR 2</span></p></li>
+<li><p>Band 6 Thermal</p></li>
+</ol>
+</li>
+<li><p>On 16th October 2017 in London, we saw the sky became orange-red because of dust from the Sahara desert and smoke from fires in Spain and Portugal according to weather reports. Which interaction between solar radiation and atmosphere resulted in this phenomenon?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">Mie scattering in red light.</span></p></li>
+<li><p>Rayleigh scattering in green light.</p></li>
+<li><p>Non-selective scattering.</p></li>
+<li><p>Atmospheric absorption to blue light.</p></li>
+</ol>
+</li>
+<li><p>An atmospheric window is</p>
+<ol class="arabic simple">
+<li><p>a spectral range where there are no atmospheric scattering effects.</p></li>
+<li><p>a clear sky area which allows imaging of the ground from space without non-selective scattering of clouds.</p></li>
+<li><p>a spectral range in which the energy of EMR is absorbed by the atmosphere.</p></li>
+<li><p><span style="color: #35B957">a spectral range in which the atmosphere is transparent to EMR.</span></p></li>
+</ol>
+</li>
+<li><p>The near infrared spectral band is preferred by nearly all EO satellite sensors because of 3 of the 4 following factors; single out the <b>incorrect</b> one.</p>
+<ol class="arabic simple">
+<li><p>It is within an atmospheric window.</p></li>
+<li><p>It is sensitive to Earth’s thermal radiation.</p></li>
+<li><p><span style="color: #35B957">It is near the solar radiation peak.</span></p></li>
+<li><p>It is nearly not affected by Rayleigh scattering.</p></li>
+</ol>
+</li>
+<li><p>The spectral reflectance of a material is</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">the reflectivity of the material to EMR at a particular wavelength.</span></p></li>
+<li><p>the reflectivity of the material to visible light.</p></li>
+<li><p>the reflectivity of the material to thermal radiation.</p></li>
+<li><p>equivalent to the albedo of the material.</p></li>
+</ol>
+</li>
+<li><p>According to the Rayleigh criterion, which one of the statements below is <b>incorrect</b>?</p>
+<ol class="arabic simple">
+<li><p>An airport runway is a rough surface to the NIR spectral range.</p></li>
+<li><p>A mirror is a smooth surface to visible light.</p></li>
+<li><p><span style="color: #35B957">An airport runway is a rough surface to a radar beam.</span></p></li>
+<li><p>A mirror is a smooth surface to the SWIR spectral range.</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements about a geostationary orbit is <b>not</b> true?</p>
+<ol class="arabic simple">
+<li><p>A geostationary orbit enables a satellite revolving at a speed and direction which matches the rotation of the Earth.</p></li>
+<li><p>A geostationary orbit has to be 36,000 km above the Earth equator.</p></li>
+<li><p><span style="color: #35B957">A geostationary orbit enables a satellite to image the whole Earth in a short period.</span></p></li>
+<li><p>A geostationary orbit enables highly frequent Earth observation.</p></li>
+</ol>
+</li>
+<li><p>For an Earth observation satellite on a circular, near-polar, sun-synchronous orbit, which of the statements below is correct?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">It images different areas of the Earth’s surface at about the same local time.</span></p></li>
+<li><p>It can image the entire Earth’s surface including the regions of the North and South poles.</p></li>
+<li><p>It can take images at near infrared spectral bands on both descending and ascending passes.</p></li>
+<li><p>It cannot take radar images on both descending and ascending passes.</p></li>
+</ol>
+</li>
+<li><p>Which statement about image geometric distortion below is <b>wrong</b>?</p>
+<ol class="arabic simple">
+<li><p>Geometric distortion caused by the curvature of the Earth is unavoidable to all satellite images.</p></li>
+<li><p>Air-borne remote sensing is not subject to the geometric distortion resulted from Earth rotation.</p></li>
+<li><p>Push-broom scanning introduces less geometric distortion than across-track scanning.</p></li>
+<li><p><span style="color: #35B957">For across-track scanners, one-way scanning introduces more geometric distortion than two-way scanning.</span></p></li>
+</ol>
+</li>
+<li><p>A push-broom scanner allows much longer dwell time than an across-track scanner and therefore the following resolutions cannot be improved</p>
+<ol class="arabic simple">
+<li><p>spatial resolution.</p></li>
+<li><p>spectral resolution.</p></li>
+<li><p><span style="color: #35B957">temporal resolution.</span></p></li>
+<li><p>radiometric resolution.</p></li>
+</ol>
+</li>
+<li><p>A space-borne imaging radar system may <b>not</b></p>
+<ol class="arabic simple">
+<li><p>be side looking.</p></li>
+<li><p>be a synthetic aperture radar (SAR).</p></li>
+<li><p><span style="color: #35B957">use like-polarized microwave return signals only.</span></p></li>
+<li><p>use a polarized microwave beam.</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements about SAR is <b>wrong</b>?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">The synthetic aperture improves both range resolution and azimuth resolution.</span></p></li>
+<li><p>The synthetic aperture is achieved by steady motion of the platform.</p></li>
+<li><p>The synthetic aperture is achieved by using Doppler frequency shift effects.</p></li>
+<li><p>A shorter antenna achieves higher azimuth resolution.</p></li>
+</ol>
+</li>
+<li><p>In SAR images, which of the following effects is <b>not</b> caused by the side-looking configuration of SAR imaging systems?</p>
+<ol class="arabic simple">
+<li><p>Corner reflection.</p></li>
+<li><p><span style="color: #35B957">Speckles.</span></p></li>
+<li><p>Radar shadow.</p></li>
+<li><p>Foreshortening.</p></li>
+</ol>
+</li>
+<li><p>Which statement about radar sensing below is correct?</p>
+<ol class="arabic simple">
+<li><p>Foreshortening happens when the local incident angle of radar beam is negative.</p></li>
+<li><p><span style="color: #35B957">Layover effects are more severe in the near range than in the far range.</span></p></li>
+<li><p>A greater radar look angle can alleviate layover effects and meanwhile shorten radar shadows.</p></li>
+<li><p>Corner reflection is more significant in the far range than in the near range.</p></li>
+</ol>
+</li>
+<li><p>SAR imagery is effective for detecting oil slicks in the sea because</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">Oil slicks are smoother than the sea surface.</span></p></li>
+<li><p>Oil slicks are heavier than sea water.</p></li>
+<li><p>Oil slicks look darker than the sea surface.</p></li>
+<li><p>Oil slicks look brighter than the sea surface.</p></li>
+</ol>
+</li>
+<li><p>An L band SAR <b>cannot</b> penetrate ___</p>
+<ol class="arabic simple">
+<li><p>tree canopies.</p></li>
+<li><p>dry sand.</p></li>
+<li><p>ice in well below 0°C temperature.</p></li>
+<li><p><span style="color: #35B957">fresh water.</span></p></li>
+</ol>
+</li>
+<li><p>Which of the following statements is <b>incorrect</b>?</p>
+<ol class="arabic simple">
+<li><p>Black and white display is a special case of pseudo colour display.</p></li>
+<li><p>True colour composition is a special case of false colour composition.</p></li>
+<li><p>A true colour composite cannot be generated without using Red, Green, Blue band images.</p></li>
+<li><p><span style="color: #35B957">A false colour composite cannot be generated using Red, Green, Blue band images.</span></p></li>
+</ol>
+</li>
+<li><p>A point operation for contrast enhancement</p>
+<ol class="arabic simple">
+<li><p>involves neighbouring pixels.</p></li>
+<li><p><span style="color: #35B957">is irrelevant to pixel position.</span></p></li>
+<li><p>does not change the image histogram.</p></li>
+<li><p>changes the size of an image.</p></li>
+</ol>
+</li>
+<li><p>Which of the following colour vectors is on the grey line in a RGB colour cube?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">r=230, g=230, b=230</span></p></li>
+<li><p>r=127, g=0, b=0</p></li>
+<li><p>r=135, g=135, b=130</p></li>
+<li><p>r=100, g=0, b=255</p></li>
+</ol>
+</li>
+<li><p>Which of the following is <b>not</b> normally referred to as ‘Earth observation’ remote sensing?</p>
+<ol class="arabic simple">
+<li><p>Acquisition of thermal images of cities during the night from an airborne sensor.</p></li>
+<li><p><span style="color: #35B957">Measurement of the Earth’s magnetic or gravity field from a ground or airborne sensor.</span></p></li>
+<li><p>Acquisition of multi-spectral images of the Earth’s surface from a satellite sensor.</p></li>
+<li><p>Taking colour photographs of the land surface from an airborne camera.</p></li>
+</ol>
+</li>
+<li><p>When choosing remotely sensed datasets for interpretation of rocks and minerals at regional scales (~1:50,000), which of the following would be most appropriate?</p>
+<ol class="arabic simple">
+<li><p>Worldview-3</p></li>
+<li><p>Sentinel-1</p></li>
+<li><p>MODIS</p></li>
+<li><p><span style="color: #35B957">Landsat ETM+ and/or ASTER</span></p></li>
+</ol>
+</li>
+<li><p>Broad-band multi-spectral images (e.g. Landsat) <b>cannot</b> be used for:</p>
+<ol class="arabic simple">
+<li><p>Land cover classification.</p></li>
+<li><p><span style="color: #35B957">Species level mineral mapping.</span></p></li>
+<li><p>Geomorphological interpretation.</p></li>
+<li><p>Lithological discrimination.</p></li>
+</ol>
+</li>
+<li><p>Which of the following band combinations defines a standard False Colour Composite image?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">NIR, Red and Green bands displayed as RGB.</span></p></li>
+<li><p>Green, Red and Blue bands displayed as RGB.</p></li>
+<li><p>SWIR, NIR and Red bands displayed as RGB.</p></li>
+<li><p>Red, Green and Blue bands displayed as RGB.</p></li>
+</ol>
+</li>
+<li><p>With respect to the spectral reflectance of healthy, chlorophyll-bearing vegetation, which of the following statements is <b>not</b> true?</p>
+<ol class="arabic simple">
+<li><p>Reflectance is relatively high in Green and low in Blue and Red.</p></li>
+<li><p>Reflectance is very high in NIR and high SWIR.</p></li>
+<li><p><span style="color: #35B957">Reflectance is relatively low in the NIR and very high in Green.</span></p></li>
+<li><p>Reflectance is very high in NIR and low in both Blue and Red.</p></li>
+</ol>
+</li>
+<li><p>If an image target object appears dark at visible wavelengths and bright in a daytime thermal image, which of the following statements is true?</p>
+<ol class="arabic simple">
+<li><p>The object has high albedo and low emissivity.</p></li>
+<li><p><span style="color: #35B957">The object has high albedo and high emissivity.</span></p></li>
+<li><p>The object has low albedo and high emissivity.</p></li>
+<li><p>The object has low albedo and low emissivity.</p></li>
+</ol>
+</li>
+<li><p>In what colour should vegetation appear in a Landsat7 TM (or ETM+) colour composite image of bands 432 in RGB?</p>
+<ol class="arabic simple">
+<li><p>Blue</p></li>
+<li><p>Green</p></li>
+<li><p><span style="color: #35B957">Red</span></p></li>
+<li><p>Cyan</p></li>
+</ol>
+</li>
+<li><p>Iron-oxides generally have which of the following spectral characteristics?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">High reflectance in Red and NIR, and low reflectance in Blue and Green.</span></p></li>
+<li><p>High reflectance in all VIS wavelengths.</p></li>
+<li><p>Low reflectance in Red and NIR, and high reflectance in Blue.</p></li>
+<li><p>High reflectance in Green, and low reflectance in Blue, Red &amp; NIR.</p></li>
+</ol>
+</li>
+<li><p>Which of the following general spectral characteristics is true of hydrated silicate (clay) minerals?</p>
+<ol class="arabic simple">
+<li><p>Increasing reflectance with increasing wavelength through the SWIR</p></li>
+<li><p>Low reflectance in VIS and NIR, and low reflectance in the SWIR</p></li>
+<li><p><span style="color: #35B957">Decreasing reflectance with increasing wavelength through the SWIR</span></p></li>
+<li><p>High reflectance in VIS and NIR, and high reflectance in the SWIR</p></li>
+</ol>
+</li>
+<li><p>Which of the following phenomena does <b>not</b> directly contribute to the spectral reflectance of a target material (and therefore the spectral information in an image)?</p>
+<ol class="arabic simple">
+<li><p>Absorption coefficient.</p></li>
+<li><p>Moisture content.</p></li>
+<li><p><span style="color: #35B957">Surface roughness.</span></p></li>
+<li><p>Chemical composition and crystal structure.</p></li>
+</ol>
+</li>
+<li><p>Which of the following element groups and compounds have the least or no effect on spectral signatures of materials?</p>
+<ol class="arabic simple">
+<li><p>OH-</p></li>
+<li><p>Fe, Cr, Mg</p></li>
+<li><p><span style="color: #35B957">Si, Al, O</span></p></li>
+<li><p>C-O, Si-O</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements is <b>untrue</b> of raster data?</p>
+<ol class="arabic simple">
+<li><p>Raster data provides regularly sampled information</p></li>
+<li><p><span style="color: #35B957">Raster file size is unaffected by spatial resolution</span></p></li>
+<li><p>The digital numbers in a raster image represent variance of a single attribute</p></li>
+<li><p>Raster data have fixed accuracy and precision determined by spatial resolution</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements best describes ‘map topology’?</p>
+<ol class="arabic simple">
+<li><p>The description of place name locations on a map.</p></li>
+<li><p>The preservation of angle, shape and area on a map.</p></li>
+<li><p><span style="color: #35B957">The description of spatial relationships between connected or coincident objects.</span></p></li>
+<li><p>The description of shape and position of features on the surface.</p></li>
+</ol>
+</li>
+<li><p>Identify the core benefit of spatial information which allows us to use GIS to identify inliers and outliers on a geological outcrop layer?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">Containment</span></p></li>
+<li><p>Adjacency</p></li>
+<li><p>Proximity</p></li>
+<li><p>Overlay</p></li>
+</ol>
+</li>
+<li><p>Mathematical operations carried out between GIS layers are known as</p>
+<ol class="arabic simple">
+<li><p>Map topology</p></li>
+<li><p>Map geometry</p></li>
+<li><p>Map cartography</p></li>
+<li><p><span style="color: #35B957">Map algebra</span></p></li>
+</ol>
+</li>
+<li><p>Which of the following statements is <b>not</b> true of a Universal Transverse Mercator (UTM) projection?</p>
+<ol class="arabic simple">
+<li><p>This global projection system consists of 60 zones, each 6 degrees wide</p></li>
+<li><p><span style="color: #35B957">Northern and southern hemispheres have false Northings of +500,000 m</span></p></li>
+<li><p>UTM zones are numbered from 1, at 180 degrees longitude, and increase eastwards</p></li>
+<li><p>It is made by rotating a Mercator projection through 90 degrees to horizontal.</p></li>
+</ol>
+</li>
+<li><p>On a map which has been projected to the global Universal Transverse Mercator (UTM) system, which of the following is true?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">Meridians and Parallels are curved, and the Meridians converge on the poles</span></p></li>
+<li><p>Meridians are radial and Parallels are circular</p></li>
+<li><p>Meridians and Parallels are straight, and Parallel spacing increases toward the poles</p></li>
+<li><p>Meridians and Parallels are both straight and parallel</p></li>
+</ol>
+</li>
+<li><p>Which of the following is not a valid and commonly used map projection type?</p>
+<ol class="arabic simple">
+<li><p>Azimuthal</p></li>
+<li><p>Tangential</p></li>
+<li><p>Cylindrical</p></li>
+<li><p><span style="color: #35B957">Pseudoplanar</span></p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="id3">
+<h3>2018-2019<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>The energy of a photon is given as <span class="math notranslate nohighlight">\(Q = \frac{hc}{\lambda}\)</span>, and therefore the …</p>
+<ol class="arabic simple">
+<li><p>EMR with higher frequency has lower energy.</p></li>
+<li><p>EMR with longer wavelength travel faster in space.</p></li>
+<li><p><span style="color: #35B957">EMR with shorter wavelength has higher energy.</span></p></li>
+<li><p>Red light transmits more energy than blue light.</p></li>
+</ol>
+</li>
+<li><p>For an earth observation satellite on a circular, near-polar, sun-synchronous orbit, which statement below is correct?</p>
+<ol class="arabic simple">
+<li><p>It images the entire Earth’s surface except near the North and South poles.</p></li>
+<li><p>It can image the near infrared spectral bands on descending and ascending passes.</p></li>
+<li><p>It can take images only on descending passes.</p></li>
+<li><p><span style="color: #35B957">It images different areas of the earth surface at very different local time.</span></p></li>
+</ol>
+</li>
+<li><p>Which statement about image geometric distortion below is <b>incorrect</b>?</p>
+<ol class="arabic simple">
+<li><p>Push-broom scanning causes less geometric distortion than across-track scanning.</p></li>
+<li><p><span style="color: #35B957">For across-track scanners, one-way scanning causes more geometric distortion than two-way scanning.</span></p></li>
+<li><p>Geometric distortion caused by earth curvature is unavoidable to all satellite images.</p></li>
+<li><p>Air-borne remote sensing is not subject to the geometric distortion resulted from earth rotation.</p></li>
+</ol>
+</li>
+<li><p>When choosing remotely sensed datasets for detailed geomorphological mapping at scales (~1:10,000), which of the following would be most appropriate?</p>
+<ol class="arabic simple">
+<li><p>Sentinel-2</p></li>
+<li><p><span style="color: #35B957">Worldview-2</span></p></li>
+<li><p>Landsat 7 ETM+</p></li>
+<li><p>ASTER</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements is <b>incorrect</b>?</p>
+<ol class="arabic simple">
+<li><p>Black and white (monochromatic) display is a special case of pseudo colour display.</p></li>
+<li><p><span style="color: #35B957">A false colour composite cannot be generated using Red, Green, Blue band images.</span></p></li>
+<li><p>True colour composition is a special case of false colour composition.</p></li>
+<li><p>A true colour composite cannot be generated without Red, Green, Blue band images.</p></li>
+</ol>
+</li>
+<li><p>Which of the following colour vectors lies on the grey line of the RGB colour cube?</p>
+<ol class="arabic simple">
+<li><p>r=145, g=130, b=130</p></li>
+<li><p>r=0, g=100, b=255</p></li>
+<li><p><span style="color: #35B957">r=190, g=190, b=190</span></p></li>
+<li><p>r=0, g=124, b=0</p></li>
+</ol>
+</li>
+<li><p>With respect to the spectral reflectance of healthy, chlorophyll-bearing vegetation, which of the following statements is true?</p>
+<ol class="arabic simple">
+<li><p>Reflectance is high in the Green, and low in the NIR.</p></li>
+<li><p>Reflectance is low in both NIR and SWIR.</p></li>
+<li><p>Reflectance is high in the Blue, Green and Red.</p></li>
+<li><p><span style="color: #35B957">Reflectance is very high in the NIR, and low in both the Blue and Red.</span></p></li>
+</ol>
+</li>
+<li><p>Which of the following phenomena do <b>not</b> directly contribute to the spectral information in an image?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">Surface roughness.</span></p></li>
+<li><p>Chemical composition &amp; crystal structure.</p></li>
+<li><p>Water content.</p></li>
+<li><p>Absorption coefficient.</p></li>
+</ol>
+</li>
+<li><p>If an image target object appears light at visible wavelengths and dark in a daytime thermal image, which of the following statements is true?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">The object has high albedo and low emissivity.</span></p></li>
+<li><p>The object has low albedo and high emissivity.</p></li>
+<li><p>The object has high albedo and high emissivity.</p></li>
+<li><p>The object has low albedo and low emissivity.</p></li>
+</ol>
+</li>
+<li><p>Which of the following element groups and compounds have the least or no effect on spectral signatures of materials?</p>
+<ol class="arabic simple">
+<li><p>C-O, Si-O</p></li>
+<li><p>Fe, Cr, Mn</p></li>
+<li><p><span style="color: #35B957">Si, Al, O</span></p></li>
+<li><p>OH-</p></li>
+</ol>
+</li>
+<li><p>Iron-oxides generally have which of the following spectral characteristics?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">High reflectance in Red and NIR, and low reflectance in Blue.</span></p></li>
+<li><p>Low reflectance in Red and NIR, and high reflectance in Blue.</p></li>
+<li><p>High reflectance in Green, and low reflectance in Red &amp; NIR.</p></li>
+<li><p>High reflectance at all VIS wavelengths.</p></li>
+</ol>
+</li>
+<li><p>Broad-band multi-spectral images (e.g. Landsat) cannot be used for</p>
+<ol class="arabic simple">
+<li><p>Land cover classification.</p></li>
+<li><p>Geomorphological interpretation.</p></li>
+<li><p><span style="color: #35B957">Mineral identification.</span></p></li>
+<li><p>Lithological discrimination.</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements is untrue of raster data?</p>
+<ol class="arabic simple">
+<li><p>Raster data have fixed accuracy determined by spatial resolution.</p></li>
+<li><p>Raster data provide regularly sampled information.</p></li>
+<li><p><span style="color: #35B957">Raster file size is unaffected by spatial resolution.</span></p></li>
+<li><p>The DN in a raster image represent a single attribute.</p></li>
+</ol>
+</li>
+<li><p>GIS enables spatial analytical and mathematical operations to be carried out using:</p>
+<ol class="arabic simple">
+<li><p>Map topology.</p></li>
+<li><p><span style="color: #35B957">Map algebra.</span></p></li>
+<li><p>Map geometry.</p></li>
+<li><p>Map cartography.</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements is not true of the UTM projection?</p>
+<ol class="arabic simple">
+<li><p>It provides a globally uniform system of coordinates.</p></li>
+<li><p>It is based on 60 identical zones, each one 6 degrees wide.</p></li>
+<li><p><span style="color: #35B957">It is based on a normal cylindrical Mercator projection.</span></p></li>
+<li><p>Each zone has curved meridians apart from a straight central meridian, along which there is minimal distortion.</p></li>
+</ol>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The UTM projection is based on a transverse Mercator projection rather than a normal cylindrical Mercator projection.</p>
+</div>
+</section>
+<section id="id4">
+<h3>2019-2020<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>The surface temperature of a basaltic lava flow from a volcano eruption is 1300 K. According to Wien’s displacement law, <span class="math notranslate nohighlight">\(\lambda_m = \frac{A}{T}\)</span> where <span class="math notranslate nohighlight">\(A=2898\)</span> µm.K, which spectral band of a Landsat TM/ETM+ dataset can be used to detect the lava flow most effectively?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">Band 7 SWIR 2</span></p></li>
+<li><p>Band 6 Thermal IR</p></li>
+<li><p>Band 4 NIR</p></li>
+<li><p>Band 5 SWIR 1</p></li>
+</ol>
+</li>
+<li><p>With respect to Electro-Magnetic Radiation (EMR), an atmospheric window can be defined as ___</p>
+<ol class="arabic simple">
+<li><p>a clear sky area allowing imaging of the ground from space without non-selective scattering by clouds.</p></li>
+<li><p><span style="color: #35B957">a spectral range in which the atmosphere is transparent to EMR.</span></p></li>
+<li><p>a spectral range in which the energy of EMR is absorbed by the atmosphere.</p></li>
+<li><p>a spectral range where there are no atmospheric scattering effects.</p></li>
+</ol>
+</li>
+<li><p>The spectral reflectance of a material is ___</p>
+<ol class="arabic simple">
+<li><p>equivalent to the albedo of the material</p></li>
+<li><p>its reflectivity to thermal radiation</p></li>
+<li><p>its reflectivity to visible light</p></li>
+<li><p><span style="color: #35B957">its reflectivity to EMR at a particular wavelength</span></p></li>
+</ol>
+</li>
+<li><p>Which of the following statement about a geostationary orbit is <b>not</b> true?</p>
+<ol class="arabic simple">
+<li><p>A geostationary orbit enables a satellite revolving at a speed and direction which matches the rotation of the Earth.</p></li>
+<li><p>A geostationary orbit has to be 36000 km above the earth equator.</p></li>
+<li><p><span style="color: #35B957">A geostationary orbit enables a satellite to image the whole earth in a short period.</span></p></li>
+<li><p>A geostationary orbit enables highly frequent earth observation.</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements about SAR is correct?</p>
+<ol class="arabic simple">
+<li><p>The synthetic aperture improves both range resolution and azimuth resolution.</p></li>
+<li><p>Azimuth resolution is achieved by use of the chirp.</p></li>
+<li><p><span style="color: #35B957">The synthetic aperture is achieved by platform motion and Doppler frequency shift.</span></p></li>
+<li><p>Longer antenna achieves higher azimuth resolution.</p></li>
+</ol>
+</li>
+<li><p>Which statement about radar sensing below is <b>incorrect</b>?</p>
+<ol class="arabic simple">
+<li><p>Layover effects are more severe in the near range than in far range.</p></li>
+<li><p>Foreshortening happens when the local incident angle of radar beam is positive.</p></li>
+<li><p><span style="color: #35B957">Greater radar look angle can alleviate layover effects and shorten radar shadows.</span></p></li>
+<li><p>Corner reflection is more significant in near range than in far range.</p></li>
+</ol>
+</li>
+<li><p>SAR images suffer a number of effects, which of the following is not caused by the geometry of the SAR imaging system?</p>
+<ol class="arabic simple">
+<li><p>Corner reflection</p></li>
+<li><p>Overlay</p></li>
+<li><p>Foreshortening</p></li>
+<li><p><span style="color: #35B957">Speckle</span></p></li>
+</ol>
+</li>
+<li><p>A point operation for contrast enhancement ___</p>
+<ol class="arabic simple">
+<li><p>involves neighbouring pixels.</p></li>
+<li><p>does not change the image histogram.</p></li>
+<li><p>changes the size of an image.</p></li>
+<li><p><span style="color: #35B957">is independent of pixel position.</span></p></li>
+</ol>
+</li>
+<li><p>When choosing remotely sensed datasets for interpretation of geological information at local/outcrop scales (&lt;1:10,000), which of the following would be most appropriate?</p>
+<ol class="arabic simple">
+<li><p>Sentinel-1</p></li>
+<li><p><span style="color: #35B957">Worldview-3</span></p></li>
+<li><p>ASTER</p></li>
+<li><p>Landsat ETM+</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements is <b>not</b> true?</p>
+<ol class="arabic simple">
+<li><p>A True Colour Composite is a special case of False Colour Composition</p></li>
+<li><p>NIR, Red and Green bands displayed as RGB forms a Standard False Colour Composite</p></li>
+<li><p><span style="color: #35B957">Blue, Green and Red bands displayed as RGB forms a True False Colour Composite</span></p></li>
+<li><p>SWIR, NIR and Red bands displayed as RGB forms a False Colour Composite</p></li>
+</ol>
+</li>
+<li><p>In what colour should vegetation appear in a Landsat7 TM (or ETM+) a colour composite image of bands 432 (RGB)?</p>
+<ol class="arabic simple">
+<li><p>Cyan</p></li>
+<li><p><span style="color: #35B957">Red</span></p></li>
+<li><p>Green</p></li>
+<li><p>Blue</p></li>
+</ol>
+</li>
+<li><p>Hydrated (clay) minerals generally have which of the following spectral characteristics?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">High reflectance in band 5, and low reflectance band 7</span></p></li>
+<li><p>High reflectance across all IR wavelengths</p></li>
+<li><p>Low reflectance in band 5, and high reflectance in band 7</p></li>
+<li><p>High reflectance in VIS, and low reflectance across the SWIR</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements best describes ‘spatial’ or ‘map topology’?</p>
+<ol class="arabic simple">
+<li><p>The description of shape and position of features on the surface</p></li>
+<li><p>The description of place name locations on a map</p></li>
+<li><p><span style="color: #35B957">The description of spatial relationships between connected or coincident objects</span></p></li>
+<li><p>The preservation of angle, shape and area on a map</p></li>
+</ol>
+</li>
+<li><p>On a map which conforms to the global Universal Transverse Mercator (UTM) system, which of the following is true?</p>
+<ol class="arabic simple">
+<li><p>Meridians are radial and Parallels are circular</p></li>
+<li><p>Meridians and Parallels are straight, and Parallel spacing increases toward the poles</p></li>
+<li><p>Meridians and Parallels are both straight and parallel</p></li>
+<li><p><span style="color: #35B957">Meridians and Parallels are curved, and the Meridians converge on the poles</span></p></li>
+</ol>
+</li>
+<li><p>Which of the following map projection types is ideal for a mid-latitude nation whose extent is elongate in the N-S direction and restricted in the East-West direction?</p>
+<ol class="arabic simple">
+<li><p>Mercator</p></li>
+<li><p>Conic</p></li>
+<li><p><span style="color: #35B957">Transverse Mercator</span></p></li>
+<li><p>Azimuthal</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="id5">
+<h3>2020-2021<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>According to the relationship between photon energy and Electro Magnetic Radiation (EMR) frequency,</p>
+<ol class="arabic simple">
+<li><p>the energy level of the EMR is unrelated to its wavelength.</p></li>
+<li><p><span style="color: #35B957">blue light transmits more energy than red light.</span></p></li>
+<li><p>the EMR with higher frequency has lower energy.</p></li>
+<li><p>the EMR with shorter wavelength has lower energy.</p></li>
+</ol>
+</li>
+<li><p>Most remote sensing systems avoid detecting and recording at wavelengths in the ultraviolet (UV), and the reason for this is</p>
+<ol class="arabic simple">
+<li><p>UV is scattered 16 times less than red light.</p></li>
+<li><p><span style="color: #35B957">strong scattering and absorption mean that UV energy does not reach the ground.</span></p></li>
+<li><p>the UV energy is too weak to be measured.</p></li>
+<li><p>UV energy is harmful to humans.</p></li>
+</ol>
+</li>
+<li><p>According to Stefan-Boltzmann’s law, total energy flux density radiated from the surface of a material</p>
+<ol class="arabic simple">
+<li><p>increases linearly with increasing temperature.</p></li>
+<li><p>becomes 0 at 0°C.</p></li>
+<li><p>increases proportionally to the surface area of a material.</p></li>
+<li><p><span style="color: #35B957">is proportional to the 4th power of its temperature.</span></p></li>
+</ol>
+</li>
+<li><p>On 17th October 2017, the sky in London became orange-red because of the combined effect of dust blown north from the Sahara and smoke from bushfires in Spain and Portugal (according to the weatherman on BBC TV). Which interaction between solar radiation and atmosphere caused this phenomenon?</p>
+<ol class="arabic simple">
+<li><p>Rayleigh scattering in green light.</p></li>
+<li><p>Non-selective scattering.</p></li>
+<li><p><span style="color: #35B957">Mie scattering in red light.</span></p></li>
+<li><p>Atmospheric absorption to blue light.</p></li>
+</ol>
+</li>
+<li><p>Which of the following spectral ranges lies within an atmospheric window and is nearest to the wavelength of the maximum incident solar radiation?</p>
+<ol class="arabic simple">
+<li><p>Shortwave Infra-Red.</p></li>
+<li><p>Microwave.</p></li>
+<li><p>Thermal Infra-Red.</p></li>
+<li><p><span style="color: #35B957">Visible.</span></p></li>
+</ol>
+</li>
+<li><p>The Near-InfraRed (NIR) spectral band is preferred by nearly all the Earth Observation satellite sensors because of 3 of the 4 following factors; identify the factor which is not a reason for this choice.</p>
+<ol class="arabic simple">
+<li><p>it is within an atmospheric window.</p></li>
+<li><p>it senses earth thermal radiation.</p></li>
+<li><p><span style="color: #35B957">it is near the solar radiation peak.</span></p></li>
+<li><p>it is nearly not affected by Rayleigh scattering.</p></li>
+</ol>
+</li>
+<li><p>A push-broom scanner allows much longer dwell time than an across-track scanner and therefore the following resolutions can be improved <b>except</b></p>
+<ol class="arabic simple">
+<li><p>spatial resolution.</p></li>
+<li><p>spectral resolution.</p></li>
+<li><p><span style="color: #35B957">temporal resolution.</span></p></li>
+<li><p>radiometric resolution.</p></li>
+</ol>
+</li>
+<li><p>An airborne or space-borne imaging radar system may <b>not</b></p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">use like-polarized microwave return signals only.</span></p></li>
+<li><p>be side-looking.</p></li>
+<li><p>be a Synthetic Aperture Radar (SAR).</p></li>
+<li><p>use a polarized microwave beam.</p></li>
+</ol>
+</li>
+<li><p>An L-band SAR <b>cannot</b> penetrate</p>
+<ol class="arabic simple">
+<li><p>tree canopies.</p></li>
+<li><p>dry sand.</p></li>
+<li><p>ice at much below 0°C temperature.</p></li>
+<li><p><span style="color: #35B957">fresh water.</span></p></li>
+</ol>
+</li>
+<li><p>A digital image is a</p>
+<ol class="arabic simple">
+<li><p>list of coordinates: x, y and z.</p></li>
+<li><p><span style="color: #35B957">two-dimensional array of numbers.</span></p></li>
+<li><p>two-dimensional array of symbols.</p></li>
+<li><p>matrix.</p></li>
+</ol>
+</li>
+<li><p>Which of the following Landsat7 band combinations represents a ‘standard’ False Colour Composite image?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">NIR, Red and Green bands (432) displayed as RGB.</span></p></li>
+<li><p>SWIR1, Red and Blue bands (531) displayed as RGB.</p></li>
+<li><p>NIR, SWIR1 and SWIR2 bands (457) displayed as RGB.</p></li>
+<li><p>Red, Green and Blue bands (321) displayed as RGB.</p></li>
+</ol>
+</li>
+<li><p>In what colour should iron-oxides appear in a Landsat7 TM (or ETM+), a false colour composite image of bands 531 in RGB?</p>
+<ol class="arabic simple">
+<li><p>blue</p></li>
+<li><p><span style="color: #35B957">greenish-yellow</span></p></li>
+<li><p>red</p></li>
+<li><p>cyan</p></li>
+</ol>
+</li>
+<li><p>Which of the following general spectral characteristics is true of hydrated silicate (clay) minerals?</p>
+<ol class="arabic simple">
+<li><p>increasing reflectance with increasing wavelength through the SWIR.</p></li>
+<li><p>low reflectance in VIS &amp; NIR and low reflectance in the SWIR.</p></li>
+<li><p><span style="color: #35B957">decreasing reflectance with increasing wavelength through the SWIR.</span></p></li>
+<li><p>high reflectance in VIS &amp; NIR and high reflectance in the SWIR.</p></li>
+</ol>
+</li>
+<li><p>When choosing remotely sensed datasets for a mapping project, which of the following would be most appropriate for working at a scale of <span class="math notranslate nohighlight">\(\le\)</span> 1:10,000?</p>
+<ol class="arabic simple">
+<li><p>Aster</p></li>
+<li><p>SPOT</p></li>
+<li><p><span style="color: #35B957">Very High Resolution (Ikonos, GeoEye or Worldview)</span></p></li>
+<li><p>Landsat ETM+</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements is not true of a Universal Transverse Mercator (UTM) projection?</p>
+<ol class="arabic simple">
+<li><p>this global projection system consists of 60 zones, each 6 degrees wide.</p></li>
+<li><p><span style="color: #35B957">zones are numbered from 1, at 0 degrees longitude, and increase eastwards.</span></p></li>
+<li><p>northern and southern hemispheres have false Eastings of +500,000 m.</p></li>
+<li><p>it is made by rotating a Mercator projection through 90 degrees to horizontal.</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="id6">
+<h3>2021-2022<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>According to the relationship between photon energy and Electro Magnetic Radiation (EMR) frequency, which statement is correct?</p>
+<ol class="arabic simple">
+<li><p>The EMR with shorter wavelength has lower energy.</p></li>
+<li><p>The energy level of the EMR is unrelated to its wavelength.</p></li>
+<li><p><span style="color: #35B957">Blue light transmits more energy than red light.</span></p></li>
+<li><p>The EMR with higher frequency has lower energy.</p></li>
+</ol>
+</li>
+<li><p>The surface temperature of a basaltic lava flow from a volcano eruption is 1300 K. According to Wien’s displacement law, <span class="math notranslate nohighlight">\(\lambda_m = \frac{A}{T}\)</span> where <span class="math notranslate nohighlight">\(A=2898\)</span> µm.K, which spectral band of Landsat TM/ETM+ images can map the lava flow most effectively?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">Band 7 SWIR 2</span></p></li>
+<li><p>Band 4 NIR</p></li>
+<li><p>Band 5 SWIR 1</p></li>
+<li><p>Band 6 Thermal</p></li>
+</ol>
+</li>
+<li><p>Which of the following is not based on EMR and is not generally referred to as remote sensing?</p>
+<ol class="arabic simple">
+<li><p>Acquisition of night-time thermal images from an airborne sensor.</p></li>
+<li><p>Acquisition of multi-spectral images of the Earth’s surface from a satellite sensor.</p></li>
+<li><p><span style="color: #35B957">Measurement of the Earth’s magnetic or gravity field from a ground or airborne sensor.</span></p></li>
+<li><p>Taking colour photographs of the land surface from an airborne camera.</p></li>
+</ol>
+</li>
+<li><p>For an Earth observation satellite on a circular, near-polar, sun-synchronous orbit, which of the statements below is correct?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">It images different areas of the Earth surface at about the same local time.</span></p></li>
+<li><p>It can image entire Earth’s surface including the North and South poles.</p></li>
+<li><p>It can take images of Near InfraRed spectral bands on both descending and ascending passes.</p></li>
+<li><p>It cannot take radar images on both descending and ascending passes.</p></li>
+</ol>
+</li>
+<li><p>Which statement about image geometric distortion below is incorrect?</p>
+<ol class="arabic simple">
+<li><p>Geometric distortion caused by Earth curvature is unavoidable to all satellite images.</p></li>
+<li><p>Air-borne remote sensing is not subject to the geometric distortion resulting from Earth rotation.</p></li>
+<li><p>Push-broom scanning introduces less geometric distortion than across-track scanning.</p></li>
+<li><p><span style="color: #35B957">For across-track scanners, one-way scanning introduces less geometric distortion than two-way scanning.</span></p></li>
+</ol>
+</li>
+<li><p>A push-broom scanner allows much longer dwell time than an across-track scanner and therefore the following resolutions can be improved except?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">Temporal resolution.</span></p></li>
+<li><p>Radiometric resolution.</p></li>
+<li><p>Spatial resolution.</p></li>
+<li><p>Spectral resolution.</p></li>
+</ol>
+</li>
+<li><p>SAR imagery is effective for detecting oil slicks in the sea because</p>
+<ol class="arabic simple">
+<li><p>Oil slicks are denser than sea water.</p></li>
+<li><p><span style="color: #35B957">Oil slicks are smoother than sea surface.</span></p></li>
+<li><p>Oil slicks look darker than sea surface.</p></li>
+<li><p>Oil slicks look brighter than sea surface.</p></li>
+</ol>
+</li>
+<li><p>According to the Rayleigh criterion, which one of the statements below is incorrect?</p>
+<ol class="arabic simple">
+<li><p>An airport runway is a rough surface to NIR spectral range.</p></li>
+<li><p>A mirror is a smooth surface to visible light.</p></li>
+<li><p><span style="color: #35B957">An airport runway is a rough surface to a radar beam.</span></p></li>
+<li><p>A mirror is a smooth surface to SWIR spectral range.</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements about image display is incorrect?</p>
+<ol class="arabic simple">
+<li><p>Black and white display is a special case of pseudo colour display.</p></li>
+<li><p>True colour composition is a special case of false colour composition.</p></li>
+<li><p><span style="color: #35B957">A false colour composite cannot be generated from Red, Green, Blue band images.</span></p></li>
+<li><p>A true colour composite cannot be generated without using Red, Green, Blue band images.</p></li>
+</ol>
+</li>
+<li><p>Which of the following colour vectors lies on the grey line in a RGB colour cube?</p>
+<ol class="arabic simple">
+<li><p>r=100, g255, b=0</p></li>
+<li><p>r=0, g=205, b=0</p></li>
+<li><p>r=130, g=130, b=135</p></li>
+<li><p><span style="color: #35B957">r=147, g=147, b=147</span></p></li>
+</ol>
+</li>
+<li><p>When developing a cloud-based workflow for project aimed at continental scale, time-series analysis of environmental change, which of the following remotely sensed datasets would not be the most appropriate?</p>
+<ol class="arabic simple">
+<li><p>Landsat ETM+ and Sentinels -1 and -2</p></li>
+<li><p>Very High Resolution optical imagery e.g. Ikonos, Worldview or Planet</p></li>
+<li><p><span style="color: #35B957">Unmanned Airborne Vehicle (UAV) or drone imagery</span></p></li>
+<li><p>MODIS (300m) optical imagery</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements is untrue of raster data?</p>
+<ol class="arabic simple">
+<li><p>Raster data provides regularly sampled information</p></li>
+<li><p>Raster data have fixed accuracy &amp; precision defined by spatial resolution</p></li>
+<li><p>Digital numbers in a raster image represent variance of a single attribute</p></li>
+<li><p><span style="color: #35B957">Raster file size is unaffected by spatial resolution</span></p></li>
+</ol>
+</li>
+<li><p>On a map which conforms to the global Universal Transverse Mercator (UTM) map projection system, which of the following is true?</p>
+<ol class="arabic simple">
+<li><p><span style="color: #35B957">Meridians and Parallels are curved; the Meridians converge on the poles</span></p></li>
+<li><p>Meridians are radial and Parallels are circular</p></li>
+<li><p>Meridians and Parallels are straight, and Parallel spacing increases toward the poles</p></li>
+<li><p>Meridians and Parallels are both straight and parallel</p></li>
+</ol>
+</li>
+<li><p>Photogrammetric extraction of elevation relies on</p>
+<ol class="arabic simple">
+<li><p>Parallax displacement of a camera’s position on the ground</p></li>
+<li><p>Triangulation of the sun’s position in overlapping images</p></li>
+<li><p><span style="color: #35B957">Differential parallax displacement of an object’s position in overlapping images</span></p></li>
+<li><p>Travel time of EMR between sensor and ground</p></li>
+</ol>
+</li>
+<li><p>Which of the following statements is untrue of LiDAR (Light Detection And Ranging)?</p>
+<ol class="arabic simple">
+<li><p>Elevation is derived from reflections of energy based on time and direction</p></li>
+<li><p><span style="color: #35B957">LiDAR is a passive InfraRed sensing system</span></p></li>
+<li><p>LiDAR enables direct derivation of Bare Earth elevations</p></li>
+<li><p>LiDAR uses a coherent energy beam of low divergence</p></li>
+</ol>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks\Geospatial Science"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Deep%20Learning/Generative%20Adversarial%20Networks%20%28GANs%29.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Generative Adversarial Networks (GANs)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Geospatial%20Data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Geospatial Data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-choice-questions">Multiple choice questions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2016-2017</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2017-2018</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">2018-2019</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2019-2020</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2020-2021</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">2021-2022</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Khunakorn Limpsapapkasiphol
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

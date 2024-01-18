@@ -68,6 +68,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="shortcut icon" href="../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Remote Sensing Questions" href="../Geospatial%20Science/Remote%20Sensing%20Questions.html" />
     <link rel="prev" title="Convolutional VAEs" href="Convolutional%20VAEs.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -170,7 +171,11 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Machine Learning</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming in C++</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Programming%20in%20C%2B%2B/Basic%20C%2B%2B.html">Basic C++</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Machine Learning</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Data%20Preparation.html">Data Preparation</a></li>
@@ -208,6 +213,20 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="Variational%20Autoencoders%20%28VAEs%29.html">Variational Autoencoders (VAEs)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Convolutional%20VAEs.html">Convolutional VAEs</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Generative Adversarial Networks (GANs)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Geospatial%20Science/Remote%20Sensing%20Questions.html">Remote Sensing Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Geospatial%20Science/Geospatial%20Data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Geospatial%20Science/Classification%20of%20Land%20Cover.html">Classification of Land Cover</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Seismology</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Synthetic%20Seismic%20Models.html">Synthetic Seismic Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/NMO%20Correction.html">NMO Correction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/SEGY.html">SEGY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Seismic%20Attribute%20Analysis.html">Seismic Attribute Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Identifying%20Salt%20in%20Seismic%20Sections%20Using%20a%20Deep%20Learning%20Model.html">Identifying Salt in Seismic Sections Using a Deep Learning Model</a></li>
 </ul>
 
     </div>
@@ -380,7 +399,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -396,6 +417,16 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generator-and-discriminator">Generator and discriminator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-gans">Training GANs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pros-and-cons">Pros and cons</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -461,17 +492,34 @@ document.write(`
 </div>
 </div>
 </div>
+<section id="generator-and-discriminator">
+<h2>Generator and discriminator<a class="headerlink" href="#generator-and-discriminator" title="Permalink to this heading">#</a></h2>
 <p>Generative Adversarial Networks (GANs) ประกอบด้วย 2 network ที่แข่งกัน คือ</p>
 <ul class="simple">
 <li><p><b>Generator</b> (<span class="math notranslate nohighlight">\(G\)</span>) ทำหน้าที่สร้าง fake image จาก latent variable (<span class="math notranslate nohighlight">\(\hat{x}=G(z)\)</span>) ดังนั้น layer สุดท้ายจำมีจำนวน neuron เท่ากับจำนวน pixel ของภาพ</p></li>
 <li><p><b>Discriminator</b> (<span class="math notranslate nohighlight">\(D\)</span>) รับทั้งภาพ real image (<span class="math notranslate nohighlight">\(x\)</span>) และ fake image (<span class="math notranslate nohighlight">\(\hat{x}\)</span>) และระบุว่าแต่ละภาพเป็น real (1) หรือ fake (0) image ดังนั้น <span class="math notranslate nohighlight">\(D\)</span> จึงเป็น binary classifier (layer สุดท้ายจะมี neuron เดียว)</p></li>
 </ul>
 <p><img src="../images/gan.png" width="250" /><br /></p>
+</section>
+<section id="training-gans">
+<h2>Training GANs<a class="headerlink" href="#training-gans" title="Permalink to this heading">#</a></h2>
 <p>สิ่งที่เราต้องทำ คือ ทำให้ <span class="math notranslate nohighlight">\(G\)</span> สร้างภาพที่ดีพอที่จะหลอก <span class="math notranslate nohighlight">\(G\)</span> ว่าภาพนั้นเป็น real image</p>
 <ul class="simple">
 <li><p>หาก <span class="math notranslate nohighlight">\(D\)</span> ระบุแต่ละภาพว่าเป็น real หรือ fake image ได้ถูกต้อง แสดงว่า <span class="math notranslate nohighlight">\(G\)</span> ยังไม่ดีพอ ต้อง update <span class="math notranslate nohighlight">\(G\)</span></p></li>
 <li><p>หาก <span class="math notranslate nohighlight">\(D\)</span> หลอก <span class="math notranslate nohighlight">\(G\)</span> ได้ (<span class="math notranslate nohighlight">\(G\)</span> ระบุภาพ fake image ว่าเป็น real image) ต้อง update <span class="math notranslate nohighlight">\(D\)</span> เพื่อให้ระบุได้ถูกต้องมากขึ้น</p></li>
 <li><p>เป็น zero-sum game (ถ้า <span class="math notranslate nohighlight">\(D\)</span> ดีขึ้น/แย่ลง <span class="math notranslate nohighlight">\(G\)</span> จะแย่ลง/ดีขึ้น)</p></li>
+</ul>
+<p>เราจะเทรน model จนกว่า loss ของทั้ง <span class="math notranslate nohighlight">\(G\)</span> และ <span class="math notranslate nohighlight">\(D\)</span> คงที่</p>
+<p><img src="../images/D_G_losses.png" width="500" /><br /></p>
+<p>ถ้าเราเทรนจนได้ loss ของ <span class="math notranslate nohighlight">\(G\)</span> หรือ <span class="math notranslate nohighlight">\(D\)</span> เป็น 0 ภายในไม่กี่ epoch แสดงว่า training ไม่ดี ต้องทำใหม่</p>
+</section>
+<section id="pros-and-cons">
+<h2>Pros and cons<a class="headerlink" href="#pros-and-cons" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>GANs produce sharper and more perceptually realistic results.</p></li>
+<li><p>VAEs are stable in training and converge faster. GANs are hard to train and have unclear stopping criteria.</p></li>
+<li><p>VAEs provide a generative model and an inference model in a single network, but GANs only provide a generative model.</p></li>
+<li><p>VAEs are better justified theoretically, but GANs implicitly maximise likelihood through the combination of two networks.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -662,73 +710,58 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">6</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">D_losses</span><span class="p">,</span> <span class="n">G_losses</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">11</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
 <span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_epochs</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-<span class="ne">----&gt; </span><span class="mi">6</span>     <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">loader</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span>         <span class="n">D_loss</span> <span class="o">=</span> <span class="n">D_train</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="k">for</span> <span class="n">batch_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">loader</span><span class="p">):</span>
+<span class="ne">----&gt; </span><span class="mi">7</span>         <span class="n">D_loss</span> <span class="o">=</span> <span class="n">D_train</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="g g-Whitespace">      </span><span class="mi">8</span>         <span class="n">G_loss</span> <span class="o">=</span> <span class="n">G_train</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="c1"># Store losses after completing each epoch</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\utils\data\dataloader.py:630,</span> in <span class="ni">_BaseDataLoaderIter.__next__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">627</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sampler_iter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">628</span>     <span class="c1"># TODO(https://github.com/pytorch/pytorch/issues/76750)</span>
-<span class="g g-Whitespace">    </span><span class="mi">629</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_reset</span><span class="p">()</span>  <span class="c1"># type: ignore[call-arg]</span>
-<span class="ne">--&gt; </span><span class="mi">630</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_data</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">631</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_yielded</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="g g-Whitespace">    </span><span class="mi">632</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_kind</span> <span class="o">==</span> <span class="n">_DatasetKind</span><span class="o">.</span><span class="n">Iterable</span> <span class="ow">and</span> \
-<span class="g g-Whitespace">    </span><span class="mi">633</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_IterableDataset_len_called</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> \
-<span class="g g-Whitespace">    </span><span class="mi">634</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_num_yielded</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_IterableDataset_len_called</span><span class="p">:</span>
+<span class="nn">Cell In[10], line 14,</span> in <span class="ni">D_train</span><span class="nt">(x)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="c1"># Train the discriminator on fake images</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span> <span class="n">z_dim</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># Sample latent vectors (z) randomly</span>
+<span class="ne">---&gt; </span><span class="mi">14</span> <span class="n">x_fake</span> <span class="o">=</span> <span class="n">G</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>  <span class="c1"># Produce fake images from the sampled z</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">y_fake</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>  <span class="c1"># &quot;zeros&quot; means fake</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="n">D_output</span> <span class="o">=</span> <span class="n">D</span><span class="p">(</span><span class="n">x_fake</span><span class="p">)</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\utils\data\dataloader.py:674,</span> in <span class="ni">_SingleProcessDataLoaderIter._next_data</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">672</span> <span class="k">def</span> <span class="nf">_next_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">673</span>     <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_next_index</span><span class="p">()</span>  <span class="c1"># may raise StopIteration</span>
-<span class="ne">--&gt; </span><span class="mi">674</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_fetcher</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>  <span class="c1"># may raise StopIteration</span>
-<span class="g g-Whitespace">    </span><span class="mi">675</span>     <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pin_memory</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">676</span>         <span class="n">data</span> <span class="o">=</span> <span class="n">_utils</span><span class="o">.</span><span class="n">pin_memory</span><span class="o">.</span><span class="n">pin_memory</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pin_memory_device</span><span class="p">)</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py:1518,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1516</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1517</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1518</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\utils\data\_utils\fetch.py:51,</span> in <span class="ni">_MapDatasetFetcher.fetch</span><span class="nt">(self, possibly_batched_index)</span>
-<span class="g g-Whitespace">     </span><span class="mi">49</span>         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">__getitems__</span><span class="p">(</span><span class="n">possibly_batched_index</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">50</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">51</span>         <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">possibly_batched_index</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">possibly_batched_index</span><span class="p">]</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py:1527,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1522</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1523</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1524</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1525</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1526</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1527</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1529</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1530</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\utils\data\_utils\fetch.py:51,</span> in <span class="ni">&lt;listcomp&gt;</span><span class="nt">(.0)</span>
-<span class="g g-Whitespace">     </span><span class="mi">49</span>         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">__getitems__</span><span class="p">(</span><span class="n">possibly_batched_index</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">50</span>     <span class="k">else</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">51</span>         <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">possibly_batched_index</span><span class="p">]</span>
-<span class="g g-Whitespace">     </span><span class="mi">52</span> <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">     </span><span class="mi">53</span>     <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="n">possibly_batched_index</span><span class="p">]</span>
+<span class="nn">Cell In[4], line 14,</span> in <span class="ni">Generator.forward</span><span class="nt">(self, x)</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="n">x</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">leaky_relu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc3</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">14</span> <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fc4</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torchvision\datasets\mnist.py:145,</span> in <span class="ni">MNIST.__getitem__</span><span class="nt">(self, index)</span>
-<span class="g g-Whitespace">    </span><span class="mi">142</span> <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;L&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">144</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">145</span>     <span class="n">img</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">148</span>     <span class="n">target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py:1518,</span> in <span class="ni">Module._wrapped_call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1516</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compiled_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>  <span class="c1"># type: ignore[misc]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1517</span> <span class="k">else</span><span class="p">:</span>
+<span class="ne">-&gt; </span><span class="mi">1518</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_call_impl</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torchvision\transforms\transforms.py:95,</span> in <span class="ni">Compose.__call__</span><span class="nt">(self, img)</span>
-<span class="g g-Whitespace">     </span><span class="mi">93</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
-<span class="g g-Whitespace">     </span><span class="mi">94</span>     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transforms</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">95</span>         <span class="n">img</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">96</span>     <span class="k">return</span> <span class="n">img</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\module.py:1527,</span> in <span class="ni">Module._call_impl</span><span class="nt">(self, *args, **kwargs)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1522</span> <span class="c1"># If we don&#39;t have any hooks, we want to skip the rest of the logic in</span>
+<span class="g g-Whitespace">   </span><span class="mi">1523</span> <span class="c1"># this function, and just call forward.</span>
+<span class="g g-Whitespace">   </span><span class="mi">1524</span> <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_pre_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_hooks</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pre_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1525</span>         <span class="ow">or</span> <span class="n">_global_backward_pre_hooks</span> <span class="ow">or</span> <span class="n">_global_backward_hooks</span>
+<span class="g g-Whitespace">   </span><span class="mi">1526</span>         <span class="ow">or</span> <span class="n">_global_forward_hooks</span> <span class="ow">or</span> <span class="n">_global_forward_pre_hooks</span><span class="p">):</span>
+<span class="ne">-&gt; </span><span class="mi">1527</span>     <span class="k">return</span> <span class="n">forward_call</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1529</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1530</span>     <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
 
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torchvision\transforms\transforms.py:137,</span> in <span class="ni">ToTensor.__call__</span><span class="nt">(self, pic)</span>
-<span class="g g-Whitespace">    </span><span class="mi">129</span> <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pic</span><span class="p">):</span>
-<span class="g g-Whitespace">    </span><span class="mi">130</span><span class="w">     </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">131</span><span class="sd">     Args:</span>
-<span class="g g-Whitespace">    </span><span class="mi">132</span><span class="sd">         pic (PIL Image or numpy.ndarray): Image to be converted to tensor.</span>
-<span class="sd">   (...)</span>
-<span class="g g-Whitespace">    </span><span class="mi">135</span><span class="sd">         Tensor: Converted image.</span>
-<span class="g g-Whitespace">    </span><span class="mi">136</span><span class="sd">     &quot;&quot;&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">137</span>     <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">to_tensor</span><span class="p">(</span><span class="n">pic</span><span class="p">)</span>
-
-<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torchvision\transforms\functional.py:170,</span> in <span class="ni">to_tensor</span><span class="nt">(pic)</span>
-<span class="g g-Whitespace">    </span><span class="mi">168</span> <span class="k">if</span> <span class="n">pic</span><span class="o">.</span><span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">169</span>     <span class="n">img</span> <span class="o">=</span> <span class="mi">255</span> <span class="o">*</span> <span class="n">img</span>
-<span class="ne">--&gt; </span><span class="mi">170</span> <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">pic</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">pic</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">F_pil</span><span class="o">.</span><span class="n">get_image_num_channels</span><span class="p">(</span><span class="n">pic</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">171</span> <span class="c1"># put it from HWC to CHW format</span>
-<span class="g g-Whitespace">    </span><span class="mi">172</span> <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">permute</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span>
+<span class="nn">File ~\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\nn\modules\linear.py:114,</span> in <span class="ni">Linear.forward</span><span class="nt">(self, input)</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span> <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">114</span>     <span class="k">return</span> <span class="n">F</span><span class="o">.</span><span class="n">linear</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
 
 <span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
@@ -749,6 +782,7 @@ document.write(`
 <img alt="../../_images/158a44a16fb5205e45ce590908db458e2f60a7848b0e1e4fa476c1ee6d362310.png" src="../../_images/158a44a16fb5205e45ce590908db458e2f60a7848b0e1e4fa476c1ee6d362310.png" />
 </div>
 </div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -790,12 +824,37 @@ document.write(`
         <p class="prev-next-title">Convolutional VAEs</p>
       </div>
     </a>
+    <a class="right-next"
+       href="../Geospatial%20Science/Remote%20Sensing%20Questions.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Remote Sensing Questions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generator-and-discriminator">Generator and discriminator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-gans">Training GANs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pros-and-cons">Pros and cons</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

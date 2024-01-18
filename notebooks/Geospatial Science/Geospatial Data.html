@@ -1,0 +1,2270 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Geospatial Data &#8212; Laboratony&#39;s book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/Geospatial Science/Geospatial Data';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Classification of Land Cover" href="Classification%20of%20Land%20Cover.html" />
+    <link rel="prev" title="Remote Sensing Questions" href="Remote%20Sensing%20Questions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Laboratony's book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Laboratony's book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to LABORATONY!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming in C++</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Programming%20in%20C%2B%2B/Basic%20C%2B%2B.html">Basic C++</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Machine Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Data%20Preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Linear%20Regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Validation.html">Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Logistic%20Regression.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/K-Nearest%20Neighbours%20%28KNNs%29.html">K-Nearest Neighbours (KNNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Baseline.html">Baseline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Performance%20Metrics.html">Performance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Multiclass%20Classification.html">Multiclass Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Overfitting%20and%20Underfitting.html">Overfitting and Underfitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Loss%20Functions.html">Loss Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Dealing%20with%20Spatial%20and%20Temporal%20Data.html">Dealing with Spatial and Temporal Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Feature%20Selection.html">Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Data%20Pipelines.html">Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Support%20Vector%20Machines%20%28SVMs%29.html">Support Vector Machines (SVMs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Model%20Tuning.html">Model Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Decision%20Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Ensemble%20Methods.html">Ensemble Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Introduction%20to%20Natural%20Language%20Processing%20%28NLP%29.html">Introduction to Natural Language Processing (NLP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Naive%20Bayes%20Algorithm.html">Naive Bayes Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Principal%20Component%20Analysis%20%28PCA%29.html">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Clustering.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Anomaly%20Detection.html">Anomaly Detection</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Training%20Neural%20Networks.html">Training Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Neural%20Networks%20with%20Custom%20Datasets.html">Neural Networks with Custom Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Convolutional%20Neural%20Networks%20%28CNNs%29.html">Convolutional Neural Networks (CNNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Implicit%20Regularisation.html">Implicit Regularisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Transfer%20Learning.html">Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Autoencoders.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Variational%20Autoencoders%20%28VAEs%29.html">Variational Autoencoders (VAEs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Convolutional%20VAEs.html">Convolutional VAEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Generative%20Adversarial%20Networks%20%28GANs%29.html">Generative Adversarial Networks (GANs)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Data Science</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Remote%20Sensing%20Questions.html">Remote Sensing Questions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Classification%20of%20Land%20Cover.html">Classification of Land Cover</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Seismology</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Synthetic%20Seismic%20Models.html">Synthetic Seismic Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/NMO%20Correction.html">NMO Correction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/SEGY.html">SEGY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Seismic%20Attribute%20Analysis.html">Seismic Attribute Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Identifying%20Salt%20in%20Seismic%20Sections%20Using%20a%20Deep%20Learning%20Model.html">Identifying Salt in Seismic Sections Using a Deep Learning Model</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/laboratony/book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/laboratony/book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Geospatial Science/Geospatial Data.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/Geospatial Science/Geospatial Data.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Geospatial Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-data">Raster data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-data">Vector data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-vector-data">Plotting vector data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shapefiles">Shapefiles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geopandas"><code class="docutils literal notranslate"><span class="pre">geopandas</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-raster-and-vector-data">Combining raster and vector data</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="geospatial-data">
+<h1>Geospatial Data<a class="headerlink" href="#geospatial-data" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">fiona</span>
+<span class="kn">import</span> <span class="nn">folium</span>
+<span class="kn">import</span> <span class="nn">geopandas</span> <span class="k">as</span> <span class="nn">gpd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">pt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pyproj</span> <span class="kn">import</span> <span class="n">CRS</span><span class="p">,</span> <span class="n">Proj</span><span class="p">,</span> <span class="n">Transformer</span>
+<span class="kn">import</span> <span class="nn">rasterio</span>
+<span class="kn">from</span> <span class="nn">rasterio.plot</span> <span class="kn">import</span> <span class="n">show</span><span class="p">,</span> <span class="n">show_hist</span><span class="p">,</span> <span class="n">adjust_band</span><span class="p">,</span> <span class="n">reshape_as_image</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">shape</span><span class="p">,</span> <span class="n">Point</span><span class="p">,</span> <span class="n">LineString</span><span class="p">,</span> <span class="n">Polygon</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="raster-data">
+<h2>Raster data<a class="headerlink" href="#raster-data" title="Permalink to this heading">#</a></h2>
+<p>Python module ที่สามารถใช้ประมวลและแสดง raster data เช่น <code class="docutils literal notranslate"><span class="pre">rasterio</span></code>, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></p>
+<p>เราจะใช้ภาพส่วนหนึ่งจาก Landsat 7 มีทั้งหมด 8 band (B, G, R, NIR, SWIR1, SWIR2, TIR, cloud)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import and open the image dataset</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;../data/LE70220491999322EDC01_stack.gtif&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Image attributes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Image filename:&quot;</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of bands in images:&quot;</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">count</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of rows and columns in images:&quot;</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Raster description:&quot;</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">descriptions</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Raster metadata:&quot;</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">meta</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Raster driver:&quot;</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Image projection:&quot;</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Image geo-transform:&quot;</span><span class="p">);</span> <span class="nb">print</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">transform</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Image filename: ../data/LE70220491999322EDC01_stack.gtif 
+
+The number of bands in images: 8 
+
+The number of rows and columns in images: (250, 250) 
+
+Raster description: (&#39;band 1 reflectance&#39;, &#39;band 2 reflectance&#39;, &#39;band 3 reflectance&#39;, &#39;band 4 reflectance&#39;, &#39;band 5 reflectance&#39;, &#39;band 7 reflectance&#39;, &#39;band 6 temperature&#39;, None) 
+
+Raster metadata: {&#39;driver&#39;: &#39;GTiff&#39;, &#39;dtype&#39;: &#39;int16&#39;, &#39;nodata&#39;: -9999.0, &#39;width&#39;: 250, &#39;height&#39;: 250, &#39;count&#39;: 8, &#39;crs&#39;: CRS.from_epsg(32615), &#39;transform&#39;: Affine(30.0, 0.0, 462405.0,
+       0.0, -30.0, 1741815.0)} 
+
+Raster driver: GTiff 
+
+Image projection: EPSG:32615 
+
+Image geo-transform:
+| 30.00, 0.00, 462405.00|
+| 0.00,-30.00, 1741815.00|
+| 0.00, 0.00, 1.00|
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the 4th band (NIR)</span>
+<span class="n">nir</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">nir</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(250, 250)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the statistics of the NIR band</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NIR band range: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="n">nir</span><span class="p">)</span><span class="si">}</span><span class="s2"> - </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">nir</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NIR band mean: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">nir</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NIR band SD: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">nir</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>NIR band range: 1105 - 5138
+NIR band mean: 3442.297712
+NIR band SD: 461.0594490687346
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="c1"># Plot the NIR band using &quot;rasterio.plot.show&quot;</span>
+<span class="n">img1</span> <span class="o">=</span> <span class="n">show</span><span class="p">(</span><span class="n">nir</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">img</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;plain&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelrotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;NIR band plotted using</span><span class="se">\n</span><span class="s2">rasterio.plot.show&quot;</span><span class="p">)</span>
+<span class="c1"># Plot the NIR band using &quot;matplotlib.pyplot.imshow&quot;</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nir</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;NIR band plotted using</span><span class="se">\n</span><span class="s2">matplotlib.pyplot.imshow&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2dc8b4b3ce30b5fa27db13ed4c560fa230315aeb99660823aae0f9cab775e67d.png" src="../../_images/2dc8b4b3ce30b5fa27db13ed4c560fa230315aeb99660823aae0f9cab775e67d.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the entire image</span>
+<span class="n">full_img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">full_img</span><span class="o">.</span><span class="n">shape</span>  <span class="c1"># bands, rows, cols</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(8, 250, 250)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Another way to read the 4th band (NIR) - &quot;read&quot; method is better because it saves on memory</span>
+<span class="n">nir</span> <span class="o">=</span> <span class="n">full_img</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read the 3th band (Red)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Find the max reflectance to put them on the same colorbar scale</span>
+<span class="n">max_ref</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">full_img</span><span class="p">[</span><span class="mi">3</span><span class="p">:,</span> <span class="p">:]),</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">full_img</span><span class="p">[</span><span class="mi">2</span><span class="p">:,</span> <span class="p">:])])</span>
+
+<span class="c1"># nir in first subplot</span>
+<span class="n">nir_plot</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nir</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;NIR Band&quot;</span><span class="p">)</span>
+<span class="n">nir_plot</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">max_ref</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">nir_plot</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+
+<span class="c1"># Now red band in the second subplot</span>
+<span class="n">r_plot</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Red Band&quot;</span><span class="p">)</span>
+<span class="n">r_plot</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">max_ref</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">r_plot</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/bcf2f4996fb1ebbf17d84246a47aa18db74b63015f42b3cbc6ca121e4da73640.png" src="../../_images/bcf2f4996fb1ebbf17d84246a47aa18db74b63015f42b3cbc6ca121e4da73640.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a composite image from SWIR1, NIR, and Red (543) bands</span>
+<span class="n">composite_img</span> <span class="o">=</span> <span class="n">full_img</span><span class="p">[[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">:,</span> <span class="p">:]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+<span class="c1"># Enforce maximum and minimum values</span>
+<span class="n">max_val</span> <span class="o">=</span> <span class="mi">5000</span>
+<span class="n">min_val</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">composite_img</span><span class="p">[</span><span class="n">composite_img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">&gt;</span> <span class="n">max_val</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_val</span>
+<span class="n">composite_img</span><span class="p">[</span><span class="n">composite_img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">&lt;</span> <span class="n">min_val</span><span class="p">]</span> <span class="o">=</span> <span class="n">min_val</span>
+
+<span class="c1"># Normalise each band to 0-1 range</span>
+<span class="n">composite_img</span> <span class="o">=</span> <span class="n">adjust_band</span><span class="p">(</span><span class="n">composite_img</span><span class="p">)</span>
+
+<span class="c1"># Raster มี shape อยู่ในรูป [bands, rows, cols]</span>
+<span class="c1"># Images มี shape อยู่ในรูป [rows, cols, bands]</span>
+<span class="c1"># เราสามารถแปลง raster เป็น image ได้โดยใช้ &quot;rasterio.plot.reshape_as_image&quot;</span>
+<span class="c1"># และแปลง image เป็น raster ได้โดยใช้ &quot;rasterio.plot.reshape_as_raster&quot;</span>
+<span class="n">composite_img_reshaped</span> <span class="o">=</span> <span class="n">reshape_as_image</span><span class="p">(</span><span class="n">composite_img</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Raster shape: </span><span class="si">{</span><span class="n">composite_img</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">, Image shape: </span><span class="si">{</span><span class="n">composite_img_reshaped</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Raster shape: (3, 250, 250), Image shape: (250, 250, 3)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define a function to compute NDVI</span>
+<span class="k">def</span> <span class="nf">calculate_NDVI</span><span class="p">(</span><span class="n">nir</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">nir</span> <span class="o">-</span> <span class="n">r</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">nir</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> 
+
+<span class="c1"># Show the color composite image</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">composite_img_reshaped</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;543 composite image&#39;</span><span class="p">)</span>
+
+<span class="c1"># Show the NDVI image</span>
+<span class="c1"># Vegetation has high NDVI; sand and water have low NDVI</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">calculate_NDVI</span><span class="p">(</span><span class="n">nir</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">),</span> <span class="n">r</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdYlGn&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;NDVI&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/653ef004ce1a5479ab49f1663896d03d4fb83a4d906ba6d0a5e6a6abca14e3a0.png" src="../../_images/653ef004ce1a5479ab49f1663896d03d4fb83a4d906ba6d0a5e6a6abca14e3a0.png" />
+</div>
+</div>
+<p>ต่อไปเราจะใช้ภาพจาก Sentinal-2 และใช้ band 2, 3, 4, 8 (B, G, R, NIR)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bands</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;../data/sentinel-2/2018-10-13, Sentinel-2B L1C, B02.tiff&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;../data/sentinel-2/2018-10-13, Sentinel-2B L1C, B03.tiff&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;../data/sentinel-2/2018-10-13, Sentinel-2B L1C, B04.tiff&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;../data/sentinel-2/2018-10-13, Sentinel-2B L1C, B08.tiff&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Open and read each file, and store all bands in a list</span>
+<span class="n">band_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">band</span> <span class="ow">in</span> <span class="n">bands</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">band</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">band_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># Convert the list to a Numpy array</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">band_list</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">band_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">img</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4, 2201, 2629)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clip images</span>
+<span class="n">clipped_img</span> <span class="o">=</span> <span class="n">img</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">750</span><span class="p">,</span> <span class="p">:</span><span class="mi">1500</span><span class="p">]</span>
+<span class="n">clipped_img</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4, 750, 1500)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Display the RGB image</span>
+<span class="n">show</span><span class="p">(</span><span class="n">clipped_img</span><span class="p">[[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">:,</span> <span class="p">:]);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/48c407e8a05f77359cf4b543d3585617f2824122edde394229339f37268306e8.png" src="../../_images/48c407e8a05f77359cf4b543d3585617f2824122edde394229339f37268306e8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot a histogram of pixel values in each band</span>
+<span class="n">rasterio</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">show_hist</span><span class="p">(</span><span class="n">clipped_img</span><span class="p">,</span>
+                        <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+                        <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span>
+                        <span class="n">lw</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                        <span class="n">stacked</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                        <span class="n">label</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;NIR&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2293f9b8fc5de4b46bb52cd8e86a718395a9c7008c1eab9866124776f17fbddb.png" src="../../_images/2293f9b8fc5de4b46bb52cd8e86a718395a9c7008c1eab9866124776f17fbddb.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Areas with no data are labeled 255 on all bands</span>
+<span class="n">clipped_img</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([255, 255, 255, 255], dtype=uint8)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ignore the error due to the image having NaN pixels</span>
+<span class="n">np</span><span class="o">.</span><span class="n">seterr</span><span class="p">(</span><span class="n">divide</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">invalid</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="c1"># Compute the NDVI image</span>
+<span class="n">nir</span> <span class="o">=</span> <span class="n">clipped_img</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">clipped_img</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">ndvi</span> <span class="o">=</span> <span class="n">calculate_NDVI</span><span class="p">(</span><span class="n">nir</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+
+<span class="c1"># Plot the NDVI image</span>
+<span class="c1"># Vegetation has high NDVI; sand and water have low NDVI</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ndvi</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;RdYlGn&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/f04dc21ce2be4572ae35c81a546b0c191e0b4e192de5f5b445058d8aa8332261.png" src="../../_images/f04dc21ce2be4572ae35c81a546b0c191e0b4e192de5f5b445058d8aa8332261.png" />
+</div>
+</div>
+</section>
+<section id="vector-data">
+<h2>Vector data<a class="headerlink" href="#vector-data" title="Permalink to this heading">#</a></h2>
+<p>Python module ที่สามารถใช้จัดการกับ raster data เช่น <code class="docutils literal notranslate"><span class="pre">shapely</span></code>, <code class="docutils literal notranslate"><span class="pre">fiona</span></code>, <code class="docutils literal notranslate"><span class="pre">geopandas</span></code></p>
+<section id="plotting-vector-data">
+<h3>Plotting vector data<a class="headerlink" href="#plotting-vector-data" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)])</span>
+<span class="n">a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/dfd11af986d57596b63d6945ba81fa38e75ac4213113a3356f900bda77770242.svg" src="../../_images/dfd11af986d57596b63d6945ba81fa38e75ac4213113a3356f900bda77770242.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)])</span>
+<span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6a5a487cb87beef1f9bf0eb120c4e908916822bef6145d34d7e5ea46b4a6c433.svg" src="../../_images/6a5a487cb87beef1f9bf0eb120c4e908916822bef6145d34d7e5ea46b4a6c433.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/59119f45333a399a14af935ad3c012965d28d3ddf034a57df5407d0c7a7c986d.svg" src="../../_images/59119f45333a399a14af935ad3c012965d28d3ddf034a57df5407d0c7a7c986d.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/a81b04169548d28197e389827012515de010b6823007d1870314ed8df549b848.svg" src="../../_images/a81b04169548d28197e389827012515de010b6823007d1870314ed8df549b848.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">c</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c333035a30af00c0eb45236fbcc1d11ab82333ba93fbf6162d59ef2439b3e31b.svg" src="../../_images/c333035a30af00c0eb45236fbcc1d11ab82333ba93fbf6162d59ef2439b3e31b.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/c5a214384dfec21fe0176312365d7be6ae589c9cc7423481c0f9a12c20021b79.svg" src="../../_images/c5a214384dfec21fe0176312365d7be6ae589c9cc7423481c0f9a12c20021b79.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/ab5c14591b9bca2d4c8dd1abdbb9e9b520bc86ab8c98a17c3d9917e6e9eb9ab7.svg" src="../../_images/ab5c14591b9bca2d4c8dd1abdbb9e9b520bc86ab8c98a17c3d9917e6e9eb9ab7.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span>  <span class="c1"># (x, y) along the edge of the shape</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2db078be9403660f6461480322e7dbdbba743c897f95fce3b90f64712ab21a21.png" src="../../_images/2db078be9403660f6461480322e7dbdbba743c897f95fce3b90f64712ab21a21.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="n">LineString</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)])</span>  <span class="c1"># line</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">xy</span>  <span class="c1"># Get all the points from a &quot;shapely&quot; object</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># Plot the line in the first figure</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">solid_capstyle</span><span class="o">=</span><span class="s1">&#39;round&#39;</span><span class="p">)</span>
+
+<span class="c1"># Plot a buffer (a dilated version of the line) in both figures and bring to back by setting zorder=1</span>
+<span class="c1"># This creates a polygon</span>
+<span class="n">dilated</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">(</span><span class="n">dilated</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">(</span><span class="n">dilated</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Plot an inner buffer in the second figure</span>
+<span class="n">eroded</span> <span class="o">=</span> <span class="n">dilated</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="o">-</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">(</span><span class="n">eroded</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: &gt;
+</pre></div>
+</div>
+<img alt="../../_images/58e265ab6722ecc9d68351187a8fbd49b2f68c1561e2226d8ee5cde373097fb0.png" src="../../_images/58e265ab6722ecc9d68351187a8fbd49b2f68c1561e2226d8ee5cde373097fb0.png" />
+</div>
+</div>
+</section>
+<section id="shapefiles">
+<h3>Shapefiles<a class="headerlink" href="#shapefiles" title="Permalink to this heading">#</a></h3>
+<p>A shapefile is a list of features.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open a shapefile dataset - if it cannot be opened, it will be None</span>
+<span class="n">shp</span> <span class="o">=</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/rcr/rcr_landcover.shp&#39;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">shp</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error: could not open shapefile&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Shapefile attributes</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shapefile driver:&quot;</span><span class="p">,</span> <span class="n">shp</span><span class="o">.</span><span class="n">driver</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The number of features of the shapefile:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">shp</span><span class="p">),</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The shapefile&#39;s spatial reference:&quot;</span><span class="p">,</span> <span class="n">shp</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">feature</span> <span class="o">=</span> <span class="n">shp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">geometry</span> <span class="o">=</span> <span class="n">feature</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The features&#39;s geometry:&quot;</span><span class="p">,</span> <span class="n">geometry</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">properties</span> <span class="o">=</span> <span class="n">feature</span><span class="p">[</span><span class="s2">&quot;properties&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Layer fields:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">properties</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Metadata:&quot;</span><span class="p">);</span> <span class="n">shp</span><span class="o">.</span><span class="n">meta</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shapefile driver: ESRI Shapefile 
+
+The number of features of the shapefile: 23 
+
+The shapefile&#39;s spatial reference: EPSG:32618 
+
+The features&#39;s geometry: Polygon 
+
+Layer fields:
+Classname
+Classvalue
+
+Metadata:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;driver&#39;: &#39;ESRI Shapefile&#39;,
+ &#39;schema&#39;: {&#39;properties&#39;: {&#39;Classname&#39;: &#39;str:80&#39;, &#39;Classvalue&#39;: &#39;int:18&#39;},
+  &#39;geometry&#39;: &#39;Polygon&#39;},
+ &#39;crs&#39;: CRS.from_epsg(32618),
+ &#39;crs_wkt&#39;: &#39;PROJCS[&quot;WGS 84 / UTM zone 18N&quot;,GEOGCS[&quot;WGS 84&quot;,DATUM[&quot;WGS_1984&quot;,SPHEROID[&quot;WGS 84&quot;,6378137,298.257223563,AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]],PRIMEM[&quot;Greenwich&quot;,0,AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]],UNIT[&quot;degree&quot;,0.0174532925199433,AUTHORITY[&quot;EPSG&quot;,&quot;9122&quot;]],AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]],PROJECTION[&quot;Transverse_Mercator&quot;],PARAMETER[&quot;latitude_of_origin&quot;,0],PARAMETER[&quot;central_meridian&quot;,-75],PARAMETER[&quot;scale_factor&quot;,0.9996],PARAMETER[&quot;false_easting&quot;,500000],PARAMETER[&quot;false_northing&quot;,0],UNIT[&quot;metre&quot;,1,AUTHORITY[&quot;EPSG&quot;,&quot;9001&quot;]],AXIS[&quot;Easting&quot;,EAST],AXIS[&quot;Northing&quot;,NORTH],AUTHORITY[&quot;EPSG&quot;,&quot;32618&quot;]]&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Transform the geometry into a &quot;shapely&quot; geometry using the &quot;shapely.geometry.shape&quot; function</span>
+<span class="n">feature</span> <span class="o">=</span> <span class="n">shp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">shapely_shape</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">feature</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">])</span>
+<span class="n">shapely_shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/7b0d4ec5af308a0ab53aefd11348357c0448c2e735c0e88562069adc516d577d.svg" src="../../_images/7b0d4ec5af308a0ab53aefd11348357c0448c2e735c0e88562069adc516d577d.svg" /></div>
+</div>
+</section>
+<section id="geopandas">
+<h3><code class="docutils literal notranslate"><span class="pre">geopandas</span></code><a class="headerlink" href="#geopandas" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">geopandas</span></code> มี data structure ที่สำคัญ 2 ชนิด ได้แก่</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GeoSeries</span></code></p>
+<ul>
+<li><p>Series ของ geometry</p></li>
+<li><p>เป็น subclass ของ <code class="docutils literal notranslate"><span class="pre">pandas.Series</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code></p>
+<ul>
+<li><p>ข้อมูลตารางที่ประกอบด้วย <code class="docutils literal notranslate"><span class="pre">GeoSeries</span></code></p></li>
+<li><p>เป็น subclass ของ <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></p></li>
+</ul>
+</li>
+</ul>
+<p>เราสามารถจัดการข้อมูล (เช่น indexing, filtering) ได้เหมือนกับใน <code class="docutils literal notranslate"><span class="pre">pandas</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example GeoSeries</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">([</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">])</span>
+<span class="n">g</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0    POLYGON ((0.00000 0.00000, 1.00000 0.00000, 1....
+1    POLYGON ((0.00000 0.00000, 1.00000 0.00000, 1....
+2    POLYGON ((2.00000 0.00000, 3.00000 0.00000, 3....
+dtype: geometry
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use a GeoDataFrame of the pre-packaged world dataset</span>
+<span class="n">world_path</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s1">&#39;naturalearth_lowres&#39;</span><span class="p">)</span>
+<span class="n">world</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">world_path</span><span class="p">)</span>
+<span class="n">world</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pop_est</th>
+      <th>continent</th>
+      <th>name</th>
+      <th>iso_a3</th>
+      <th>gdp_md_est</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>889953.0</td>
+      <td>Oceania</td>
+      <td>Fiji</td>
+      <td>FJI</td>
+      <td>5496</td>
+      <td>MULTIPOLYGON (((180.00000 -16.06713, 180.00000...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>58005463.0</td>
+      <td>Africa</td>
+      <td>Tanzania</td>
+      <td>TZA</td>
+      <td>63177</td>
+      <td>POLYGON ((33.90371 -0.95000, 34.07262 -1.05982...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>603253.0</td>
+      <td>Africa</td>
+      <td>W. Sahara</td>
+      <td>ESH</td>
+      <td>907</td>
+      <td>POLYGON ((-8.66559 27.65643, -8.66512 27.58948...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>37589262.0</td>
+      <td>North America</td>
+      <td>Canada</td>
+      <td>CAN</td>
+      <td>1736425</td>
+      <td>MULTIPOLYGON (((-122.84000 49.00000, -122.9742...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>328239523.0</td>
+      <td>North America</td>
+      <td>United States of America</td>
+      <td>USA</td>
+      <td>21433226</td>
+      <td>MULTIPOLYGON (((-122.84000 49.00000, -120.0000...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>172</th>
+      <td>6944975.0</td>
+      <td>Europe</td>
+      <td>Serbia</td>
+      <td>SRB</td>
+      <td>51475</td>
+      <td>POLYGON ((18.82982 45.90887, 18.82984 45.90888...</td>
+    </tr>
+    <tr>
+      <th>173</th>
+      <td>622137.0</td>
+      <td>Europe</td>
+      <td>Montenegro</td>
+      <td>MNE</td>
+      <td>5542</td>
+      <td>POLYGON ((20.07070 42.58863, 19.80161 42.50009...</td>
+    </tr>
+    <tr>
+      <th>174</th>
+      <td>1794248.0</td>
+      <td>Europe</td>
+      <td>Kosovo</td>
+      <td>-99</td>
+      <td>7926</td>
+      <td>POLYGON ((20.59025 41.85541, 20.52295 42.21787...</td>
+    </tr>
+    <tr>
+      <th>175</th>
+      <td>1394973.0</td>
+      <td>North America</td>
+      <td>Trinidad and Tobago</td>
+      <td>TTO</td>
+      <td>24269</td>
+      <td>POLYGON ((-61.68000 10.76000, -61.10500 10.890...</td>
+    </tr>
+    <tr>
+      <th>176</th>
+      <td>11062113.0</td>
+      <td>Africa</td>
+      <td>S. Sudan</td>
+      <td>SSD</td>
+      <td>11998</td>
+      <td>POLYGON ((30.83385 3.50917, 29.95350 4.17370, ...</td>
+    </tr>
+  </tbody>
+</table>
+<p>177 rows × 6 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the GeoDataFrame</span>
+<span class="n">world</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/21bd44dbba368148040e2b660bcb20d8f926822d46a98afb21abf2cc1ed13dcc.png" src="../../_images/21bd44dbba368148040e2b660bcb20d8f926822d46a98afb21abf2cc1ed13dcc.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find all countries with a population greater than 150 million</span>
+<span class="n">world</span><span class="p">[(</span><span class="n">world</span><span class="p">[</span><span class="s2">&quot;pop_est&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">150000000</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pop_est</th>
+      <th>continent</th>
+      <th>name</th>
+      <th>iso_a3</th>
+      <th>gdp_md_est</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>3.282395e+08</td>
+      <td>North America</td>
+      <td>United States of America</td>
+      <td>USA</td>
+      <td>21433226</td>
+      <td>MULTIPOLYGON (((-122.84000 49.00000, -120.0000...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2.706256e+08</td>
+      <td>Asia</td>
+      <td>Indonesia</td>
+      <td>IDN</td>
+      <td>1119190</td>
+      <td>MULTIPOLYGON (((141.00021 -2.60015, 141.01706 ...</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>2.110495e+08</td>
+      <td>South America</td>
+      <td>Brazil</td>
+      <td>BRA</td>
+      <td>1839758</td>
+      <td>POLYGON ((-53.37366 -33.76838, -53.65054 -33.2...</td>
+    </tr>
+    <tr>
+      <th>56</th>
+      <td>2.009636e+08</td>
+      <td>Africa</td>
+      <td>Nigeria</td>
+      <td>NGA</td>
+      <td>448120</td>
+      <td>POLYGON ((2.69170 6.25882, 2.74906 7.87073, 2....</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>1.366418e+09</td>
+      <td>Asia</td>
+      <td>India</td>
+      <td>IND</td>
+      <td>2868929</td>
+      <td>POLYGON ((97.32711 28.26158, 97.40256 27.88254...</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>1.630462e+08</td>
+      <td>Asia</td>
+      <td>Bangladesh</td>
+      <td>BGD</td>
+      <td>302571</td>
+      <td>POLYGON ((92.67272 22.04124, 92.65226 21.32405...</td>
+    </tr>
+    <tr>
+      <th>102</th>
+      <td>2.165653e+08</td>
+      <td>Asia</td>
+      <td>Pakistan</td>
+      <td>PAK</td>
+      <td>278221</td>
+      <td>POLYGON ((77.83745 35.49401, 76.87172 34.65354...</td>
+    </tr>
+    <tr>
+      <th>139</th>
+      <td>1.397715e+09</td>
+      <td>Asia</td>
+      <td>China</td>
+      <td>CHN</td>
+      <td>14342903</td>
+      <td>MULTIPOLYGON (((109.47521 18.19770, 108.65521 ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the southern part</span>
+<span class="n">southern_world</span> <span class="o">=</span> <span class="n">world</span><span class="o">.</span><span class="n">cx</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">southern_world</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/d1d0665ca92bd56908592b45473c586464c606120918ecbfda94b5908772b1e3.png" src="../../_images/d1d0665ca92bd56908592b45473c586464c606120918ecbfda94b5908772b1e3.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Combine the countries from each continent and then sort continents by population</span>
+<span class="n">world_filtered</span> <span class="o">=</span> <span class="n">world</span><span class="p">[[</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">,</span> <span class="s1">&#39;pop_est&#39;</span><span class="p">]]</span>
+<span class="n">continents</span> <span class="o">=</span> <span class="n">world_filtered</span><span class="o">.</span><span class="n">dissolve</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;continent&#39;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+<span class="n">continents</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>pop_est</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Africa</th>
+      <td>MULTIPOLYGON (((-11.43878 6.78592, -11.70819 6...</td>
+      <td>1.306370e+09</td>
+    </tr>
+    <tr>
+      <th>Antarctica</th>
+      <td>MULTIPOLYGON (((-61.13898 -79.98137, -60.61012...</td>
+      <td>4.490000e+03</td>
+    </tr>
+    <tr>
+      <th>Asia</th>
+      <td>MULTIPOLYGON (((48.67923 14.00320, 48.23895 13...</td>
+      <td>4.550277e+09</td>
+    </tr>
+    <tr>
+      <th>Europe</th>
+      <td>MULTIPOLYGON (((-53.55484 2.33490, -53.77852 2...</td>
+      <td>7.454125e+08</td>
+    </tr>
+    <tr>
+      <th>North America</th>
+      <td>MULTIPOLYGON (((-155.22217 19.23972, -155.5421...</td>
+      <td>5.837560e+08</td>
+    </tr>
+    <tr>
+      <th>Oceania</th>
+      <td>MULTIPOLYGON (((147.91405 -43.21152, 147.56456...</td>
+      <td>4.120487e+07</td>
+    </tr>
+    <tr>
+      <th>Seven seas (open ocean)</th>
+      <td>POLYGON ((68.93500 -48.62500, 69.58000 -48.940...</td>
+      <td>1.400000e+02</td>
+    </tr>
+    <tr>
+      <th>South America</th>
+      <td>MULTIPOLYGON (((-68.63999 -55.58002, -69.23210...</td>
+      <td>4.270667e+08</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate and plot by GDP per capita</span>
+<span class="n">world</span> <span class="o">=</span> <span class="n">world</span><span class="p">[(</span><span class="n">world</span><span class="p">[</span><span class="s2">&quot;pop_est&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">world</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;Antarctica&quot;</span><span class="p">)]</span>
+<span class="n">world</span><span class="p">[</span><span class="s2">&quot;gdp_per_cap&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">world</span><span class="p">[</span><span class="s2">&quot;gdp_md_est&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="n">world</span><span class="o">.</span><span class="n">pop_est</span> <span class="o">*</span> <span class="mi">1000000</span>  <span class="c1"># &quot;gdp_md_est&quot; is million dollars</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">world</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="s2">&quot;gdp_per_cap&quot;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>  <span class="c1"># Set the column to be used for the colorbar</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;GDP per capita&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1dcde8318a1980b7540930d8014f246380da2192d109fb2f8eb053a05547279f.png" src="../../_images/1dcde8318a1980b7540930d8014f246380da2192d109fb2f8eb053a05547279f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import shapefiles of glaciers and oceans</span>
+<span class="n">glaciers</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;../data/shapefiles/ne_10m_glaciated_areas.shp&quot;</span><span class="p">)</span>
+<span class="n">oceans</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">&quot;../data/shapefiles/ne_110m_ocean.shp&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot shapes</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">glaciers</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Glaciers&quot;</span><span class="p">)</span>
+<span class="n">oceans</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Oceans&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/10785cf2911d48249fc4b8bb97cba125c31884f11cea5b636a94fcb0c58d246f.png" src="../../_images/10785cf2911d48249fc4b8bb97cba125c31884f11cea5b636a94fcb0c58d246f.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot oceans, world, and glaciers together</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">oceans</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">)</span>
+<span class="n">world</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">glaciers</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/6804583ffee5aa4f535a7949c2e44fa49bd8681c4240642893dbe0325c5bd1c1.png" src="../../_images/6804583ffee5aa4f535a7949c2e44fa49bd8681c4240642893dbe0325c5bd1c1.png" />
+</div>
+</div>
+<p>Note there are some mismatches between the glacier and land datasets because of the different resolutions - see below for an example.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot oceans, world, and glaciers together</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">oceans</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">)</span>
+<span class="n">world</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="n">glaciers</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">155</span><span class="p">,</span> <span class="o">-</span><span class="mi">145</span><span class="p">],</span> <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="mi">55</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;equal&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1a2a5bddb7b14232743abe5bcb1c8881342a567ad1405f16d0334174f30afc73.png" src="../../_images/1a2a5bddb7b14232743abe5bcb1c8881342a567ad1405f16d0334174f30afc73.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="combining-raster-and-vector-data">
+<h2>Combining raster and vector data<a class="headerlink" href="#combining-raster-and-vector-data" title="Permalink to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Open a raster dataset</span>
+<span class="n">raster</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/sentinel-2/2018-10-13, Sentinel-2B L1C, B08.tiff&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the coordinate system used in the raster dataset</span>
+<span class="n">raster</span><span class="o">.</span><span class="n">crs</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CRS.from_epsg(4326)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CRS</span><span class="p">(</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Geographic 2D CRS: EPSG:4326&gt;
+Name: WGS 84
+Axis Info [ellipsoidal]:
+- Lat[north]: Geodetic latitude (degree)
+- Lon[east]: Geodetic longitude (degree)
+Area of Use:
+- undefined
+Datum: World Geodetic System 1984
+- Ellipsoid: WGS 84
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Read a shapefile straight into a GeoDataFrame</span>
+<span class="n">shp</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;../data/rcr/rcr_landcover.shp&#39;</span><span class="p">)</span>
+<span class="n">shp_filtered</span> <span class="o">=</span> <span class="n">shp</span><span class="o">.</span><span class="n">filter</span><span class="p">([</span><span class="s1">&#39;Classname&#39;</span><span class="p">,</span> <span class="s1">&#39;geometry&#39;</span><span class="p">])</span>  <span class="c1"># Identical to shp[[&#39;Classname&#39;, &#39;geometry&#39;]]</span>
+<span class="n">shp_filtered</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Classname</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Sand</td>
+      <td>POLYGON ((346494.471 3840484.890, 346512.163 3...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Forested Wetland</td>
+      <td>POLYGON ((347156.620 3842382.623, 347140.569 3...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Forested Wetland</td>
+      <td>POLYGON ((347374.249 3842272.855, 347343.280 3...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Sand</td>
+      <td>POLYGON ((347752.940 3842285.305, 347732.080 3...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Emergent Wetland</td>
+      <td>POLYGON ((352462.707 3840569.388, 352421.826 3...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the coordinate system used in the shapefile</span>
+<span class="n">shp</span><span class="o">.</span><span class="n">crs</span>  <span class="c1"># Identical to pyproj.CRS(shp.crs)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Projected CRS: EPSG:32618&gt;
+Name: WGS 84 / UTM zone 18N
+Axis Info [cartesian]:
+- E[east]: Easting (metre)
+- N[north]: Northing (metre)
+Area of Use:
+- name: Between 78°W and 72°W, northern hemisphere between equator and 84°N, onshore and offshore. Bahamas. Canada - Nunavut; Ontario; Quebec. Colombia. Cuba. Ecuador. Greenland. Haiti. Jamaica. Panama. Turks and Caicos Islands. United States (USA). Venezuela.
+- bounds: (-78.0, 0.0, -72.0, 84.0)
+Coordinate Operation:
+- name: UTM zone 18N
+- method: Transverse Mercator
+Datum: World Geodetic System 1984 ensemble
+- Ellipsoid: WGS 84
+- Prime Meridian: Greenwich
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that the raster dataset and the shapefile have different coordinate systems.</p>
+<ul class="simple">
+<li><p>EPSG:4326 is the latitude and longitude coordinates</p></li>
+<li><p>EPSG:32618 is UTM 18N</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the four corner points of the raster dataset</span>
+<span class="n">raster_gps_corners</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">raster</span><span class="o">.</span><span class="n">transform</span> <span class="o">*</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">raster</span><span class="o">.</span><span class="n">transform</span> <span class="o">*</span> <span class="p">(</span><span class="n">raster</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">raster</span><span class="o">.</span><span class="n">transform</span> <span class="o">*</span> <span class="p">(</span><span class="n">raster</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">raster</span><span class="o">.</span><span class="n">height</span><span class="p">),</span>
+    <span class="n">raster</span><span class="o">.</span><span class="n">transform</span> <span class="o">*</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">raster</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># crs</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>  <span class="c1"># The current crs (lat, lon)</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">shp</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>  <span class="c1"># The new crs (UTM 18N)</span>
+
+<span class="c1"># Use &quot;pyproj.Transformer.transform&quot; to change the crs</span>
+<span class="n">transformer</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">p2</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+<span class="n">UTMx</span><span class="p">,</span> <span class="n">UTMy</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">raster_gps_corners</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">raster_gps_corners</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Form a list of (easting, northing)</span>
+<span class="n">raster_utm_corners</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">UTMx</span><span class="p">,</span> <span class="n">UTMy</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Raster corners in longitudes and latitudes:&#39;</span><span class="p">,</span> <span class="n">raster_gps_corners</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Raster corners in UTM 18N:&#39;</span><span class="p">,</span> <span class="n">raster_utm_corners</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Raster corners in longitudes and latitudes: ((-76.716188, 34.730144), (-76.479982, 34.730144), (-76.479982, 34.567461), (-76.716188, 34.567461)) 
+
+Raster corners in UTM 18N: [(342874.29359233467, 3844458.611782608), (364501.9870325172, 3844114.8502116846), (364236.96553226013, 3826072.8217074675), (342566.93812409707, 3826415.843995134)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a &quot;shapely&quot; geometry of the raster</span>
+<span class="n">raster_geometry</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;Polygon&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;coordinates&#39;</span><span class="p">:</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">raster_utm_corners</span><span class="p">)]</span>     
+<span class="p">}</span>
+<span class="n">raster_shape</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">raster_geometry</span><span class="p">)</span>
+<span class="n">raster_shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/8ef246d44ebf649e3f9a714402e37a3089e63c42a8907678a9f56cd9b950f688.svg" src="../../_images/8ef246d44ebf649e3f9a714402e37a3089e63c42a8907678a9f56cd9b950f688.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">(</span><span class="n">raster_shape</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#6699cc&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;#6699cc&#39;</span><span class="p">)</span>
+<span class="n">shp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">xrange</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">raster_shape</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="o">-</span><span class="mi">500</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">raster_shape</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="o">+</span><span class="mi">500</span><span class="p">]</span>
+<span class="n">yrange</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">raster_shape</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span><span class="o">-</span><span class="mi">500</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">raster_shape</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span><span class="o">+</span><span class="mi">500</span><span class="p">]</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">*</span><span class="n">xrange</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">*</span><span class="n">yrange</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;plain&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/5b1ce1cbba5efe238cedbd54636f90397a05b22f931b7857f9fd88bf78b9ee06.png" src="../../_images/5b1ce1cbba5efe238cedbd54636f90397a05b22f931b7857f9fd88bf78b9ee06.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">gpd</span><span class="o">.</span><span class="n">GeoSeries</span><span class="p">(</span><span class="n">raster_shape</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;#6699cc&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;#6699cc&#39;</span><span class="p">)</span>
+<span class="n">shp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="c1"># Zoom in</span>
+<span class="n">xrange</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">raster_shape</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="o">+</span><span class="mi">4200</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">raster_shape</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="o">-</span><span class="mi">11500</span><span class="p">]</span>
+<span class="n">yrange</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">raster_shape</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span><span class="o">+</span><span class="mi">12600</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">raster_shape</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span><span class="o">-</span><span class="mi">1500</span><span class="p">]</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">*</span><span class="n">xrange</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">*</span><span class="n">yrange</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;plain&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/2f3bd964d9b9709d694097d82785a8b2118d505ec67da8ef9eaa31f605cc97c9.png" src="../../_images/2f3bd964d9b9709d694097d82785a8b2118d505ec67da8ef9eaa31f605cc97c9.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create an interactive map using leaflet</span>
+
+<span class="c1"># folium requires (lat, long) but &quot;pyproj.Transformer.transform&quot; gives (long, lat)</span>
+<span class="n">raster_gps_reversed</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">raster_gps_corners</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">raster_gps_corners</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="p">))</span>
+
+<span class="c1"># Use a point as the center of the map</span>
+<span class="n">center</span> <span class="o">=</span> <span class="n">raster_gps_reversed</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+
+<span class="c1"># Create the folium map object</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">11</span><span class="p">)</span>
+
+<span class="c1"># Add the polygon to the map</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span>
+    <span class="n">raster_gps_reversed</span><span class="p">,</span>
+    <span class="n">popup</span><span class="o">=</span><span class="s1">&#39;Sentinel-2 Image Bounds&#39;</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#3186cc&#39;</span><span class="p">,</span>
+    <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;#3186cc&#39;</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shp</span><span class="p">)):</span>
+    <span class="c1"># Pick out each feature by its index</span>
+    <span class="n">feature</span> <span class="o">=</span> <span class="n">shp</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    <span class="n">feature_geometry</span> <span class="o">=</span> <span class="n">shape</span><span class="p">(</span><span class="n">feature</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">])</span>
+    <span class="n">feature_name</span> <span class="o">=</span> <span class="n">feature</span><span class="p">[</span><span class="s1">&#39;Classname&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Have to do error catching because .exterior.xy doesn&#39;t work for multipart polygons</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Reproject the crs back to (lat, long) as we want to use it in the folium map</span>
+        <span class="n">transformer</span> <span class="o">=</span> <span class="n">Transformer</span><span class="o">.</span><span class="n">from_crs</span><span class="p">(</span><span class="n">p2</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">p1</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+        <span class="n">lats</span><span class="p">,</span> <span class="n">longs</span> <span class="o">=</span> <span class="n">transformer</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span>
+            <span class="n">feature_geometry</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">feature_geometry</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="c1"># Form a list of (lat, long)</span>
+        <span class="n">gps_points</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">lats</span><span class="p">,</span> <span class="n">longs</span><span class="p">))</span>
+
+        <span class="n">folium</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span>
+            <span class="n">gps_points</span><span class="p">,</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="n">feature_name</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#000000&#39;</span><span class="p">,</span>
+            <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">fill_color</span><span class="o">=</span><span class="s1">&#39;#99999&#39;</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+<span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="width:100%;"><div style="position:relative;width:100%;height:0;padding-bottom:60%;"><span style="color:#565656">Make this Notebook Trusted to load map: File -> Trust Notebook</span><iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    
+    &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; /&gt;
+    
+        &lt;script&gt;
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        &lt;/script&gt;
+    
+    &lt;style&gt;html, body {width: 100%;height: 100%;margin: 0;padding: 0;}&lt;/style&gt;
+    &lt;style&gt;#map {position:absolute;top:0;bottom:0;right:0;left:0;}&lt;/style&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://code.jquery.com/jquery-3.7.1.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js&quot;&gt;&lt;/script&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css&quot;/&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css&quot;/&gt;
+    
+            &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&gt;
+            &lt;style&gt;
+                #map_d1d670c289fa715a7e653e5aa971ea46 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            &lt;/style&gt;
+        
+&lt;/head&gt;
+&lt;body&gt;
+    
+    
+            &lt;div class=&quot;folium-map&quot; id=&quot;map_d1d670c289fa715a7e653e5aa971ea46&quot; &gt;&lt;/div&gt;
+        
+&lt;/body&gt;
+&lt;script&gt;
+    
+    
+            var map_d1d670c289fa715a7e653e5aa971ea46 = L.map(
+                &quot;map_d1d670c289fa715a7e653e5aa971ea46&quot;,
+                {
+                    center: [34.730144, -76.479982],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 11,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_e65b84bdb52b597427ae3e0114bc198b = L.tileLayer(
+                &quot;https://tile.openstreetmap.org/{z}/{x}/{y}.png&quot;,
+                {&quot;attribution&quot;: &quot;\u0026copy; \u003ca href=\&quot;https://www.openstreetmap.org/copyright\&quot;\u003eOpenStreetMap\u003c/a\u003e contributors&quot;, &quot;detectRetina&quot;: false, &quot;maxNativeZoom&quot;: 19, &quot;maxZoom&quot;: 19, &quot;minZoom&quot;: 0, &quot;noWrap&quot;: false, &quot;opacity&quot;: 1, &quot;subdomains&quot;: &quot;abc&quot;, &quot;tms&quot;: false}
+            );
+        
+    
+            tile_layer_e65b84bdb52b597427ae3e0114bc198b.addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            var polygon_8508bcd52fcdf86a648ff8c9c854796e = L.polygon(
+                [[34.730144, -76.716188], [34.730144, -76.479982], [34.567461, -76.479982], [34.567461, -76.716188]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#3186cc&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#3186cc&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+        var popup_52fa6b539a28274b815b6308bab8a368 = L.popup({&quot;maxWidth&quot;: &quot;100%&quot;});
+
+        
+            
+                var html_1b07216feeae26f66ff27f08332ea222 = $(`&lt;div id=&quot;html_1b07216feeae26f66ff27f08332ea222&quot; style=&quot;width: 100.0%; height: 100.0%;&quot;&gt;Sentinel-2 Image Bounds&lt;/div&gt;`)[0];
+                popup_52fa6b539a28274b815b6308bab8a368.setContent(html_1b07216feeae26f66ff27f08332ea222);
+            
+        
+
+        polygon_8508bcd52fcdf86a648ff8c9c854796e.bindPopup(popup_52fa6b539a28274b815b6308bab8a368)
+        ;
+
+        
+    
+    
+            var polygon_ad8c9bd1534bae045f9f7ce409dcdb4c = L.polygon(
+                [[34.69487548849214, -76.67593927883173], [34.694513199139024, -76.67573882771855], [34.69360077384821, -76.6766693455509], [34.69421769352402, -76.67676946161477], [34.69487548849214, -76.67593927883173]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_ad8c9bd1534bae045f9f7ce409dcdb4c.bindTooltip(
+                `&lt;div&gt;
+                     Sand
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_4a643dcaf4809c100d6b6225e72bb9a7 = L.polygon(
+                [[34.71208092564935, -76.66905639311963], [34.71173233107791, -76.66922463877683], [34.71190036988963, -76.66959508771954], [34.71213179316311, -76.66974650655057], [34.71225899080595, -76.66962723441586], [34.71208092564935, -76.66905639311963]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_4a643dcaf4809c100d6b6225e72bb9a7.bindTooltip(
+                `&lt;div&gt;
+                     Forested Wetland
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_9727a829260aba06abb6d7aaca3c9498 = L.polygon(
+                [[34.71112400503519, -76.66666090384606], [34.71108949640039, -76.6669983571513], [34.71114348612499, -76.66712714146642], [34.711231176936636, -76.66711627145187], [34.71112400503519, -76.66666090384606]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_9727a829260aba06abb6d7aaca3c9498.bindTooltip(
+                `&lt;div&gt;
+                     Forested Wetland
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_050dace8efee911acbed9a25593f4164 = L.polygon(
+                [[34.711292719984804, -76.6625294217231], [34.710850889279904, -76.66274833944766], [34.71097571170985, -76.66311090886705], [34.71139798149009, -76.66288768459367], [34.711292719984804, -76.6625294217231]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_050dace8efee911acbed9a25593f4164.bindTooltip(
+                `&lt;div&gt;
+                     Sand
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_60a86179582877e0b2058b722e5d9e4e = L.polygon(
+                [[34.69651575741246, -76.61081740858046], [34.6962242967101, -76.61125804805816], [34.696401990675696, -76.61159776650766], [34.696732705095165, -76.61132338310826], [34.69651575741246, -76.61081740858046]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_60a86179582877e0b2058b722e5d9e4e.bindTooltip(
+                `&lt;div&gt;
+                     Emergent Wetland
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_b3699e8ef55564d8b15b73607c56612a = L.polygon(
+                [[34.697204228743644, -76.61152798233185], [34.69691949483755, -76.61187414529122], [34.697235877840214, -76.61216463651266], [34.69740223343203, -76.6117419391112], [34.697204228743644, -76.61152798233185]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_b3699e8ef55564d8b15b73607c56612a.bindTooltip(
+                `&lt;div&gt;
+                     Emergent Wetland
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_c09f45a8fc7caaf4d3ac5cf75b4adcf9 = L.polygon(
+                [[34.70613302958255, -76.62021248703194], [34.70599718489513, -76.62062409980246], [34.70624119884878, -76.62087073315669], [34.706424878694726, -76.62065772467633], [34.70613302958255, -76.62021248703194]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_c09f45a8fc7caaf4d3ac5cf75b4adcf9.bindTooltip(
+                `&lt;div&gt;
+                     Forested Wetland
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_5f4e306befcfdc5f18cf3b26d538ddf4 = L.polygon(
+                [[34.70097516387528, -76.6454542666153], [34.70089856116728, -76.64560138051554], [34.70100832427351, -76.64578126535007], [34.70113012969573, -76.64568796532937], [34.70097516387528, -76.6454542666153]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_5f4e306befcfdc5f18cf3b26d538ddf4.bindTooltip(
+                `&lt;div&gt;
+                     Sand
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_e37a4ad4242110176d135d80b888bb57 = L.polygon(
+                [[34.70066345618469, -76.64430599049193], [34.700544261520385, -76.64443775104202], [34.70060453745761, -76.64472680291237], [34.70081622868778, -76.64454978706215], [34.70066345618469, -76.64430599049193]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_e37a4ad4242110176d135d80b888bb57.bindTooltip(
+                `&lt;div&gt;
+                     Sand
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_a85638a422adc106f694d0bfbbb93d3a = L.polygon(
+                [[34.70999596234296, -76.66584010035473], [34.709805959502376, -76.66605533841025], [34.710169186295495, -76.66633416834415], [34.71029121690085, -76.66598312319448], [34.70999596234296, -76.66584010035473]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_a85638a422adc106f694d0bfbbb93d3a.bindTooltip(
+                `&lt;div&gt;
+                     WetSand
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_73fc2e69d5c0461f07d97fb862fb1a0a = L.polygon(
+                [[34.70326116247065, -76.62649287673324], [34.70318326928692, -76.62665690794616], [34.70326480331213, -76.62675874160497], [34.70336322164044, -76.62664717247144], [34.70326116247065, -76.62649287673324]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_73fc2e69d5c0461f07d97fb862fb1a0a.bindTooltip(
+                `&lt;div&gt;
+                     Emergent Wetland
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_656436ec965209baf966072a4c5cb8c9 = L.polygon(
+                [[34.68790075377513, -76.61176179028094], [34.68779619499761, -76.61229565683156], [34.68799089782719, -76.61254318387073], [34.68820137506818, -76.61235915977174], [34.68790075377513, -76.61176179028094]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_656436ec965209baf966072a4c5cb8c9.bindTooltip(
+                `&lt;div&gt;
+                     Emergent Wetland
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_f9b6eb244ad5539bcc839e31c9c2a023 = L.polygon(
+                [[34.710689303495386, -76.65923162305874], [34.71047203900538, -76.65965645472272], [34.71055450479607, -76.6598674313786], [34.710856746658784, -76.65970367360524], [34.710689303495386, -76.65923162305874]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_f9b6eb244ad5539bcc839e31c9c2a023.bindTooltip(
+                `&lt;div&gt;
+                     Forested Wetland
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_4d23ada3ce88271e3df7ed80d88b0eb6 = L.polygon(
+                [[34.713827438089304, -76.62871498453971], [34.71336658316702, -76.62927341067709], [34.71401516957916, -76.6298031728454], [34.714341942481944, -76.62938160372656], [34.713827438089304, -76.62871498453971]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_4d23ada3ce88271e3df7ed80d88b0eb6.bindTooltip(
+                `&lt;div&gt;
+                     Forested Wetland
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_67c71cfcf93bdd4a85ade51249b2321d = L.polygon(
+                [[34.693998943606935, -76.63043407467582], [34.693344987912326, -76.63175608472885], [34.69376099085247, -76.6322201616469], [34.69446174022392, -76.63154869758314], [34.693998943606935, -76.63043407467582]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_67c71cfcf93bdd4a85ade51249b2321d.bindTooltip(
+                `&lt;div&gt;
+                     Subtidal Haline
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_152767b6b018a7101a071131f1134fd0 = L.polygon(
+                [[34.699992348469365, -76.64175618791086], [34.699803556715196, -76.64194420272189], [34.69992321854928, -76.64220543332566], [34.7001230893135, -76.64222460008561], [34.70023759079725, -76.6417492306841], [34.699992348469365, -76.64175618791086]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_152767b6b018a7101a071131f1134fd0.bindTooltip(
+                `&lt;div&gt;
+                     WetSand
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_99e0b27e5a04e41b022d80bc19ac4211 = L.polygon(
+                [[34.71016164124365, -76.67521873386336], [34.710080562270875, -76.67535302406684], [34.71018876261115, -76.67552711210115], [34.710297210097345, -76.67568321541343], [34.71040458284867, -76.67555745121463], [34.710277487025174, -76.67531701765515], [34.71016164124365, -76.67521873386336]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_99e0b27e5a04e41b022d80bc19ac4211.bindTooltip(
+                `&lt;div&gt;
+                     Herbaceous
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_936dd0ea93946543ddd488470dce655d = L.polygon(
+                [[34.71178661739318, -76.66722574445866], [34.71174520687325, -76.66735684362503], [34.71183755462596, -76.66760456785363], [34.711952322394545, -76.66754090666724], [34.71183791088366, -76.66721677928771], [34.71178661739318, -76.66722574445866]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_936dd0ea93946543ddd488470dce655d.bindTooltip(
+                `&lt;div&gt;
+                     Herbaceous
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_4ec95df2b07901dbe19134aef7595b01 = L.polygon(
+                [[34.71149622965334, -76.66428059543124], [34.71143427451735, -76.66433052690391], [34.71146706503118, -76.66448214380802], [34.71154371881339, -76.6644389035763], [34.71149622965334, -76.66428059543124]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_4ec95df2b07901dbe19134aef7595b01.bindTooltip(
+                `&lt;div&gt;
+                     Herbaceous
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_50782439ac116230e3d531ed3626d0f1 = L.polygon(
+                [[34.71100500709208, -76.6612291647686], [34.7109429355928, -76.66143093954453], [34.71101166047437, -76.66149790309231], [34.71123734977973, -76.66140246860381], [34.711211199859676, -76.6612395329285], [34.71100500709208, -76.6612291647686]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_50782439ac116230e3d531ed3626d0f1.bindTooltip(
+                `&lt;div&gt;
+                     Herbaceous
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_3281cf2bceabc24639e9ccf7ef7fdfe8 = L.polygon(
+                [[34.70969881478353, -76.64338054136626], [34.709665373770406, -76.64358840537987], [34.70977595910623, -76.64361362078955], [34.709764382481076, -76.64337544201061], [34.70969881478353, -76.64338054136626]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_3281cf2bceabc24639e9ccf7ef7fdfe8.bindTooltip(
+                `&lt;div&gt;
+                     Herbaceous
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_cf8332a0c438d6a1ba47503f613c4baa = L.polygon(
+                [[34.708672872577644, -76.63884309609034], [34.70850342980988, -76.6389523301141], [34.70867551626576, -76.639196230578], [34.70890477694122, -76.63927367376702], [34.70892938703829, -76.63893642744704], [34.708672872577644, -76.63884309609034]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_cf8332a0c438d6a1ba47503f613c4baa.bindTooltip(
+                `&lt;div&gt;
+                     Herbaceous
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+    
+            var polygon_dc9fcca63a17b0661e7cce3aae5ba48d = L.polygon(
+                [[34.70774646456772, -76.63514180229384], [34.707712006958715, -76.63526905106372], [34.70787181281101, -76.6352478905306], [34.707902895040434, -76.63497857579208], [34.707825683499166, -76.63490669627748], [34.70774646456772, -76.63514180229384]],
+                {&quot;bubblingMouseEvents&quot;: true, &quot;color&quot;: &quot;#000000&quot;, &quot;dashArray&quot;: null, &quot;dashOffset&quot;: null, &quot;fill&quot;: true, &quot;fillColor&quot;: &quot;#99999&quot;, &quot;fillOpacity&quot;: 0.2, &quot;fillRule&quot;: &quot;evenodd&quot;, &quot;lineCap&quot;: &quot;round&quot;, &quot;lineJoin&quot;: &quot;round&quot;, &quot;noClip&quot;: false, &quot;opacity&quot;: 1.0, &quot;smoothFactor&quot;: 1.0, &quot;stroke&quot;: true, &quot;weight&quot;: 3}
+            ).addTo(map_d1d670c289fa715a7e653e5aa971ea46);
+        
+    
+            polygon_dc9fcca63a17b0661e7cce3aae5ba48d.bindTooltip(
+                `&lt;div&gt;
+                     Herbaceous
+                 &lt;/div&gt;`,
+                {&quot;sticky&quot;: true}
+            );
+        
+&lt;/script&gt;
+&lt;/html&gt;" style="position:absolute;width:100%;height:100%;left:0;top:0;border:none !important;" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe></div></div></div></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks\Geospatial Science"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Remote%20Sensing%20Questions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Remote Sensing Questions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Classification%20of%20Land%20Cover.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Classification of Land Cover</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-data">Raster data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-data">Vector data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-vector-data">Plotting vector data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shapefiles">Shapefiles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geopandas"><code class="docutils literal notranslate"><span class="pre">geopandas</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combining-raster-and-vector-data">Combining raster and vector data</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Khunakorn Limpsapapkasiphol
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
