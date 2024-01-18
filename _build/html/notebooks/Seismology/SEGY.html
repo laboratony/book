@@ -440,7 +440,6 @@ document.write(`
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">mayavi</span> <span class="kn">import</span> <span class="n">mlab</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.ndimage</span>
 <span class="kn">import</span> <span class="nn">segyio</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
@@ -455,7 +454,7 @@ document.write(`
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">mayavi</span> <span class="kn">import</span> <span class="n">mlab</span>
 <span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">scipy.ndimage</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">segyio</span>
 
 <span class="ne">ModuleNotFoundError</span>: No module named &#39;mayavi&#39;
 </pre></div>
@@ -469,7 +468,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import data</span>
-<span class="n">base_segy</span> <span class="o">=</span> <span class="n">segyio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/TNW_small2&#39;</span><span class="p">,</span> <span class="n">ignore_geometry</span><span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">base_segy</span> <span class="o">=</span> <span class="n">segyio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/TNW_small2&#39;</span><span class="p">,</span> <span class="n">ignore_geometry</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -714,7 +713,7 @@ The number of vertical units (times): 450
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import data</span>
-<span class="n">base_segy2</span> <span class="o">=</span> <span class="n">segyio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/ST0202.segy&#39;</span><span class="p">,</span> <span class="n">ignore_geometry</span><span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">base_segy2</span> <span class="o">=</span> <span class="n">segyio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/ST0202.segy&#39;</span><span class="p">,</span> <span class="n">ignore_geometry</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>

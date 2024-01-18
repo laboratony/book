@@ -425,12 +425,10 @@ document.write(`
 <h1>Seismic Attribute Analysis<a class="headerlink" href="#seismic-attribute-analysis" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">itertools</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">mayavi</span> <span class="kn">import</span> <span class="n">mlab</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">scipy.ndimage</span>
 <span class="kn">import</span> <span class="nn">segyio</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
@@ -441,12 +439,12 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">mayavi</span> <span class="kn">import</span> <span class="n">mlab</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">mayavi</span> <span class="kn">import</span> <span class="n">mlab</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">scipy.ndimage</span>
 
 <span class="ne">ModuleNotFoundError</span>: No module named &#39;mayavi&#39;
 </pre></div>
@@ -456,7 +454,7 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import data - this is a perfect seismic cube</span>
-<span class="n">base_segy</span> <span class="o">=</span> <span class="n">segyio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/Thebe_rift_faults&#39;</span><span class="p">,</span> <span class="n">ignore_geometry</span><span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">base_segy</span> <span class="o">=</span> <span class="n">segyio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;../data/Thebe_rift_faults&#39;</span><span class="p">,</span> <span class="n">ignore_geometry</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -579,7 +577,7 @@ C40 END EBCDIC
         <span class="n">trace</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="p">:]</span>
         
         <span class="c1"># Create kernel for calculation of each attribute</span>
-        <span class="n">kernel_rms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span><span class="o">/</span><span class="mi">11</span>  <span class="c1"># Range over which we take the RMS value</span>
+        <span class="n">kernel_rms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="o">/</span> <span class="mi">11</span>  <span class="c1"># Range over which we take the RMS value</span>
         <span class="n">kernel_diff1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="n">dt</span>  <span class="c1"># Forward difference</span>
         <span class="n">kernel_diff2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">dt</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Second order central difference</span>
 
@@ -729,20 +727,47 @@ C40 END EBCDIC
     <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">,</span> <span class="n">nz</span> <span class="o">=</span> <span class="n">data_cube1</span><span class="o">.</span><span class="n">shape</span>
     
     <span class="n">vm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data_cube1</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
-    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source1</span><span class="p">,</span> <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;x_axes&#39;</span><span class="p">,</span> 
-                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span> <span class="n">cmap1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">,</span> <span class="n">plane_opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source1</span><span class="p">,</span> <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;y_axes&#39;</span><span class="p">,</span> 
-                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">ny</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span> <span class="n">cmap1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">,</span> <span class="n">plane_opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source1</span><span class="p">,</span> <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;z_axes&#39;</span><span class="p">,</span> 
-                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">nz</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span> <span class="n">cmap1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">,</span> <span class="n">plane_opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source1</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;x_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="n">cmap1</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">plane_opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source1</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;y_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">ny</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="n">cmap1</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">plane_opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source1</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;z_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">nz</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="n">cmap1</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">,</span>
+                                     <span class="n">plane_opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
     
-    <span class="n">vm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data_cube2</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
-    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source2</span><span class="p">,</span> <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;x_axes&#39;</span><span class="p">,</span> 
-                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span> <span class="n">cmap2</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source2</span><span class="p">,</span> <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;y_axes&#39;</span><span class="p">,</span> 
-                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">ny</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span> <span class="n">cmap2</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">)</span>
-    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source2</span><span class="p">,</span> <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;z_axes&#39;</span><span class="p">,</span> 
-                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">nz</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span> <span class="n">colormap</span><span class="o">=</span> <span class="n">cmap2</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="n">vm</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vm</span><span class="p">)</span>
+    <span class="n">vm2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data_cube2</span><span class="p">,</span> <span class="mi">95</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source2</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;x_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">nx</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="n">cmap2</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm2</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source2</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;y_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">ny</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="n">cmap2</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm2</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="n">vm2</span><span class="p">)</span>
+    <span class="n">mlab</span><span class="o">.</span><span class="n">pipeline</span><span class="o">.</span><span class="n">image_plane_widget</span><span class="p">(</span><span class="n">source2</span><span class="p">,</span>
+                                     <span class="n">plane_orientation</span><span class="o">=</span><span class="s1">&#39;z_axes&#39;</span><span class="p">,</span>
+                                     <span class="n">slice_index</span><span class="o">=</span><span class="n">nz</span><span class="o">//</span><span class="mi">2</span><span class="p">,</span>
+                                     <span class="n">colormap</span><span class="o">=</span><span class="n">cmap2</span><span class="p">,</span>
+                                     <span class="n">vmin</span><span class="o">=-</span><span class="n">vm2</span><span class="p">,</span>
+                                     <span class="n">vmax</span><span class="o">=</span><span class="n">vm2</span><span class="p">)</span>
     
     <span class="n">mlab</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
