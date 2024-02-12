@@ -4,9 +4,10 @@
 format: jb-book
 root: intro
 parts:
-  - caption: Programming in C++
+  - caption: Programming
     chapters:
-    - file: notebooks/Programming in C++/Basic C++  
+    - file: notebooks/Programming/Object-oriented Programming (OOP)
+    - file: notebooks/Programming/Basic C++
   - caption: Classical Machine Learning
     chapters:
     - file: notebooks/Classical Machine Learning/Introduction
