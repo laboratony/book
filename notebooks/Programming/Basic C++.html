@@ -1,0 +1,1924 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Basic C++ &#8212; Laboratony&#39;s book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/Programming/Basic C++';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Introduction" href="../Classical%20Machine%20Learning/Introduction.html" />
+    <link rel="prev" title="Object-oriented Programming (OOP)" href="Object-oriented%20Programming%20%28OOP%29.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Laboratony's book - Home"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Laboratony's book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    Welcome to LABORATONY!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Programming</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Object-oriented%20Programming%20%28OOP%29.html">Object-oriented Programming (OOP)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic C++</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Classical Machine Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Data%20Preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Linear%20Regression.html">Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Validation.html">Validation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Logistic%20Regression.html">Logistic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/K-Nearest%20Neighbours%20%28KNNs%29.html">K-Nearest Neighbours (KNNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Baseline.html">Baseline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Performance%20Metrics.html">Performance Metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Multiclass%20Classification.html">Multiclass Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Overfitting%20and%20Underfitting.html">Overfitting and Underfitting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Loss%20Functions.html">Loss Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Dealing%20with%20Spatial%20and%20Temporal%20Data.html">Dealing with Spatial and Temporal Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Feature%20Selection.html">Feature Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Data%20Pipelines.html">Data Pipelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Support%20Vector%20Machines%20%28SVMs%29.html">Support Vector Machines (SVMs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Model%20Tuning.html">Model Tuning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Decision%20Trees.html">Decision Trees</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Ensemble%20Methods.html">Ensemble Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Introduction%20to%20Natural%20Language%20Processing%20%28NLP%29.html">Introduction to Natural Language Processing (NLP)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Naive%20Bayes%20Algorithm.html">Naive Bayes Algorithm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Principal%20Component%20Analysis%20%28PCA%29.html">Principal Component Analysis (PCA)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Clustering.html">Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Classical%20Machine%20Learning/Anomaly%20Detection.html">Anomaly Detection</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deep Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Training%20Neural%20Networks.html">Training Neural Networks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Neural%20Networks%20with%20Custom%20Datasets.html">Neural Networks with Custom Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Convolutional%20Neural%20Networks%20%28CNNs%29.html">Convolutional Neural Networks (CNNs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Implicit%20Regularisation.html">Implicit Regularisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Transfer%20Learning.html">Transfer Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Autoencoders.html">Autoencoders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Variational%20Autoencoders%20%28VAEs%29.html">Variational Autoencoders (VAEs)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Convolutional%20VAEs.html">Convolutional VAEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Deep%20Learning/Generative%20Adversarial%20Networks%20%28GANs%29.html">Generative Adversarial Networks (GANs)</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Geospatial Data Science</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Geospatial%20Science/Remote%20Sensing%20Questions.html">Remote Sensing Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Geospatial%20Science/Geospatial%20Data.html">Geospatial Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Geospatial%20Science/Classification%20of%20Land%20Cover.html">Classification of Land Cover</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Seismology</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Synthetic%20Seismic%20Models.html">Synthetic Seismic Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/SEGY.html">SEGY</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Seismic%20Attribute%20Analysis.html">Seismic Attribute Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Seismology/Identifying%20Salt%20in%20Seismic%20Sections%20Using%20a%20Deep%20Learning%20Model.html">Identifying Salt in Seismic Sections Using a Deep Learning Model</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/laboratony/book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/laboratony/book/issues/new?title=Issue%20on%20page%20%2Fnotebooks/Programming/Basic C++.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/Programming/Basic C++.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Basic C++</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introductory-note">Introductory note</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">Data types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-data-types">Fundamental data types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-variables-and-constants">Declaring variables and constants</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operators">Operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-operators">Mathematical operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#increments-and-decrements">Increments and decrements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compound-assignments">Compound assignments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-operators">Comparison operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operators">Logical operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bitwise-operators">Bitwise operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-operators">Output operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-operators">Input operators</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conitional-statements">Conitional statements</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-else">If-else</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ternary-operator">Ternary operator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#switch">Switch</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loop-statements">Loop statements</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while">While</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for">For</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-while">Do-while</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#break-and-continue-statements">Break and continue statements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-arrays">Working with arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sizeof">Sizeof</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#foreach">Foreach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nd-arrays">nD arrays</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-functions">Declaring functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-overloading">Function overloading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-and-global-variables">Local and global variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maths">Maths</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#character">Character</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ascii">ASCII</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inputting-characters">Inputting characters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#character-functions">Character functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string">String</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#array-of-characters">Array of characters</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#string-declaration">String declaration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#string-functions">String functions</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inputting-strings">Inputting strings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-object">String object</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">String declaration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#string-concatenation">String concatenation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#string-comparison">String comparison</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">String functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pointer">Pointer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-allocation">Memory allocation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passing-pointers-addresses-to-functions">Passing pointers/addresses to functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-handling">File handling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-stream">File stream</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-file-handling">Binary file handling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oop">OOP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#templating">Templating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-data-types-and-structures">Other data types and structures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumeration">Enumeration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structure">Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector">Vector</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-declaration">Vector declaration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-elements-in-a-vector">Accessing elements in a vector</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-functions">Vector functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-c">
+<h1>Basic C++<a class="headerlink" href="#basic-c" title="Permalink to this heading">#</a></h1>
+<section id="introductory-note">
+<h2>Introductory note<a class="headerlink" href="#introductory-note" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>ฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">main()</span></code> จะถูกสั่งให้ทำงานเป็นอันดับแรกเสมอ</p></li>
+<li><p>ใช้ <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code> เพื่อกำหนดของเขตการทำงาน (block)</p></li>
+<li><p>ใช้ <code class="docutils literal notranslate"><span class="pre">;</span></code> สิ้นสุดคำสั่ง</p></li>
+<li><p>ใช้ <code class="docutils literal notranslate"><span class="pre">//</span></code> หรือ <code class="docutils literal notranslate"><span class="pre">/*</span> <span class="pre">*/</span></code> ในการ comment</p></li>
+<li><p>คำสั่งต่าง ๆ จะถูกเรียกใช้จาก library ซึ่งถูกเรียกใช้ได้ด้วยคำสั่ง <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;header_file&gt;</span></code> โดย header file คือชื่อ library</p></li>
+<li><p>ใน library จะมีหลาย ๆ namespace ซึ่งบรรจุคำสั่งชนิดต่าง ๆ เช่น <code class="docutils literal notranslate"><span class="pre">cout</span></code> เป็นฟังก์ชันที่ใช้แสดงผลข้อความ อยู่ใน namespace <code class="docutils literal notranslate"><span class="pre">std</span></code> ซึ่งอยู่ใน library <code class="docutils literal notranslate"><span class="pre">iostream</span></code></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="p">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Hello World!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>เราสามารถ import namespace เพียงครั้งเดียวเพื่อที่จะไม่ต้องอ้างอิง namespace ทุกครั้งที่เรียกใช้ฟังก์ชัน โดยใช้คำสั่ง <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">namespace</span> <span class="pre">namespace_name;</span></code> เช่น หากต้องการใช้ฟัง <code class="docutils literal notranslate"><span class="pre">cout</span></code> หลาย ๆ ครั้ง ถ้าต้องพิมพ์ <code class="docutils literal notranslate"><span class="pre">std</span></code> ทุกครั้งจะไม่สะดวก ก็ใช้คำสั่ง <code class="docutils literal notranslate"><span class="pre">using</span> <span class="pre">namespace</span> <span class="pre">std;</span></code></p></li>
+<li><p>เราสามารถใช้คำสั่ง <code class="docutils literal notranslate"><span class="pre">system(&quot;pause&quot;)</span></code> เพื่อให้ executable ไม่ปิดทันทีเมื่อ code บรรทัดสุดท้ายทำงานเสร็จ</p></li>
+<li><p>Preprocessor (complier) directives เป็นคำสั่งในโปรแกรมที่จะถูกประมวลผลก่อนที่ complier จะทำงาน มีเครื่องหมาย <code class="docutils literal notranslate"><span class="pre">#</span></code> นำหน้า แต่ไม่มี <code class="docutils literal notranslate"><span class="pre">;</span></code> ที่ท้ายคำสั่ง เช่น</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">#include</span></code> ใช้ในการนำเข้า header file (<code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;header_file&gt;</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#define</span></code> ใช้กำหนดค่าคงที่หรือฟังก์ชันอย่างง่าย</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">CONST_NAME</span> <span class="pre">value</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">fxn(params)</span> <span class="pre">(returned_value)</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="c1">#define PI 3.14;</span>
+<span class="c1">#define avg(a, b) ((a + b) / 2)</span>
+
+<span class="nb">float</span> <span class="n">get_circle_area</span><span class="p">(</span><span class="nb">float</span> <span class="n">r</span><span class="p">)</span> 
+<span class="p">{</span>
+    <span class="nb">float</span> <span class="n">pi</span> <span class="o">=</span> <span class="n">PI</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">pi</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">r</span><span class="p">;</span> 
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nb">float</span> <span class="n">area1</span> <span class="o">=</span> <span class="n">get_circle_area</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+    <span class="nb">float</span> <span class="n">area2</span> <span class="o">=</span> <span class="n">get_circle_area</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The area of a circle with a radius of 10 is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">area1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The area of a circle with a radius of 20 is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">area2</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The average area is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">avg</span><span class="p">(</span><span class="n">area1</span><span class="p">,</span> <span class="n">area2</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">area</span> <span class="n">of</span> <span class="n">a</span> <span class="n">circle</span> <span class="k">with</span> <span class="n">a</span> <span class="n">radius</span> <span class="n">of</span> <span class="mi">10</span> <span class="ow">is</span> <span class="mi">314</span>
+<span class="n">The</span> <span class="n">area</span> <span class="n">of</span> <span class="n">a</span> <span class="n">circle</span> <span class="k">with</span> <span class="n">a</span> <span class="n">radius</span> <span class="n">of</span> <span class="mi">20</span> <span class="ow">is</span> <span class="mi">1256</span>
+<span class="n">The</span> <span class="n">average</span> <span class="n">area</span> <span class="ow">is</span> <span class="mi">785</span>
+</pre></div>
+</div>
+</section>
+<section id="data-types">
+<h2>Data types<a class="headerlink" href="#data-types" title="Permalink to this heading">#</a></h2>
+<section id="fundamental-data-types">
+<h3>Fundamental data types<a class="headerlink" href="#fundamental-data-types" title="Permalink to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data type</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Size</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p>ค่าทางตรรกศาสตร์ ได้แก่ <code class="docutils literal notranslate"><span class="pre">true</span></code> (1) กับ <code class="docutils literal notranslate"><span class="pre">false</span></code> (0)</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>จำนวนเต็ม</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">long</span></code></p></td>
+<td><p>จำนวนเต็มที่มีขอบเขตมากกว่า <code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>ทศนิยม</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">double</span></code></p></td>
+<td><p>ทศนิยมที่มีขอบเขตมากกว่า <code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">char</span></code></p></td>
+<td><p>อักขระ ครอบด้วย single quotation (<code class="docutils literal notranslate"><span class="pre">''</span></code>)</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td><p>ข้อความ (มีหลายอักขระ) ครอบด้วย double quotation (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>)</p></td>
+<td><p>จำนวนอักขระ</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="declaring-variables-and-constants">
+<h3>Declaring variables and constants<a class="headerlink" href="#declaring-variables-and-constants" title="Permalink to this heading">#</a></h3>
+<p>ในการประกาศตัวแปร ต้องระบุ data type นำหน้าด้วย โดยจะระบุค่าไปเลยหรือค่อยระบุค่าทีหลังก็ได้ และสามารถเปลี่ยนแปลงค่าได้</p>
+<p>ค่าคงที่ ไม่สามารถเปลี่ยนค่าได้ หากต้องการประกาศค่าคงที่ ต้องมี keyword <code class="docutils literal notranslate"><span class="pre">const</span></code> นำหน้า และต้องระบุค่าด้วย ชื่อค่าคงที่มักจะเป็นตัวพิมพ์ใหญ่ทั้งหมด</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">shape</span> <span class="o">=</span> <span class="s2">&quot;circle&quot;</span><span class="p">;</span>
+    <span class="nb">int</span> <span class="n">radius</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">area</span><span class="p">;</span>
+    <span class="n">const</span> <span class="nb">float</span> <span class="n">PI</span> <span class="o">=</span> <span class="mf">3.14</span><span class="p">;</span>
+    <span class="n">area</span> <span class="o">=</span> <span class="mi">314</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The area of a &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">shape</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot; with a radius of &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">radius</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot; is &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">area</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">area</span> <span class="n">of</span> <span class="n">a</span> <span class="n">circle</span> <span class="k">with</span> <span class="n">a</span> <span class="n">radius</span> <span class="n">of</span> <span class="mi">10</span> <span class="ow">is</span> <span class="mi">314</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="operators">
+<h2>Operators<a class="headerlink" href="#operators" title="Permalink to this heading">#</a></h2>
+<section id="mathematical-operators">
+<h3>Mathematical operators<a class="headerlink" href="#mathematical-operators" title="Permalink to this heading">#</a></h3>
+<p>ตัวดำเนินการทางคณิตศาสตร์ ได้แก่ <code class="docutils literal notranslate"><span class="pre">+</span></code> (บวก), <code class="docutils literal notranslate"><span class="pre">-</span></code> (ลบ), <code class="docutils literal notranslate"><span class="pre">*</span></code> (คูณ), <code class="docutils literal notranslate"><span class="pre">/</span></code> (หาร), และ <code class="docutils literal notranslate"><span class="pre">%</span></code> (หารเอาเศษ)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>ไม่มี operator สำหรับการยกกำลังเหมือนใน Python (<code class="docutils literal notranslate"><span class="pre">**</span></code>)</p></li>
+<li><p>จำนวนเต็มหารกันจะปัดเศษทิ้ง หากต้องการหารจำนวนเต็มที่ไม่ลงตัวให้ได้ผลลัพธ์เป็นทศนิยม ต้องทำ type casting เพื่อแปลงจำนวนหนึ่งเป็นทศนิยมก่อน</p></li>
+</ul>
+</div>
+<p>ดูเพิ่มเติมเกี่ยวกับ <a href="https://unstop.com/blog/type-casting-and-type-conversion-in-cpp">Type Casting</a></p>
+</section>
+<section id="increments-and-decrements">
+<h3>Increments and decrements<a class="headerlink" href="#increments-and-decrements" title="Permalink to this heading">#</a></h3>
+<p>ตัวดำเนินการเพิ่มค่าและลดค่าทีละ 1 คือ <code class="docutils literal notranslate"><span class="pre">++</span></code> กับ <code class="docutils literal notranslate"><span class="pre">--</span></code> ตามลำดับ นำไปวางไว้หน้า (prefix) หรือหลัง (suffix) ตัวแปร จะมีความหมายเป็นดังนี้</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">++a</span></code> เพิ่มค่าของ a ขึ้นมา 1 ก่อนนำไปใช้</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a++</span></code> นำค่าของ a ในปัจจุบันไปใช้ก่อนเพิ่มขึ้นมา 1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--a</span></code> ลดค่าของ a ลงไป 1 ก่อนนำไปใช้</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">a--</span></code> นำค่าของ a ในปัจจุบันไปใช้ก่อนลดค่าลงไป 1</p></li>
+</ul>
+</section>
+<section id="compound-assignments">
+<h3>Compound assignments<a class="headerlink" href="#compound-assignments" title="Permalink to this heading">#</a></h3>
+<p>นำตัวดำเนินการทางคณิตศาสตร์มารวมกับเครื่องหมาย <code class="docutils literal notranslate"><span class="pre">=</span></code> ได้แก่ <code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code class="docutils literal notranslate"><span class="pre">-=</span></code>, <code class="docutils literal notranslate"><span class="pre">*=</span></code>, <code class="docutils literal notranslate"><span class="pre">/=</span></code> และ <code class="docutils literal notranslate"><span class="pre">%=</span></code></p>
+<p>เช่น <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+=</span> <span class="pre">y</span></code> มีความหมายเดียวกับ <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">x+y</span></code></p>
+</section>
+<section id="comparison-operators">
+<h3>Comparison operators<a class="headerlink" href="#comparison-operators" title="Permalink to this heading">#</a></h3>
+<p>การเปรียบเทียบจะให้ผลลัพธ์เป็น boolean (<code class="docutils literal notranslate"><span class="pre">true</span></code>/<code class="docutils literal notranslate"><span class="pre">false</span></code>)</p>
+<p>ตัวดำเนินการที่ใช้ เช่น <code class="docutils literal notranslate"><span class="pre">==</span></code> (เท่ากับ), <code class="docutils literal notranslate"><span class="pre">!=</span></code> (ไม่เท่ากับ), <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>. <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>เครื่องหมายเท่ากับเครื่องหมายเดียว (<code class="docutils literal notranslate"><span class="pre">=</span></code>) ใช้ในการกำหนดค่าให้กับตัวแปร</p>
+</div>
+</section>
+<section id="logical-operators">
+<h3>Logical operators<a class="headerlink" href="#logical-operators" title="Permalink to this heading">#</a></h3>
+<p>ตัวดำเนินการทางตรรกศาสตร์ ได้แก่ <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> (and), <code class="docutils literal notranslate"><span class="pre">||</span></code> (or) และ <code class="docutils literal notranslate"><span class="pre">!</span></code> (not)</p>
+</section>
+<section id="bitwise-operators">
+<h3>Bitwise operators<a class="headerlink" href="#bitwise-operators" title="Permalink to this heading">#</a></h3>
+<p><a href="https://www.geeksforgeeks.org/bitwise-operators-in-c-cpp/">Bitwise operators</a></p>
+</section>
+<section id="output-operators">
+<h3>Output operators<a class="headerlink" href="#output-operators" title="Permalink to this heading">#</a></h3>
+<p>ตัวดำเนินการที่ใช้ในการส่งออก output ใช้สัญลักษณ์ <code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code></p>
+</section>
+<section id="input-operators">
+<h3>Input operators<a class="headerlink" href="#input-operators" title="Permalink to this heading">#</a></h3>
+<p>ตัวดำเนินการที่ใช้ในการรับ input ใช้สัญลักษณ์ <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nb">int</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;a = &quot;</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">a</span><span class="p">;</span>  <span class="o">//</span> <span class="n">I</span> <span class="n">will</span> <span class="n">enter</span> <span class="n">a</span><span class="o">=</span><span class="mi">10</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;a x 2 = &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">a</span> <span class="n">x</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">20</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conitional-statements">
+<h2>Conitional statements<a class="headerlink" href="#conitional-statements" title="Permalink to this heading">#</a></h2>
+<section id="if-else">
+<h3>If-else<a class="headerlink" href="#if-else" title="Permalink to this heading">#</a></h3>
+<p>คำสั่งแบบมีเงื่อนไข มีรูปแบบดังนี้</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">(condition(s))</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">else</span> <span class="pre">if</span> <span class="pre">(condition(s))</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">else</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code></p></li>
+</ul>
+<p>ใช้ตัวดำเนินการทางตรรกศาสตร์ในการเชื่อมหลายเงื่อนไข ทุกเงื่อนไขและตัวเชื่อมจะอยู่ในวงเล็บคู่เดียว</p>
+</section>
+<section id="ternary-operator">
+<h3>Ternary operator<a class="headerlink" href="#ternary-operator" title="Permalink to this heading">#</a></h3>
+<p>เราสามารถลดรูปคำสั่งแบบ if-else ได้โดยใช้ ternary operator (<code class="docutils literal notranslate"><span class="pre">?</span> <span class="pre">:</span></code>) มี syntax เป็นดังนี้</p>
+<p><code class="docutils literal notranslate"><span class="pre">var_name</span> <span class="pre">=</span> <span class="pre">(condition(s))</span> <span class="pre">?</span> <span class="pre">value_if_true</span> <span class="pre">:</span> <span class="pre">value_if_false</span></code></p>
+</section>
+<section id="switch">
+<h3>Switch<a class="headerlink" href="#switch" title="Permalink to this heading">#</a></h3>
+<p>Switch statement ใช้ในการเช็คค่าของตัวแปร ถ้าตัวแปรมีค่าตรงกับ case ใด ให้ทำตามคำสั่งใน case นั้น</p>
+<p>มีรูปแบบเป็นดังนี้</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">switch</span> <span class="p">(</span><span class="n">var_name</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">case</span> <span class="n">val1</span><span class="p">:</span>  <span class="o">//</span> <span class="k">if</span> <span class="n">var_name</span> <span class="o">==</span> <span class="n">val1</span>
+        <span class="o">...</span>
+        <span class="k">break</span><span class="p">;</span>  <span class="o">//</span> <span class="n">End</span> <span class="n">the</span> <span class="n">switch</span> <span class="n">statement</span>
+    <span class="k">case</span> <span class="n">val2</span><span class="p">:</span> <span class="n">case</span> <span class="n">val3</span><span class="p">:</span>  <span class="o">//</span> <span class="k">if</span> <span class="p">(</span><span class="n">var_name</span> <span class="o">==</span> <span class="n">val2</span> <span class="o">||</span> <span class="n">var_name</span> <span class="o">==</span> <span class="n">val3</span><span class="p">)</span>
+        <span class="o">...</span>
+        <span class="k">break</span><span class="p">;</span>  <span class="o">//</span> <span class="n">End</span> <span class="n">the</span> <span class="n">switch</span> <span class="n">statement</span>
+    <span class="n">default</span><span class="p">:</span>  <span class="o">//</span> <span class="k">else</span>
+        <span class="o">...</span>
+        <span class="o">//</span> <span class="n">No</span> <span class="n">need</span> <span class="n">of</span> <span class="n">a</span> <span class="k">break</span> <span class="n">statement</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="loop-statements">
+<h2>Loop statements<a class="headerlink" href="#loop-statements" title="Permalink to this heading">#</a></h2>
+<section id="while">
+<h3>While<a class="headerlink" href="#while" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">(condition(s))</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code></p>
+</section>
+<section id="for">
+<h3>For<a class="headerlink" href="#for" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">(start;</span> <span class="pre">condition(s);</span> <span class="pre">update)</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code></p>
+</section>
+<section id="do-while">
+<h3>Do-while<a class="headerlink" href="#do-while" title="Permalink to this heading">#</a></h3>
+<p>ลองทำก่อน 1 รอบ และทำต่อหากเงื่อนไขยังคงเป็นจริง</p>
+<p><code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span> <span class="pre">while</span> <span class="pre">(condition(s));</span></code></p>
+</section>
+<section id="break-and-continue-statements">
+<h3>Break and continue statements<a class="headerlink" href="#break-and-continue-statements" title="Permalink to this heading">#</a></h3>
+<p>Loop statement มี 2 keyword ที่สำคัญ คือ</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">break</span></code>: หยุดการทำงานใน loop ทันที และออกจาก loop ไปเลย</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">continue</span></code>: หยุดการทำงานใน loop รอบปัจจุบันทันทีเพื่อเริ่ม loop รอบต่อไป</p></li>
+</ul>
+</section>
+</section>
+<section id="arrays">
+<h2>Arrays<a class="headerlink" href="#arrays" title="Permalink to this heading">#</a></h2>
+<section id="working-with-arrays">
+<h3>Working with arrays<a class="headerlink" href="#working-with-arrays" title="Permalink to this heading">#</a></h3>
+<p>Array เป็นกลุ่มของข้อมูลชนิดเดียวกัน</p>
+<ul class="simple">
+<li><p>ตำแหน่ง (index) ของสมาชิก (element) จะเริ่มต้นที่ 0</p></li>
+<li><p>เราไม่สามารถเปลี่ยนขนาดของ array ได้</p></li>
+<li><p>การประกาศ 1D array ทำได้ดังนี้</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span> <span class="pre">arr_name[size];</span></code> ยังไม่ระบุสมาชิก</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span> <span class="pre">arr_name[size]</span> <span class="pre">=</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">};</span></code> ระบุสมาชิกตามจำนวนสมาชิก (size) ที่กำหนด</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_type</span> <span class="pre">arr_name[]</span> <span class="pre">=</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">};</span></code> ระบุสมาชิกโดยไม่กำหนดจำนวนสมาชิก (size) แต่ size ของ array จะถูกกำหนดโดยอัตโนมัติจากจำนวนสมาชิก</p></li>
+</ul>
+</li>
+<li><p>ใช้ index ในการเข้าถึงและแก้ค่าใน array</p></li>
+</ul>
+</section>
+<section id="sizeof">
+<h3>Sizeof<a class="headerlink" href="#sizeof" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">sizeof</span></code> เป็นฟังก์ชันที่ใช้หาขนาดของข้อมูล (byte) เราสามารถใช้มันในการหาจำนวนสมาชิกของ array ได้</p>
+</section>
+<section id="foreach">
+<h3>Foreach<a class="headerlink" href="#foreach" title="Permalink to this heading">#</a></h3>
+<p>Foreach เป็นวิธีการวน loop ตามลำดับของสมาชิกใน array โดยไม่ต้องกำหนด index มี syntax คือ <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">(auto</span> <span class="pre">temp_var</span> <span class="pre">:</span> <span class="pre">arr_name)</span> <span class="pre">{...}</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">char</span> <span class="n">word</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span> <span class="p">};</span>
+    <span class="n">word</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;i&#39;</span><span class="p">;</span>  <span class="o">//</span> <span class="n">Change</span> <span class="n">the</span> <span class="n">second</span> <span class="n">character</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">word</span> <span class="p">(</span><span class="n">o</span> <span class="o">-&gt;</span> <span class="n">i</span><span class="p">)</span>
+    <span class="nb">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">/</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>  <span class="o">//</span> <span class="n">Assign</span> <span class="n">c</span> <span class="n">to</span> <span class="n">be</span> <span class="n">the</span> <span class="n">i</span><span class="o">-</span><span class="n">th</span> <span class="n">character</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">word</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="o">/*</span>
+    <span class="n">This</span> <span class="k">for</span> <span class="n">loop</span> <span class="ow">is</span> <span class="n">equivalent</span> <span class="n">to</span><span class="p">:</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">auto</span> <span class="n">c</span> <span class="p">:</span> <span class="n">word</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="o">*/</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Tiny</span>
+</pre></div>
+</div>
+</section>
+<section id="nd-arrays">
+<h3>nD arrays<a class="headerlink" href="#nd-arrays" title="Permalink to this heading">#</a></h3>
+<p>การใช้ nD array คล้ายกับ 1D array แต่ต้องมีวงเล็บ <code class="docutils literal notranslate"><span class="pre">[]</span></code> หลายคู่ตามจำนวนมิติเพื่อกำหนดขนาดในแต่ละมิติและเข้าถึงค่าในตำแหน่งต่าง ๆ</p>
+<p><code class="docutils literal notranslate"><span class="pre">data_type</span> <span class="pre">arr_name[1st_dim][2nd_dim]</span> <span class="pre">...</span> <span class="pre">;</span></code></p>
+<p>หรือ</p>
+<p><code class="docutils literal notranslate"><span class="pre">data_type</span> <span class="pre">arr_name[1st_dim,</span> <span class="pre">2nd_dim]</span> <span class="pre">...</span> <span class="pre">;</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nb">int</span> <span class="n">nums</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span>
+        <span class="p">{</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">},</span>
+        <span class="p">{</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>  <span class="o">//</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="n">also</span> <span class="n">works</span>
+            <span class="p">}</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="o">//</span> <span class="n">std</span><span class="p">::</span><span class="n">endl</span> <span class="ow">is</span> <span class="n">equivalent</span> <span class="n">to</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>       <span class="o">-</span><span class="mi">2</span>      <span class="mi">3</span>
+<span class="o">-</span><span class="mi">4</span>      <span class="mi">5</span>       <span class="o">-</span><span class="mi">6</span>
+<span class="mi">7</span>       <span class="o">-</span><span class="mi">8</span>      <span class="mi">9</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+<section id="declaring-functions">
+<h3>Declaring functions<a class="headerlink" href="#declaring-functions" title="Permalink to this heading">#</a></h3>
+<p>ฟังก์ชัน เป็นกลุ่มคำสั่งที่สามารถเรียกใช้งานได้</p>
+<ul class="simple">
+<li><p>จะมี parameter หรือไม่ก็ได้ หากมี parameter ต้องกำหนด data type ของมัน และเราจะกำหนด default value ด้วยหรือไม่ก็ได้</p></li>
+<li><p>จะคืนค่า (return) หรือไม่ก็ได้ (ใช้ <code class="docutils literal notranslate"><span class="pre">return</span></code> statement ในการคืนค่าหรือหยุดการทำงานในฟังก์ชัน)</p></li>
+<li><p>ประกาศ user-defined function ไว้เหนือฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">main()</span></code></p></li>
+<li><p>เมื่อทำการประกาศ user-defined function ต้องกำหนด data type ที่เป็น data type ของค่าที่ฟังก์ชันจะคืนค่าออกมา ถ้าไม่มีการคืนค่า ให้กำหนด data type ว่าเป็น <code class="docutils literal notranslate"><span class="pre">void</span></code></p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">data_type</span> <span class="pre">func_name(data_type</span> <span class="pre">param1,</span> <span class="pre">data_type</span> <span class="pre">param2</span> <span class="pre">=</span> <span class="pre">default_val,</span> <span class="pre">...)</span> <span class="pre">{</span> <span class="pre">...</span> <span class="pre">}</span></code></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>หากมี conditional statement อยู่ใน function ที่ return ค่า ต้องมั่นใจว่ามีการ return ค่าในทุก case</p>
+</div>
+</section>
+<section id="function-overloading">
+<h3>Function overloading<a class="headerlink" href="#function-overloading" title="Permalink to this heading">#</a></h3>
+<p>Function overloading เป็นการสร้างฟังก์ชันที่มีชื่อเหมือนกัน แต่มี parameter ต่างกันและทำงานต่างกัน</p>
+</section>
+<section id="local-and-global-variables">
+<h3>Local and global variables<a class="headerlink" href="#local-and-global-variables" title="Permalink to this heading">#</a></h3>
+<p>Local variable คือ ตัวแปรที่เรียกใช้ได้ในขอบเขตที่จำกัด (อยู่ภายใน <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code>) ไม่สามารถเรียกใช้นอกขอบเขตได้</p>
+<p>Global variable คือ ตัวแปรที่เรียกใช้ที่ใดก็ได้เพราะถูกประกาศไว้นอกสุด มักจะประกาศไว้บนสุดของ script</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="c1">#include &lt;conio.h&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="nb">float</span> <span class="n">balance</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">;</span>  <span class="o">//</span> <span class="n">Global</span> <span class="n">variable</span>
+
+<span class="n">void</span> <span class="n">deposit</span><span class="p">(</span><span class="nb">float</span> <span class="ow">in</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">balance</span> <span class="o">+=</span> <span class="ow">in</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Deposit &quot;</span> <span class="o">&lt;&lt;</span> <span class="ow">in</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Current balance: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">balance</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">float</span> <span class="n">getInterest</span><span class="p">(</span><span class="nb">float</span> <span class="n">interest_rate</span> <span class="o">=</span> <span class="mf">.01</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">balance</span> <span class="o">*</span> <span class="n">interest_rate</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">withdraw</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Withdraw &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">balance</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Current balance: 0&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">balance</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">withdraw</span><span class="p">(</span><span class="nb">float</span> <span class="n">out</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">balance</span> <span class="o">-=</span> <span class="n">out</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Withdraw &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Current balance: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">balance</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Current balance: 0&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">char</span> <span class="n">operate</span><span class="p">;</span>
+    <span class="nb">float</span> <span class="n">money</span><span class="p">;</span>
+    <span class="n">do</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Do you want to (d)eposit money into, (w)ithdraw money from, get an (i)nterest, or (t)erminate your account?: &quot;</span><span class="p">;</span>
+        <span class="n">operate</span> <span class="o">=</span> <span class="n">_getch</span><span class="p">();</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">operate</span> <span class="o">==</span> <span class="s1">&#39;d&#39;</span><span class="p">)</span>  <span class="o">//</span> <span class="n">Deposit</span> <span class="n">money</span> <span class="n">into</span> <span class="n">account</span>
+        <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;How much money to be deposited?: &quot;</span><span class="p">;</span>
+            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">money</span><span class="p">;</span>
+            <span class="n">deposit</span><span class="p">(</span><span class="n">money</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">operate</span> <span class="o">==</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>  <span class="o">//</span> <span class="n">Withdraw</span> <span class="n">money</span> <span class="kn">from</span> <span class="nn">account</span>
+        <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;How much money to be withdrawn?: &quot;</span><span class="p">;</span>
+            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">money</span><span class="p">;</span>
+            <span class="n">withdraw</span><span class="p">(</span><span class="n">money</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">operate</span> <span class="o">==</span> <span class="s1">&#39;i&#39;</span><span class="p">)</span>  <span class="o">//</span> <span class="n">Get</span> <span class="n">interest</span>
+        <span class="p">{</span>
+            <span class="n">deposit</span><span class="p">(</span><span class="n">getInterest</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">operate</span> <span class="o">==</span> <span class="s1">&#39;t&#39;</span><span class="p">)</span>  <span class="o">//</span> <span class="n">Terminate</span> <span class="n">account</span>
+        <span class="p">{</span>
+            <span class="n">withdraw</span><span class="p">();</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">else</span>
+        <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Invalid operator, try again.&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">operate</span> <span class="o">!=</span> <span class="s1">&#39;t&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Current balance: 0
+
+Do you want to (d)eposit money into, (w)ithdraw money from, get an (i)nterest, or (t)erminate your account?:
+How much money to be deposited?: 1000
+Deposit 1000
+Current balance: 1000
+
+Do you want to (d)eposit money into, (w)ithdraw money from, get an (i)nterest, or (t)erminate your account?:
+Deposit 10
+Current balance: 1010
+
+Do you want to (d)eposit money into, (w)ithdraw money from, get an (i)nterest, or (t)erminate your account?:
+How much money to be withdrawn?: 510
+Withdraw 510
+Current balance: 500
+
+Do you want to (d)eposit money into, (w)ithdraw money from, get an (i)nterest, or (t)erminate your account?:
+Deposit 5
+Current balance: 505
+
+Do you want to (d)eposit money into, (w)ithdraw money from, get an (i)nterest, or (t)erminate your account?:
+Withdraw 505
+Current balance: 0
+</pre></div>
+</div>
+</section>
+</section>
+<section id="maths">
+<h2>Maths<a class="headerlink" href="#maths" title="Permalink to this heading">#</a></h2>
+<p>เราสามารถเรียกใช้ Maths function โดยใช้ <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;cmath&gt;</span></code></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>การทำงาน</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">exp(a)</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(e^a\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pow(a,</span> <span class="pre">n)</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(a^n\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fabs(a)</span></code></p></td>
+<td><p>$</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sin(a)</span></code>, <code class="docutils literal notranslate"><span class="pre">cos(a)</span></code>, <code class="docutils literal notranslate"><span class="pre">acos(a)</span></code>, etc.</p></td>
+<td><p>Trigonomatric functions</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">log(a)</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\ln(a)\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">log10(a)</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\log(a)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sqrt(a)</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\sqrt{a}\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">floor(a)</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\lfloor a \rfloor\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ceil(a)</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(\lceil a \rceil\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="character">
+<h2>Character<a class="headerlink" href="#character" title="Permalink to this heading">#</a></h2>
+<section id="ascii">
+<h3>ASCII<a class="headerlink" href="#ascii" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">char</span></code> มีขนาด 1 byte เทียบเท่ากับตัวเลขระหว่าง 0-255 เลขนี้สามารถแปลงเป็นอักขระโดยยึดตามระบบ ASCII อักขระที่นอกเหนือจากนี้ต้องมี library พิเศษ</p>
+<img src="../images/ascii.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>31 ตัวแรกไม่สามารถพิมพ์ออกมาได้</p></li>
+<li><p>Special character เช่น <code class="docutils literal notranslate"><span class="pre">\n</span></code> (ขึ้นบรรทัดใหม่), <code class="docutils literal notranslate"><span class="pre">\t</span></code> (tab), <code class="docutils literal notranslate"><span class="pre">\'</span></code> (อักขระ <code class="docutils literal notranslate"><span class="pre">'</span></code>), <code class="docutils literal notranslate"><span class="pre">\&quot;</span></code> (อักขระ <code class="docutils literal notranslate"><span class="pre">&quot;</span></code>), <code class="docutils literal notranslate"><span class="pre">\\</span></code> (อักขระ <code class="docutils literal notranslate"><span class="pre">\</span></code>)</p></li>
+</ul>
+</div>
+</section>
+<section id="inputting-characters">
+<h3>Inputting characters<a class="headerlink" href="#inputting-characters" title="Permalink to this heading">#</a></h3>
+<p>เราสามารถรับอักขระทางแป้นพิมพ์ได้ 2 วิธี</p>
+<ul class="simple">
+<li><p>ใช้ <code class="docutils literal notranslate"><span class="pre">cin</span></code> หน้าต่าง executable แสดงอักขระที่พิมพ์ออกมา ต้องกด enter เมื่อพิมพ์เสร็จ</p></li>
+<li><p>ใช้ <code class="docutils literal notranslate"><span class="pre">_getch()</span></code></p>
+<ul>
+<li><p>หน้าต่าง executable ไม่แสดงอักขระที่พิมพ์ออกมา และทำงานขั้นถัดไปทันทีโดยไม่ต้องกด enter</p></li>
+<li><p>ต้องมี <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;conio.h&gt;</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="character-functions">
+<h3>Character functions<a class="headerlink" href="#character-functions" title="Permalink to this heading">#</a></h3>
+<p>Function สำหรับ <code class="docutils literal notranslate"><span class="pre">char</span></code> จะอยู่ใน <code class="docutils literal notranslate"><span class="pre">ctype.h</span></code> หรือ <code class="docutils literal notranslate"><span class="pre">locale</span></code> แต่ทั้งสอง library มีความแตกต่างอยู่เล็กน้อย คือ</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ctype.h</span></code> ใช้ได้กับ ASCII character เท่านั้น ส่วน <code class="docutils literal notranslate"><span class="pre">locale</span></code> จะใช้กับอักขระอื่น ๆ รวมถึงตัวอักษรต่างประเทศที่ใช้ Unicode character ได้ด้วย</p></li>
+<li><p>มีบาง function ใน <code class="docutils literal notranslate"><span class="pre">locale</span></code> ถูก overloaded (มี function ที่มีชื่อเดียวกันแต่มี argument ต่างกัน)</p></li>
+</ul>
+<p>ตัวอย่าง function สำหรับ <code class="docutils literal notranslate"><span class="pre">char</span></code> เช่น</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Return</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tolower(char</span> <span class="pre">ch)</span></code></p></td>
+<td><p>แปลงเป็นตัวพิมพ์เล็ก ถ้าแปลงไม่ได้ จะ return ตัวอักษรเดิม</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">char</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">toupper(char</span> <span class="pre">ch)</span></code></p></td>
+<td><p>แปลงเป็นตัวพิมพ์ใหญ่ ถ้าแปลงไม่ได้ จะ return ตัวอักษรเดิม</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">char</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">islower(char</span> <span class="pre">ch)</span></code></p></td>
+<td><p>เช็คว่าเป็นตัวพิมพ์เล็กหรือไม่ ถ้าไม่ใช่ตัวอักษร จะ return <code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">isupper(char</span> <span class="pre">ch)</span></code></p></td>
+<td><p>เช็คว่าเป็นตัวพิมพ์ใหญ่หรือไม่ ถ้าไม่ใช่ตัวอักษร จะ return <code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">isdigit(char</span> <span class="pre">ch)</span></code></p></td>
+<td><p>เช็คว่าเป็นตัวเลขหรือไม่</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">isalpha(char</span> <span class="pre">ch)</span></code></p></td>
+<td><p>เช็คว่าเป็นตัวอักษรหรือไม่</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="string">
+<h2>String<a class="headerlink" href="#string" title="Permalink to this heading">#</a></h2>
+<section id="array-of-characters">
+<h3>Array of characters<a class="headerlink" href="#array-of-characters" title="Permalink to this heading">#</a></h3>
+<p>String คือ array ของ character จึงมีลำดับตำแหน่งและการเข้าถึงอักขระใน string เหมือนกับ array</p>
+<section id="string-declaration">
+<h4>String declaration<a class="headerlink" href="#string-declaration" title="Permalink to this heading">#</a></h4>
+<p>การประกาศ string ทำเหมือนกับการประกาศ array ดังนี้</p>
+<p><code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">str_name[length]</span> <span class="pre">=</span> <span class="pre">&quot;...&quot;;</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">char</span> <span class="pre">str_name[length]</span> <span class="pre">=</span> <span class="pre">{</span> <span class="pre">'ch',</span> <span class="pre">'ch',</span> <span class="pre">...,</span> <span class="pre">'ch',</span> <span class="pre">0</span> <span class="pre">};</span></code></p>
+<ul class="simple">
+<li><p>เราไม่จำเป็นต้องเก็บตัวอักษรให้ string เต็มตามความยาวของ string ที่เรากำหนดไว้ตอนแรก โดยตำแหน่งอื่น ๆ ที่ว่างจะเป็น null character (ASCII = 0)</p></li>
+<li><p>เราต้องกำหนดความยาวของ string ให้ยาวกว่าจำนวนตัวอักษรของข้อความของเรา 1 ตัว เพราะตัวสุดท้ายจะเป็น null</p></li>
+<li><p>Array ของ string จะเป็น 2D array ของ character</p></li>
+</ul>
+</section>
+<section id="string-functions">
+<h4>String functions<a class="headerlink" href="#string-functions" title="Permalink to this heading">#</a></h4>
+<p>ใช้ <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;cstring&gt;</span></code></p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>การทำงาน</p></th>
+<th class="head"><p>Return</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">strlen(char</span> <span class="pre">*str)</span></code></p></td>
+<td><p>บอกความยาวของ string ก่อนถึง null character</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">strcmp(char</span> <span class="pre">*str1,</span> <span class="pre">char</span> <span class="pre">*str2)</span></code></p></td>
+<td><p>ประเมินความแตกต่างระหว่าง 2 string (return 0 ถ้าทั้งสอง string เหมือนกัน)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">strncpy_s(char</span> <span class="pre">*dest,</span> <span class="pre">char</span> <span class="pre">*src,</span> <span class="pre">int</span> <span class="pre">length)</span></code></p></td>
+<td><p>copy string จาก source (src) ไปยัง destination (dest)</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="c1">#include &lt;cstring&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">char</span> <span class="n">str1</span><span class="p">[]</span> <span class="o">=</span> <span class="s2">&quot;Tony&quot;</span><span class="p">;</span>
+    <span class="n">char</span> <span class="n">str2</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span> <span class="p">};</span>  <span class="o">//</span> <span class="n">Get</span> <span class="n">warning</span> <span class="s2">&quot;String &#39;str2&#39; might not be zero-terminated&quot;</span>
+    <span class="n">char</span> <span class="n">str3</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">0</span> <span class="p">};</span>
+    <span class="n">char</span> <span class="n">str4</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">0</span> <span class="p">};</span>
+    <span class="n">char</span> <span class="n">str5</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+    <span class="n">strncpy_s</span><span class="p">(</span><span class="n">str5</span><span class="p">,</span> <span class="n">str1</span><span class="p">,</span> <span class="mi">4</span><span class="p">);</span>  <span class="o">//</span> <span class="n">Get</span> <span class="n">warning</span> <span class="s2">&quot;String &#39;str5&#39; might not be zero-terminated&quot;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">&lt;&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">&lt;&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">&lt;&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str4</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">&lt;&lt;</span> <span class="n">strlen</span><span class="p">(</span><span class="n">str5</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="n">str2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">&lt;&lt;</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="n">str3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">&lt;&lt;</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="n">str4</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span> <span class="o">&lt;&lt;</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">str1</span><span class="p">,</span> <span class="n">str5</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span>       <span class="mi">36</span>      <span class="mi">4</span>       <span class="mi">2</span>       <span class="mi">4</span>
+<span class="o">-</span><span class="mi">1</span>      <span class="mi">0</span>       <span class="mi">1</span>       <span class="mi">0</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="inputting-strings">
+<h3>Inputting strings<a class="headerlink" href="#inputting-strings" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>หากรับ string ด้วย <code class="docutils literal notranslate"><span class="pre">cin</span></code> จะรับถึงแค่ตัวอักษรสุดท้ายก่อนหน้าเว้นวรรค (เช่น <code class="docutils literal notranslate"><span class="pre">'</span> <span class="pre">'</span></code>, <code class="docutils literal notranslate"><span class="pre">'\t'</span></code>, <code class="docutils literal notranslate"><span class="pre">\n</span></code>) และตัวอักษรที่อยู่หลังจากนั้น (รวมถึง <code class="docutils literal notranslate"><span class="pre">\n</span></code>) จะกลายเป็น input ถัดไปโดยอัตโนมัติ (เรียกว่า <b>buffer</b>)</p></li>
+<li><p>หากต้องการอ่าน input ทั้งหมดโดยไม่มีเหลือเป็น buffer จะต้องใช้ <code class="docutils literal notranslate"><span class="pre">cin.getline(str_name,</span> <span class="pre">str_length);</span></code></p></li>
+<li><p>หากมีการใช้ <code class="docutils literal notranslate"><span class="pre">cin</span></code> 2 ครั้งติดกัน <code class="docutils literal notranslate"><span class="pre">cin</span></code> ที่สองจะไม่สนใจ <code class="docutils literal notranslate"><span class="pre">\n</span></code> จาก input ของ <code class="docutils literal notranslate"><span class="pre">cin</span></code> คำสั่งแรก แต่ถ้าใช้ <code class="docutils literal notranslate"><span class="pre">cin.getline</span></code> ต่อจาก <code class="docutils literal notranslate"><span class="pre">cin</span></code> จะถือว่า <code class="docutils literal notranslate"><span class="pre">\n</span></code> จาก <code class="docutils literal notranslate"><span class="pre">cin</span></code> คำสั่งแรกเป็น buffer</p></li>
+<li><p>เราสามารถกำจัด buffer จาก <code class="docutils literal notranslate"><span class="pre">cin</span></code> ก่อนหน้าก่อนถึงคำสั่ง <code class="docutils literal notranslate"><span class="pre">cin.getline</span></code> ได้โดยใช้คำสั่ง <code class="docutils literal notranslate"><span class="pre">cin.ignore(INT_MAX,</span> <span class="pre">'\n');</span></code> เพื่อกำจัด buffer จนถึงตัว <code class="docutils literal notranslate"><span class="pre">\n</span></code></p></li>
+<li><p>เมื่อใช้ <code class="docutils literal notranslate"><span class="pre">cout</span></code> แสดง string ออกทางจอ จะแสดงเฉพาะตัวอักษรก่อนหน้า null character ตัวแรกเท่านั้น ดังนั้น เราสามารถใช้ null character ในการจัดการ string ได้ เช่น ใส่ null character คั่นกลาง string เพื่อให้แสดงเฉพาะตัวอักษรก่อน null character ตัวแรกเท่านั้น แต่ข้อมูลใน string ยังคงเดิม</p></li>
+</ul>
+</section>
+<section id="string-object">
+<h3>String object<a class="headerlink" href="#string-object" title="Permalink to this heading">#</a></h3>
+<section id="id1">
+<h4>String declaration<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h4>
+<p>การประกาศ string อีกวิธีหนึ่งคือประกาศตัวแปรชนิด <code class="docutils literal notranslate"><span class="pre">string</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">string</span> <span class="pre">str_name;</span></code></p>
+</section>
+<section id="string-concatenation">
+<h4>String concatenation<a class="headerlink" href="#string-concatenation" title="Permalink to this heading">#</a></h4>
+<p>เราสามารถเอาหลาย string มาต่อกันด้วยเครื่องหมาย <code class="docutils literal notranslate"><span class="pre">+</span></code></p>
+</section>
+<section id="string-comparison">
+<h4>String comparison<a class="headerlink" href="#string-comparison" title="Permalink to this heading">#</a></h4>
+<p>เราสามารถเอา 2 string มาเทียบกันได้ด้วยเครื่องหมาย <code class="docutils literal notranslate"><span class="pre">==</span></code></p>
+</section>
+<section id="id2">
+<h4>String functions<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h4>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>การทำงาน</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;string&gt;.length()</span></code></p></td>
+<td><p>หาความยาวของ string</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;string1&gt;.append(&lt;string2&gt;)</span></code></p></td>
+<td><p>เอา string มาต่อกัน</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;string&gt;.empty()</span></code></p></td>
+<td><p>เช็คว่าเป็น empty string (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>) หรือไม่ (ถ้าใช่ จะได้ 1 ถ้าไม่ใช่ จะได้ 0)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;string1&gt;.compare(&lt;string2&gt;)</span></code></p></td>
+<td><p>เช็คว่า 2 string เหมือนกันหรือไม่ (ถ้าใช่ จะได้ 1 ถ้าไม่ใช่ จะได้ 0)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;string1&gt;.insert(&lt;inserted_position&gt;,</span> <span class="pre">&lt;string2&gt;)</span></code></p></td>
+<td><p>เอา string 2 ไปแทรกใน string 1 ณ ตำแหน่งที่กำหนด</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;string1&gt;.replace(&lt;first_replaced_position&gt;,</span> <span class="pre">&lt;last_replaced_position&gt;,</span> <span class="pre">&lt;string2&gt;)</span></code></p></td>
+<td><p>เอา string 2 แทนที่ใน string 1 ตามตำแหน่งที่กำหนด</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="pointer">
+<h2>Pointer<a class="headerlink" href="#pointer" title="Permalink to this heading">#</a></h2>
+<p>Pointer คือตัวแปรที่เก็บ memory address ของตัวแปรอื่น</p>
+<p>เราสามารถดู address ของตัวแปรค่าเดียวใด ๆ โดยใส่ <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> นำหน้า และดู address ของตัวแปรที่เป็น array ได้โดยใช้แค่ชื่อตัวแปรเท่านั้น (ไม่ต้องมี <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> นำหน้า)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nb">int</span> <span class="n">number</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">number</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="nb">int</span> <span class="n">numbers</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span> <span class="p">};</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">numbers</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0000006E1</span><span class="n">ECFFAF4</span>
+<span class="mf">0000006E1</span><span class="n">ECFFB18</span>
+</pre></div>
+</div>
+<p>การประกาศ pointer จะมี <code class="docutils literal notranslate"><span class="pre">*</span></code> นำหน้าชื่อตัวแปร เช่น <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">*p;</span></code> โดย <code class="docutils literal notranslate"><span class="pre">p</span></code> เป็น pointer ของตัวแปรที่เป็นจำนวนเต็มตัวหนึ่ง ส่วน <code class="docutils literal notranslate"><span class="pre">*</span></code> เป็นสัญลักษณ์ที่ระบุว่า <code class="docutils literal notranslate"><span class="pre">p</span></code> เป็น pointer และค่าที่จะถูก assigned ให้กับ pointer จะเป็น address ของตัวแปรหนึ่ง</p>
+<p>การใช้ pointer</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span></code> = pointer ที่ชี้ไปยัง memory address ของตัวแปรหนึ่ง (address ของตัวแปรนั้น)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*p</span></code> = ค่าของตัวแปรที่ memory address ของมันถูกชี้โดย pointer <code class="docutils literal notranslate"><span class="pre">p</span></code> (ค่าของตัวแปรนั้น)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&amp;p</span></code> = address ของ pointer <code class="docutils literal notranslate"><span class="pre">p</span></code></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nb">int</span> <span class="n">number1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="nb">int</span><span class="o">*</span> <span class="n">p1</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">number1</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The memory address where &#39;p1&#39; is pointing to: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">p1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The address of the variable &#39;number1&#39;: &quot;</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">number1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The value stored at the memory address pointed to by &#39;p1&#39;: &quot;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The value of &#39;number1&#39;: &quot;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The address of the pointer &#39;p1&#39;: &quot;</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">p1</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="nb">int</span> <span class="n">number2</span><span class="p">;</span>
+    <span class="nb">int</span><span class="o">*</span> <span class="n">p2</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">number2</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="o">*</span><span class="n">p1</span><span class="p">;</span>  <span class="o">//</span> <span class="n">assign</span> <span class="n">the</span> <span class="n">value</span> <span class="n">of</span> <span class="s1">&#39;p2&#39;</span> <span class="n">to</span> <span class="n">equal</span> <span class="n">that</span> <span class="n">of</span> <span class="s1">&#39;p1&#39;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The memory address where &#39;p2&#39; is pointing to: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">p2</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The address of the variable &#39;number2&#39;: &quot;</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">number2</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The value stored at the memory address pointed to by &#39;p2&#39;: &quot;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p2</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The value of &#39;number2&#39;: &quot;</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">p2</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The address of the pointer &#39;p2&#39;: &quot;</span> <span class="o">&lt;&lt;</span> <span class="o">&amp;</span><span class="n">p2</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">memory</span> <span class="n">address</span> <span class="n">where</span> <span class="s1">&#39;p1&#39;</span> <span class="ow">is</span> <span class="n">pointing</span> <span class="n">to</span><span class="p">:</span> <span class="mi">000000</span><span class="n">FB706FFB94</span>
+<span class="n">The</span> <span class="n">address</span> <span class="n">of</span> <span class="n">the</span> <span class="n">variable</span> <span class="s1">&#39;number1&#39;</span><span class="p">:</span> <span class="mi">000000</span><span class="n">FB706FFB94</span>
+<span class="n">The</span> <span class="n">value</span> <span class="n">stored</span> <span class="n">at</span> <span class="n">the</span> <span class="n">memory</span> <span class="n">address</span> <span class="n">pointed</span> <span class="n">to</span> <span class="n">by</span> <span class="s1">&#39;p1&#39;</span><span class="p">:</span> <span class="mi">10</span>
+<span class="n">The</span> <span class="n">value</span> <span class="n">of</span> <span class="s1">&#39;number1&#39;</span><span class="p">:</span> <span class="mi">10</span>
+<span class="n">The</span> <span class="n">address</span> <span class="n">of</span> <span class="n">the</span> <span class="n">pointer</span> <span class="s1">&#39;p1&#39;</span><span class="p">:</span> <span class="mi">000000</span><span class="n">FB706FFBB8</span>
+
+<span class="n">The</span> <span class="n">memory</span> <span class="n">address</span> <span class="n">where</span> <span class="s1">&#39;p2&#39;</span> <span class="ow">is</span> <span class="n">pointing</span> <span class="n">to</span><span class="p">:</span> <span class="mi">000000</span><span class="n">FB706FFBD4</span>
+<span class="n">The</span> <span class="n">address</span> <span class="n">of</span> <span class="n">the</span> <span class="n">variable</span> <span class="s1">&#39;number2&#39;</span><span class="p">:</span> <span class="mi">000000</span><span class="n">FB706FFBD4</span>
+<span class="n">The</span> <span class="n">value</span> <span class="n">stored</span> <span class="n">at</span> <span class="n">the</span> <span class="n">memory</span> <span class="n">address</span> <span class="n">pointed</span> <span class="n">to</span> <span class="n">by</span> <span class="s1">&#39;p2&#39;</span><span class="p">:</span> <span class="mi">10</span>
+<span class="n">The</span> <span class="n">value</span> <span class="n">of</span> <span class="s1">&#39;number2&#39;</span><span class="p">:</span> <span class="mi">10</span>
+<span class="n">The</span> <span class="n">address</span> <span class="n">of</span> <span class="n">the</span> <span class="n">pointer</span> <span class="s1">&#39;p2&#39;</span><span class="p">:</span> <span class="mi">000000</span><span class="n">FB706FFBF8</span>
+</pre></div>
+</div>
+</section>
+<section id="memory-allocation">
+<h2>Memory allocation<a class="headerlink" href="#memory-allocation" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Memory ในโปรแกรมมีสองแบบ คือ</p>
+<ol class="arabic simple">
+<li><p>stack เป็น memory ที่เก็บตัวแปรทันทีที่ถูกประกาศ โดยจะเก็บตัวแปรที่ใหญ่ถึงประมาณหนึ่งเท่านั้น</p></li>
+<li><p>heap เป็น memory ที่จะถูก allocated ขณะที่โปรแกรมกำลังรัน (dynamic allocation) นั่นคือ ไม่ต้องสร้างตัวแปรไว้ก่อน ซึ่งมีประโยชน์เมื่อเราไม่รู้ว่าตัวแปรหนึ่งมีขนาดมากแค่ไหน heap สามารถเก็บตัวแปรขนาดใหญ่ได้ แต่ต้องใช้ pointer ในการ allocate memory ดังนั้นเราจะใช้ pointer ชี้ไปที่ตัวแปรขนาดใหญ่ แทนที่จะเอาตัวแปรนั้นมาใช้โดยตรง</p></li>
+</ol>
+</li>
+<li><p>ในการจัดสรร memory เราจะใช้คำสั่ง <code class="docutils literal notranslate"><span class="pre">new</span></code></p></li>
+<li><p>Memory ที่ถูก allocated แล้ว เราควรจะ de-allocate มัน (คืน memory ให้กับเครื่อง) ทำได้โดยใช้คำสั่ง <code class="docutils literal notranslate"><span class="pre">delete</span></code> หากไม่ de-allocate จะทำให้เกิด memory leak</p></li>
+<li><p>เราเขียน code ที่อยู่ระหว่าง statement สำหรับ memory allocation (<code class="docutils literal notranslate"><span class="pre">new</span></code>) กับ de-allocation (<code class="docutils literal notranslate"><span class="pre">delete</span></code>) ได้ตามปกติ</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Allocating</span> <span class="n">memory</span> <span class="k">for</span> <span class="n">a</span> <span class="n">single</span> <span class="n">variable</span>
+<span class="nb">int</span><span class="o">*</span> <span class="n">p1</span><span class="p">;</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">new</span> <span class="nb">int</span><span class="p">;</span>
+<span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">delete</span> <span class="n">p1</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">Allocating</span> <span class="n">memory</span> <span class="k">for</span> <span class="n">an</span> <span class="n">array</span>
+<span class="nb">int</span><span class="o">*</span> <span class="n">p2</span><span class="p">;</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">new</span> <span class="nb">int</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="n">p2</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="n">delete</span><span class="p">[]</span> <span class="n">p2</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Pointer ที่ชี้ไปยัง memory address ของ array จะชี้ไปยัง address ของสมาชิกตัวแรกสุดใน array นั้น</p></li>
+<li><p>เราสามารถ allocate memory ของ 2D array (array of arrays) โดยใช้ pointer to a pointer (ใช้ <code class="docutils literal notranslate"><span class="pre">*</span></code> 2 ตัว เช่น <code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">**p</span></code>)</p>
+<ul>
+<li><p>Allocate memory ของแต่ละ array ย่อยใน array ก่อน แล้วค่อย allocate memory ของแต่ละสมาชิกใน array ย่อย</p></li>
+<li><p>De-allocate memory ของแต่ละสมาชิกใน array ย่อยก่อน แล้วค่อย de-allocate memory ของแต่ละ array ย่อยใน array (ลำดับขั้นตอนตรงข้ามกับ allocation)</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">double</span><span class="o">**</span> <span class="n">matrix</span><span class="p">;</span>  <span class="o">//</span> <span class="n">Pointer</span> <span class="n">to</span> <span class="n">a</span> <span class="n">pointer</span>
+<span class="nb">int</span> <span class="n">num_rows</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="n">Enter</span> <span class="n">the</span> <span class="n">numbers</span> <span class="n">of</span> <span class="n">rows</span> <span class="ow">and</span> <span class="n">columns</span>
+    <span class="n">do</span>
+	<span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Enter the number of rows: &quot;</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">num_rows</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">num_rows</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The number of rows must be positive.&quot;</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Enter the number of columns: &quot;</span><span class="p">;</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">num_cols</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">num_cols</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;The number of columns must be positive.&quot;</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">num_rows</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">num_cols</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">);</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="o">//</span> <span class="n">Allocate</span> <span class="n">memory</span> <span class="n">to</span> <span class="n">the</span> <span class="n">matrix</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="n">new</span> <span class="n">double</span><span class="o">*</span> <span class="p">[</span><span class="n">num_rows</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_rows</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new</span> <span class="n">double</span><span class="p">[</span><span class="n">num_cols</span><span class="p">];</span>
+
+    <span class="o">//</span> <span class="n">Enter</span> <span class="n">each</span> <span class="n">entry</span> <span class="n">of</span> <span class="n">the</span> <span class="n">matrix</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_rows</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">num_cols</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;row &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;, col &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">j</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;: &quot;</span><span class="p">;</span>
+            <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	
+    <span class="o">//</span> <span class="n">Print</span> <span class="n">the</span> <span class="n">matrix</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_rows</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">num_cols</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="o">//</span> <span class="n">De</span><span class="o">-</span><span class="n">allocate</span> <span class="n">memory</span> <span class="n">to</span> <span class="n">the</span> <span class="n">matrix</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_rows</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">delete</span><span class="p">[]</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="n">delete</span><span class="p">[]</span> <span class="n">matrix</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Enter</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">rows</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">Enter</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">columns</span><span class="p">:</span> <span class="mi">3</span>
+
+<span class="n">row</span> <span class="mi">0</span><span class="p">,</span> <span class="n">col</span> <span class="mi">0</span><span class="p">:</span> <span class="mi">1</span>
+<span class="n">row</span> <span class="mi">0</span><span class="p">,</span> <span class="n">col</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">2</span>
+<span class="n">row</span> <span class="mi">0</span><span class="p">,</span> <span class="n">col</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">3</span>
+<span class="n">row</span> <span class="mi">1</span><span class="p">,</span> <span class="n">col</span> <span class="mi">0</span><span class="p">:</span> <span class="mi">4</span>
+<span class="n">row</span> <span class="mi">1</span><span class="p">,</span> <span class="n">col</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">5</span>
+<span class="n">row</span> <span class="mi">1</span><span class="p">,</span> <span class="n">col</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">6</span>
+
+<span class="mi">1</span>       <span class="mi">2</span>       <span class="mi">3</span>
+<span class="mi">4</span>       <span class="mi">5</span>       <span class="mi">6</span>
+</pre></div>
+</div>
+</section>
+<section id="passing-pointers-addresses-to-functions">
+<h2>Passing pointers/addresses to functions<a class="headerlink" href="#passing-pointers-addresses-to-functions" title="Permalink to this heading">#</a></h2>
+<p>หากต้องการให้ array เป็น parameter ของฟังก์ชัน หรือต้องการให้ฟังก์ชัน return array ออกมา เราจะใช้ pointer แทน</p>
+<p>เมื่อตัวแปรที่มีค่าเดียวถูกใส่เข้าไปเป็น parameter ของฟังก์ชันหนึ่ง ค่าของตัวแปรนั้นจะถูก copied เป็น parameter นำไปใช้ในฟังก์ชัน ทำให้ตัวแปรนั้นไม่เปลี่ยนค่าหลังจากฟังก์ชันนั้นดำเนินการเสร็จแล้ว แต่เมื่อเราใช้ pointer ของ array ใส่เข้าไปเป็น parameter สิ่งที่ถูก copied จะเป็น pointer ของ array นั้น ดังนั้น ฟังก์ชันจะใช้ array เดียวกันกับ array ข้างนอก ถ้ามีการเปลี่ยนค่าของสมาชิกใน array นั้นระหว่างที่ฟังก์ชันนั้นดำเนินการ array นั้นก็จะเปลี่ยนตามไปด้วย</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="c1">#include &lt;cstring&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">void</span> <span class="n">flip</span><span class="p">(</span><span class="n">char</span><span class="o">*</span> <span class="nb">str</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="nb">int</span> <span class="n">str_length</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="nb">str</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">str_length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">char</span> <span class="n">temp</span> <span class="o">=</span> <span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="nb">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">[</span><span class="n">str_length</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+        <span class="nb">str</span><span class="p">[</span><span class="n">str_length</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">char</span> <span class="nb">str</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Enter a string: &quot;</span><span class="p">;</span>
+    <span class="n">cin</span><span class="o">.</span><span class="n">getline</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="mi">100</span><span class="p">);</span>
+    <span class="n">flip</span><span class="p">(</span><span class="nb">str</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Flipped string: &quot;</span> <span class="o">&lt;&lt;</span> <span class="nb">str</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Enter</span> <span class="n">a</span> <span class="n">string</span><span class="p">:</span> <span class="n">Imperial</span> <span class="n">College</span> <span class="n">London</span>
+<span class="n">Flipped</span> <span class="n">string</span><span class="p">:</span> <span class="n">nodnoL</span> <span class="n">egelloC</span> <span class="n">lairepmI</span>
+</pre></div>
+</div>
+<p>อย่างไรก็ตาม หากส่ง parameter ที่มีขนาดใหญ่เข้าไปในฟังก์ชัน โปรแกรมทำงานช้าเนื่องจาก address ถูก copied ช้า ในกรณีนี้ เราจะส่ง reference (address) เข้าไปในฟังก์ชันแทน ซึ่งเร็วกว่าการส่ง pointer เข้าไปในฟังก์ชันเพราะไม่ต้อง copy address หากตัวแปรมีการเปลี่ยนแปลงค่าระหว่างที่อยู่ในฟังก์ชัน ค่าของตัวแปรนั้นที่อยู่นอกฟังก์ชันก็จะเปลี่ยนตามด้วยเพราะใช้ address เดียวกัน</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="nb">int</span> <span class="n">multiply</span><span class="p">(</span><span class="nb">int</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="nb">int</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">a</span> <span class="o">*=</span> <span class="mi">10</span><span class="p">;</span>
+	<span class="n">b</span> <span class="o">*=</span> <span class="mi">10</span><span class="p">;</span>
+	<span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="nb">int</span> <span class="n">var1</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">var2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">var1</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">var2</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">multiply</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">20</span> <span class="mi">40</span> <span class="mi">800</span>
+</pre></div>
+</div>
+<p>ใน code ด้านบน เราส่ง address ของ <code class="docutils literal notranslate"><span class="pre">var1</span></code> กับ <code class="docutils literal notranslate"><span class="pre">var2</span></code> เข้าไปในฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">multiply</span></code> เราจะพูดได้ว่า <code class="docutils literal notranslate"><span class="pre">a</span></code> ไม่ใช่ copy ของ <code class="docutils literal notranslate"><span class="pre">var1</span></code> แต่เป็น reference ของ <code class="docutils literal notranslate"><span class="pre">var1</span></code> (<code class="docutils literal notranslate"><span class="pre">a</span></code> กับ <code class="docutils literal notranslate"><span class="pre">var1</span></code> เป็นตัวแปรเดียวกัน แต่ <code class="docutils literal notranslate"><span class="pre">a</span></code> เป็นอีกชื่อหนึ่งของ <code class="docutils literal notranslate"><span class="pre">var1</span></code> ที่ถูกใช้ในฟังก์ชัน)</p>
+</section>
+<section id="file-handling">
+<h2>File handling<a class="headerlink" href="#file-handling" title="Permalink to this heading">#</a></h2>
+<section id="file-stream">
+<h3>File stream<a class="headerlink" href="#file-stream" title="Permalink to this heading">#</a></h3>
+<p><b>Stream</b> คือการไหลของข้อมูลเข้าหรือออกจากโปรแกรม เรารู้จักไปแล้ว 2 stream ได้แก่ <code class="docutils literal notranslate"><span class="pre">cin</span></code> กับ <code class="docutils literal notranslate"><span class="pre">cout</span></code></p>
+<p>ในการทำงานกับไฟล์ เราจะใช้ stream ที่เรียกว่า <code class="docutils literal notranslate"><span class="pre">fstream</span></code></p>
+<ul class="simple">
+<li><p>ต้อง <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;fstream&gt;</span></code></p></li>
+<li><p>ประกาศ <code class="docutils literal notranslate"><span class="pre">fstream</span></code> object ได้ดังนี้ <code class="docutils literal notranslate"><span class="pre">fstream</span> <span class="pre">myFile;</span></code></p></li>
+</ul>
+<p>เมื่อประกาศ <code class="docutils literal notranslate"><span class="pre">fstream</span></code> object แล้ว เราสามารถใช้ฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">open</span></code> เพื่อเปิดไฟล์ได้ดังนี้ <code class="docutils literal notranslate"><span class="pre">myFile.open(filename,</span> <span class="pre">flag);</span></code></p>
+<ul class="simple">
+<li><p>เมื่อเปิดไฟล์แล้ว ควรใช้ฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">fail</span></code> เพื่อตรวจสอบว่าเปิดไฟล์สำเร็จหรือไม่ (return <code class="docutils literal notranslate"><span class="pre">true</span></code> ถ้าเปิดไฟล์ไม่ได้)</p></li>
+<li><p>เมื่อใช้ <code class="docutils literal notranslate"><span class="pre">fstream</span></code> เสร็จ ต้องปิดโดยใช้ฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">close</span></code> เพื่อให้โปรแกรมอื่นสามารถเปิดไฟล์นี้ได้ และกำจัด buffer (unwritten output)</p></li>
+<li><p>flag ต่าง ๆ มีจุดประสงค์ในการใช้ที่ต่างกัน เช่น</p>
+<ul>
+<li><p>ใช้ <code class="docutils literal notranslate"><span class="pre">fstream::in</span></code> เพื่ออ่านไฟล์และใช้เป็น input ทำไม่ได้ถ้าไฟล์ที่จะเปิดนั้นไม่มีอยู่</p></li>
+<li><p>ใช้ <code class="docutils literal notranslate"><span class="pre">fstream::out</span></code> เพื่อเขียนไฟล์ อาจมีปัญหาหากไฟล์นั้นกำลังถูกเปิดอยู่ในอีกโปรแกรมหนึ่ง</p></li>
+<li><p>ใช้ <code class="docutils literal notranslate"><span class="pre">fstream::binary</span></code> เพื่อเขียน binary file</p></li>
+<li><p>ใช้ <code class="docutils literal notranslate"><span class="pre">fstream::app</span></code> เพื่อเขียนต่อ (append) จากไฟล์เดิม</p></li>
+<li><p>ใช้ <code class="docutils literal notranslate"><span class="pre">fstream::trunc</span></code> เพื่อ clear ไฟล์</p></li>
+<li><p>ใช้หลาย flag พร้อมกันได้โดยใช้ bitwise or (<code class="docutils literal notranslate"><span class="pre">|</span></code>) เป็นตัวเชื่อม</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="c1">#include &lt;fstream&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">fstream</span> <span class="n">file</span><span class="p">;</span>
+
+	<span class="o">//</span> <span class="n">Open</span> <span class="n">file</span>
+	<span class="n">file</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;test.txt&quot;</span><span class="p">,</span> <span class="n">fstream</span><span class="p">::</span><span class="n">out</span><span class="p">);</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">fail</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Error opening file!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>  <span class="o">//</span> <span class="n">Exit</span> <span class="n">the</span> <span class="n">program</span> <span class="p">(</span><span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="n">also</span> <span class="n">works</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="o">//</span> <span class="n">Write</span> <span class="n">the</span> <span class="n">file</span>
+	<span class="n">file</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Hello World!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+	<span class="o">//</span> <span class="n">Close</span> <span class="n">the</span> <span class="n">file</span>
+	<span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="binary-file-handling">
+<h3>Binary file handling<a class="headerlink" href="#binary-file-handling" title="Permalink to this heading">#</a></h3>
+<p>Text file มีข้อดีคือ เก็บข้อมูลเป็น text คนและโปรแกรมอื่นจึงอ่านได้ แต่มีข้อเสียคือ ข้อมูลที่เป็นตัวเลขจะถูกปัดให้เหลือ 6 s.f. ก่อนแปลงเป็น text และ text file จะมีขนาดใหญ่กว่า binary file ถ้ามีข้อมูลเท่ากัน เพราะตัวอักษร 1 ตัวมีขนาด 1 byte</p>
+<p>Binary file เก็บข้อมูลในลักษณะเดียวกับที่ถูกเก็บใน memory ข้อมูลจึงไม่ผิดเพี้ยนไปจากเดิม แต่คนไม่สามารถอ่านได้ และเปิดในบางโปรแกรมไม่ได้</p>
+<p>ฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">open</span></code> จะเปิด text file by default ดังนั้น ถ้าต้องการเขียน binary file จะต้องมีนามสกุลไฟล์เป็น <code class="docutils literal notranslate"><span class="pre">.bin</span></code> และต้องมี flag <code class="docutils literal notranslate"><span class="pre">fstream::binary</span></code> ด้วย</p>
+<p>การเขียนและอ่าน binary file ทำได้โดยใช้ฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">write</span></code> และ <code class="docutils literal notranslate"><span class="pre">read</span></code> ตามลำดับ</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="c1">#include &lt;fstream&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">fstream</span> <span class="n">file</span><span class="p">;</span>
+<span class="n">char</span><span class="o">**</span> <span class="n">name</span><span class="p">;</span>
+<span class="nb">int</span><span class="o">*</span> <span class="n">age</span><span class="p">;</span>
+<span class="nb">int</span> <span class="n">num_data</span><span class="p">;</span>
+
+<span class="n">void</span> <span class="n">load_file</span><span class="p">(</span><span class="n">const</span> <span class="n">char</span><span class="o">*</span> <span class="n">fname</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">file</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">fstream</span><span class="p">::</span><span class="ow">in</span> <span class="o">|</span> <span class="n">fstream</span><span class="p">::</span><span class="n">binary</span><span class="p">);</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">fail</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="n">num_data</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="k">else</span>
+	<span class="p">{</span>
+		<span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">((</span><span class="n">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">num_data</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">));</span>
+	<span class="p">}</span>
+
+	<span class="n">name</span> <span class="o">=</span> <span class="p">(</span><span class="n">char</span><span class="o">**</span><span class="p">)</span> <span class="n">new</span> <span class="n">char</span><span class="o">*</span> <span class="p">[</span><span class="n">num_data</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+	<span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_data</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">new</span> <span class="n">char</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+	<span class="p">}</span>
+
+	<span class="n">age</span> <span class="o">=</span> <span class="n">new</span> <span class="nb">int</span><span class="p">[</span><span class="n">num_data</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+	<span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_data</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">);</span>
+		<span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">((</span><span class="n">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">age</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">));</span>
+	<span class="p">}</span>
+
+	<span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">save_file</span><span class="p">(</span><span class="n">const</span> <span class="n">char</span><span class="o">*</span> <span class="n">fname</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">file</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">fstream</span><span class="p">::</span><span class="n">out</span> <span class="o">|</span> <span class="n">fstream</span><span class="p">::</span><span class="n">binary</span><span class="p">);</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">fail</span><span class="p">())</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Can&#39;t open the file for writing&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+		<span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+	<span class="p">}</span>
+
+	<span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="n">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">num_data</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">));</span>
+	<span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_data</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">char</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">);</span>
+		<span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="n">char</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">age</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">sizeof</span><span class="p">(</span><span class="nb">int</span><span class="p">));</span>
+	<span class="p">}</span>
+
+	<span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+
+	<span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_data</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">delete</span><span class="p">[]</span> <span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+	<span class="p">}</span>
+
+	<span class="n">delete</span><span class="p">[]</span> <span class="n">name</span><span class="p">;</span>
+	<span class="n">delete</span><span class="p">[]</span> <span class="n">age</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="n">load_file</span><span class="p">(</span><span class="s2">&quot;data.bin&quot;</span><span class="p">);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;These people have run this program already: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="k">for</span> <span class="p">(</span><span class="nb">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num_data</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Name: </span><span class="se">\t</span><span class="s2">&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">name</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">Age: </span><span class="se">\t</span><span class="s2">&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">age</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+	<span class="p">}</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;What is your name? &quot;</span><span class="p">;</span>
+	<span class="n">cin</span><span class="o">.</span><span class="n">getline</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="n">num_data</span><span class="p">],</span> <span class="mi">100</span><span class="p">);</span>
+	<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;What is your age? &quot;</span><span class="p">;</span>
+	<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">age</span><span class="p">[</span><span class="n">num_data</span><span class="p">];</span>
+	<span class="n">num_data</span><span class="o">++</span><span class="p">;</span>
+	<span class="n">save_file</span><span class="p">(</span><span class="s2">&quot;data.bin&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="oop">
+<h2>OOP<a class="headerlink" href="#oop" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="templating">
+<h2>Templating<a class="headerlink" href="#templating" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="other-data-types-and-structures">
+<h2>Other data types and structures<a class="headerlink" href="#other-data-types-and-structures" title="Permalink to this heading">#</a></h2>
+<section id="enumeration">
+<h3>Enumeration<a class="headerlink" href="#enumeration" title="Permalink to this heading">#</a></h3>
+<p>Enumeration (<code class="docutils literal notranslate"><span class="pre">enum</span></code>) เป็นประเภทข้อมูลที่เป็นชุดของค่าคงที่ของจำนวนเต็มแต่ถูกแสดงด้วยชื่อแทน</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">enum</span> <span class="n">month</span> <span class="p">{</span> <span class="n">January</span><span class="p">,</span> <span class="n">February</span><span class="p">,</span> <span class="n">March</span><span class="p">,</span> <span class="n">April</span><span class="p">,</span> <span class="n">May</span><span class="p">,</span> <span class="n">June</span><span class="p">,</span> <span class="n">July</span><span class="p">,</span> <span class="n">August</span><span class="p">,</span> <span class="n">September</span><span class="p">,</span> <span class="n">October</span><span class="p">,</span> <span class="n">November</span><span class="p">,</span> <span class="n">December</span> <span class="p">};</span>
+<span class="n">enum</span> <span class="n">birthday</span> <span class="p">{</span> <span class="n">T</span> <span class="o">=</span> <span class="mi">28</span><span class="p">,</span> <span class="n">M</span> <span class="o">=</span> <span class="mi">4</span> <span class="p">};</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">birthday</span> <span class="n">bd</span> <span class="o">=</span> <span class="n">T</span><span class="p">;</span>
+    <span class="n">month</span> <span class="n">m</span> <span class="o">=</span> <span class="n">September</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;DoB: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">bd</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39;/&#39;</span> <span class="o">&lt;&lt;</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DoB</span><span class="p">:</span> <span class="mi">28</span><span class="o">/</span><span class="mi">9</span>
+</pre></div>
+</div>
+</section>
+<section id="structure">
+<h3>Structure<a class="headerlink" href="#structure" title="Permalink to this heading">#</a></h3>
+<p>Structure (<code class="docutils literal notranslate"><span class="pre">struct</span></code>) เป็นโครงสร้างข้อมูลที่ใช้รวบรวมข้อมูลต่างชนิดกันไว้ในวัตถุเดียว คล้ายกับ class ที่มีแต่ attribute ไม่มี method</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;iostream&gt;</span>
+<span class="n">using</span> <span class="n">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">struct</span> <span class="n">Student</span>
+<span class="p">{</span>
+    <span class="n">string</span> <span class="n">name</span><span class="p">,</span> <span class="n">degree</span><span class="p">,</span> <span class="n">subject</span><span class="p">,</span> <span class="n">uni</span><span class="p">;</span>
+    <span class="nb">float</span> <span class="n">mark</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">;</span>
+    <span class="nb">bool</span> <span class="n">isGraduated</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nb">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Student</span> <span class="n">tony</span><span class="p">;</span>
+    <span class="n">tony</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Khunakorn Limpsapapkasiphol&quot;</span><span class="p">;</span>
+    <span class="n">tony</span><span class="o">.</span><span class="n">degree</span> <span class="o">=</span> <span class="s2">&quot;BSc&quot;</span><span class="p">;</span>
+    <span class="n">tony</span><span class="o">.</span><span class="n">subject</span> <span class="o">=</span> <span class="s2">&quot;Earth and Planetary Science&quot;</span><span class="p">;</span>
+    <span class="n">tony</span><span class="o">.</span><span class="n">uni</span> <span class="o">=</span> <span class="s2">&quot;Imperial College London&quot;</span><span class="p">;</span>
+    <span class="n">tony</span><span class="o">.</span><span class="n">mark</span> <span class="o">=</span> <span class="mf">78.7</span><span class="p">;</span>
+    <span class="n">tony</span><span class="o">.</span><span class="n">isGraduated</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">tony</span><span class="o">.</span><span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">tony</span><span class="o">.</span><span class="n">degree</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39; &#39;</span> <span class="o">&lt;&lt;</span> <span class="n">tony</span><span class="o">.</span><span class="n">subject</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="o">&lt;&lt;</span> <span class="n">tony</span><span class="o">.</span><span class="n">uni</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;Mark: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">tony</span><span class="o">.</span><span class="n">mark</span> <span class="o">&lt;&lt;</span> <span class="s1">&#39; &#39;</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tony</span><span class="o">.</span><span class="n">isGraduated</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;(graduated)&quot;</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Khunakorn</span> <span class="n">Limpsapapkasiphol</span>
+<span class="n">BSc</span> <span class="n">Earth</span> <span class="ow">and</span> <span class="n">Planetary</span> <span class="n">Science</span>
+<span class="n">Imperial</span> <span class="n">College</span> <span class="n">London</span>
+<span class="n">Mark</span><span class="p">:</span> <span class="mf">78.7</span> <span class="p">(</span><span class="n">graduated</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="vector">
+<h3>Vector<a class="headerlink" href="#vector" title="Permalink to this heading">#</a></h3>
+<p>Vector เป็นโครงสร้างข้อมูลที่มีลักษณะการทำงานคล้าย array แต่สามารถปรับเปลี่ยนขนาดได้</p>
+<p>ต้องมี <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;vector&gt;</span></code></p>
+<section id="vector-declaration">
+<h4>Vector declaration<a class="headerlink" href="#vector-declaration" title="Permalink to this heading">#</a></h4>
+<p>การประกาศ vector ทำได้ดังนี้</p>
+<p><code class="docutils literal notranslate"><span class="pre">vector&lt;data_type&gt;</span> <span class="pre">vec_name;</span></code><br />
+<code class="docutils literal notranslate"><span class="pre">vector&lt;data_type&gt;</span> <span class="pre">vec_name</span> <span class="pre">=</span> <span class="pre">{</span> <span class="pre">elements</span> <span class="pre">};</span></code></p>
+</section>
+<section id="accessing-elements-in-a-vector">
+<h4>Accessing elements in a vector<a class="headerlink" href="#accessing-elements-in-a-vector" title="Permalink to this heading">#</a></h4>
+<p>การเข้าถึงและเปลี่ยนค่าสมาชิกใน vector ใช้ <code class="docutils literal notranslate"><span class="pre">[]</span></code> หรือใช้ฟังก์ชัน <code class="docutils literal notranslate"><span class="pre">at</span></code> ก็ได้ เช่น</p>
+</section>
+<section id="vector-functions">
+<h4>Vector functions<a class="headerlink" href="#vector-functions" title="Permalink to this heading">#</a></h4>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>การทำงาน</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;vector&gt;.size()</span></code></p></td>
+<td><p>บอกจำนวนสมาชิกใน vector</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;vector&gt;.at(index)</span></code></p></td>
+<td><p>เข้าถึงค่าใน vector ณ ตำแหน่งที่กำหนด</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;vector&gt;.push_back(element)</span></code></p></td>
+<td><p>เพิ่มสมาชิกใหม่ที่หลังสุดของ vector (append)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;vector&gt;.pop_back()</span></code></p></td>
+<td><p>เอาสมาชิกตัวสุดท้ายออกจาก vector</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;vector&gt;.clear()</span></code></p></td>
+<td><p>ลบสมาชิกทั้งหมดใน vector</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;vector&gt;.reserve(length)</span></code></p></td>
+<td><p>allocate memory ของ vector เอาไว้ก่อน เผื่อมีจำนวนสมาชิกเพิ่มขึ้นหรือลดลงจะได้ไม่ต้อง allocate และ de-allocate memory ทุกรอบ ทำให้โปรแกรมทำงานเร็วขึ้น มักใช้เมื่อเรารู้ว่าเราต้องการใช้ vector ใหญ่แค่ไหน</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;vector&gt;.resize(new_length)</span></code></p></td>
+<td><p>กำหนดขนาดใหม่ (และ allocate memory ใหม่) ของ vector</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;vector&gt;.insert(...)</span></code></p></td>
+<td><p>แทรกสมาชิกใหม่ไปอยู่กลาง vector (ทำให้โปรแกรมช้าลงได้มาก จึงควรใช้เมื่อจำเป็นจริง ๆ)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks\Programming"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Object-oriented%20Programming%20%28OOP%29.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Object-oriented Programming (OOP)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../Classical%20Machine%20Learning/Introduction.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Introduction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introductory-note">Introductory note</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-types">Data types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-data-types">Fundamental data types</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-variables-and-constants">Declaring variables and constants</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operators">Operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-operators">Mathematical operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#increments-and-decrements">Increments and decrements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compound-assignments">Compound assignments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-operators">Comparison operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operators">Logical operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bitwise-operators">Bitwise operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-operators">Output operators</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-operators">Input operators</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conitional-statements">Conitional statements</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#if-else">If-else</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ternary-operator">Ternary operator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#switch">Switch</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loop-statements">Loop statements</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#while">While</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for">For</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#do-while">Do-while</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#break-and-continue-statements">Break and continue statements</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays">Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#working-with-arrays">Working with arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sizeof">Sizeof</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#foreach">Foreach</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nd-arrays">nD arrays</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">Functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-functions">Declaring functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-overloading">Function overloading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#local-and-global-variables">Local and global variables</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maths">Maths</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#character">Character</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ascii">ASCII</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inputting-characters">Inputting characters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#character-functions">Character functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string">String</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#array-of-characters">Array of characters</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#string-declaration">String declaration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#string-functions">String functions</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inputting-strings">Inputting strings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#string-object">String object</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">String declaration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#string-concatenation">String concatenation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#string-comparison">String comparison</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">String functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pointer">Pointer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memory-allocation">Memory allocation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#passing-pointers-addresses-to-functions">Passing pointers/addresses to functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-handling">File handling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#file-stream">File stream</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-file-handling">Binary file handling</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oop">OOP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#templating">Templating</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-data-types-and-structures">Other data types and structures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enumeration">Enumeration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structure">Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector">Vector</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-declaration">Vector declaration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-elements-in-a-vector">Accessing elements in a vector</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-functions">Vector functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Khunakorn Limpsapapkasiphol
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
